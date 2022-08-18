@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LoginButton from './Login';
-import LogoutButton from './Logout';
+import LoginButton from '../components/Login';
+import LogoutButton from '../components/Logout';
 
 export default function LandingPage() {
 
