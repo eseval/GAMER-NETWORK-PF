@@ -1,14 +1,13 @@
 import React from 'react';
 // import load from '../Home/Cards/loadpoke.gif';
-// import './Loading.css';
+import './LandingPage.css';
 
-export default function Charging() {
+export default function LandingPage() {
 
     return (
-        <div className='charg'>
-            <h1>Play Center</h1>
-            <h3>Welcome to (what will be) the best game site EVER! </h3>
-            <button class="submit"></button>
+        <div>
+            <h1 className='h1'>Play Center</h1>
+            <button className="button">Botón</button>
         </div>
     )
 }
