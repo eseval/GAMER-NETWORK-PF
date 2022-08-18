@@ -1,0 +1,106 @@
+@import url(https://i.pinimg.com/originals/5f/08/58/5f085809f2b711643e4eb4974cc03c0e.gif);
+
+body{
+    background-image: url(https://i.pinimg.com/originals/5f/08/58/5f085809f2b711643e4eb4974cc03c0e.gif);
+    display: flex;
+    background-repeat: no-repeat;
+    position: cover;
+    background-size: cover;
+    color: rgb(255, 255, 255);
+}
+
+.h1{
+    font-size: 60px;
+    color: aqua;
+    display: flex;
+    text-align: center;
+    margin: 15px;
+    margin-left: 548px;
+    justify-content: center;
+    box-sizing: content-box;
+    transition-duration: .5s;
+    transition-delay: 8ms;
+    text-shadow: 0 0 0.2em rgb(0, 0, 0), 0 0 0.6em rgb(255, 255, 255);
+}
+
+.h1:hover{
+    text-shadow: 0 0 0.2em rgb(0, 0, 0), 0 0 0.6em rgb(255, 255, 255);
+    cursor: default;
+    text-decoration: underline;
+    color: rgb(255, 38, 0);
+}
+
+.login {
+    font-family: 'Play', sans-serif;
+    color: #fff;
+    font-size: 25px;
+    margin-top: 100px;
+    margin-left: 600px;
+    padding: 20px 60px;
+    background-color:rgb(0, 16, 61);
+    border-right: 3px solid rgb(128, 176, 231);
+    border-bottom: 3px solid rgb(128, 176, 231); 
+    border-left: 3px solid rgb(128, 176, 231);
+    border-top: 3px solid rgb(128, 176, 231);
+    transition: .5s;
+}
+
+.login:hover{
+    cursor: pointer;
+    background: black;
+    color: red;
+    border-right: 3px solid red;
+    border-bottom: 3px solid red;
+    border-left: 3px solid red;
+    border-top: 3px solid red;
+}
+
+.logout {
+    font-family: 'Play', sans-serif;
+    color: #fff;
+    font-size: 25px;
+    margin-top: 100px;
+    margin-left: 600px;
+    padding: 20px 60px;
+    background-color:rgb(0, 16, 61);
+    border-right: 3px solid rgb(128, 176, 231);
+    border-bottom: 3px solid rgb(128, 176, 231); 
+    border-left: 3px solid rgb(128, 176, 231);
+    border-top: 3px solid rgb(128, 176, 231);
+    transition: .5s;
+}
+
+.logout:hover{
+    cursor: pointer;
+    background: black;
+    color: red;
+    border-right: 3px solid red;
+    border-bottom: 3px solid red;
+    border-left: 3px solid red;
+    border-top: 3px solid red;
+}
+
+.profile {
+    font-family: 'Play', sans-serif;
+    color: #fff;
+    font-size: 25px;
+    margin-top: 100px;
+    margin-left: 600px;
+    padding: 20px 60px;
+    background-color:rgb(0, 16, 61);
+    border-right: 3px solid rgb(128, 176, 231);
+    border-bottom: 3px solid rgb(128, 176, 231); 
+    border-left: 3px solid rgb(128, 176, 231);
+    border-top: 3px solid rgb(128, 176, 231);
+    transition: .5s;
+}
+
+.profile:hover{
+    cursor: pointer;
+    background: black;
+    color: red;
+    border-right: 3px solid red;
+    border-bottom: 3px solid red;
+    border-left: 3px solid red;
+    border-top: 3px solid red;
+}
