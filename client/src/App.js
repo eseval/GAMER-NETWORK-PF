@@ -1,8 +1,12 @@
 
+import "./App.css";
+import LandingPage from './components/LandingPage/LandingPage';
+
+
 function App() {
   return (
-    <div className="text-3xl font-bold underline">
-      Hola, soy app
+    <div className="App">
+      <LandingPage/>
     </div>
   );
 }
