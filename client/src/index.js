@@ -7,13 +7,13 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <Auth0Provider 
-      domain='dev-z0wqn8uf.us.auth0.com'
-      clientId='Dcm7TYoMTTOJ46I5hdtSkaTCwvlKNauM'
-      redirectUri={window.location.origin}
-    >
-      <App />
-    </Auth0Provider>
-  </BrowserRouter>
+  <Auth0Provider 
+    domain='dev-z0wqn8uf.us.auth0.com'
+    clientId='Dcm7TYoMTTOJ46I5hdtSkaTCwvlKNauM'
+    redirectUri={window.location.origin}
+  >
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+  </Auth0Provider>
 );
