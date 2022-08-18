@@ -7,8 +7,8 @@ export default function Profile() {
   if (isLoading) {
     return <div>Loading...</div>
   }
-
-  console.log(JSON.stringify(user))
+  
+  console.log(user)
   return (
     isAuthenticated && (
       <div>
