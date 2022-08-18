@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import LandingPage from './components/LandingPage';
-import Profile from './components/Profile';
+import LandingPage from './pages/LandingPage';
+import Profile from './pages/Profile';
 
 
 function App() {
