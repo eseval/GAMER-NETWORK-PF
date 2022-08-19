@@ -24,11 +24,13 @@ export default function LandingPage() {
           </div>
       </div>
     )} else {
-      <div>
-        <h1 className='h1'>Play Center</h1>
-        <div className='login'>
-          <LoginButton />
+      return (
+        <div>
+          <h1 className='h1'>Play Center</h1>
+          <div className='login'>
+            <LoginButton />
+          </div>
         </div>
-      </div>
+      )
     }
 }
