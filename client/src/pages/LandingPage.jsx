@@ -12,12 +12,12 @@ export default function LandingPage() {
       <div className='login'>
         <LoginButton/>
       </div>
-      <br />
+      {/* <br />
       <div className='logout'>
         <LogoutButton/>
       </div>
       <br />
-      <Link to='/profile' className='profile'>Profile</Link>
+      <Link to='/profile' className='profile'>Profile</Link> */}
     </div>
   )
 }
