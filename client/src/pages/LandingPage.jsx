@@ -23,4 +23,12 @@ export default function LandingPage() {
             <Link to='/home' className='login'>Enter</Link>
           </div>
       </div>
+    )} else {
+      <div>
+        <h1 className='h1'>Play Center</h1>
+        <div className='login'>
+          <LoginButton />
+        </div>
+      </div>
+    }
 }
