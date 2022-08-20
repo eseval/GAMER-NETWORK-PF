@@ -7,7 +7,7 @@ export default function Footer() {
   return (
       <Container>
         <Left>
-          <Logo>TITLE GOES HERE</Logo>
+          <Logo>Play Center</Logo>
           <Description>
             There are many variations of passages of Lorem Ipsum available, but
             the majority have suffered alteration in some form, by injected

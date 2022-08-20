@@ -15,7 +15,7 @@ const Navbar = () => {
             </SearchContainer>
           </Left>
           <Center>
-            <Logo>LOGO</Logo>
+            <Logo>PLAY CENTER</Logo>
           </Center>
           <Right>
             <MenuItem to="/contact">Contact Us</MenuItem>

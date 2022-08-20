@@ -6,7 +6,6 @@ export default function Footer() {
     background-color: grey;
   `;
 
-
   const Left = styled.div`
     flex: 1;
     display: flex;
