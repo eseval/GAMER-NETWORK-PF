@@ -1,4 +1,4 @@
-import { GET_USERS, GET_USERS_BY_ID, USERS_LOADING, USER_LOADING, GET_ALL_NEWS, ALL_NEWS_LOADING, GET_NEWS_BY_ID, NEWS_LOADING } from "../actions/types"
+import { POST_USER, GET_USERS, GET_USERS_BY_ID, USERS_LOADING, USER_LOADING, GET_ALL_NEWS, ALL_NEWS_LOADING, GET_NEWS_BY_ID, NEWS_LOADING, GET_USER_BY_EMAIL } from "../actions/types"
 
 const initialState = {
   users: [],
@@ -37,6 +37,11 @@ export default function rootReducer(state= initialState, action) {
         user: action.payload,
         isLoadingUser: false
       }
+    case GET_USER_BY_EMAIL:
+      return {
+        ...state,
+        user: action.payload
+      }
     case ALL_NEWS_LOADING: {
       return {
         ...state,
@@ -61,6 +66,10 @@ export default function rootReducer(state= initialState, action) {
         news: action.payload,
         isLoadingNews: false
       }
+    case POST_USER:
+      return {
+        ...state
+      };
     default:
       return {...state}
   }
