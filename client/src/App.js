@@ -3,7 +3,7 @@ import LandingPage from './pages/LandingPage';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import NewsContainer from './pages/NewsContainer';
-
+import NewsDetail from './components/NewsDetail';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Route path='/home' element={<Home />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/news' element={<NewsContainer />} />
-      <Route path='/news/:id' element={<Profile />} />
+      <Route path='/news/:id' element={<NewsDetail />} />
     </Routes>
   );
 }
