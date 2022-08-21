@@ -15,12 +15,10 @@ export default function Profile() {
   }, [dispatch, id]);
 
   const userPlan = () => {
-    if(user.isAdmin.superAdmin) {
-      return 'Super Admin'
-    } else if (user.isAdmin.admin) {
-      return 'Admin'
+    if(user.plan) {
+      return 'Premium'
     } else {
-      return 'User'
+      return 'Free'
     }
   }
 
