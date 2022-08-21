@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function NavBar() {
   const Container = styled.div`
     height: 60px;
-    background-color: grey;
+    background-color: whitesmoke;
   `;
 
   const Wrapper = styled.div`
