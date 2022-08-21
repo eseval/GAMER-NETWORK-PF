@@ -1,6 +1,6 @@
 import React from "react";
-import { BiSearchAlt } from "react-icons/bi";
 import styledNavBar from "../styles/NavBar";
+import SearchBar from "./SearchBar";
 
 const {Container, Wrapper, Left, SearchContainer, Input, Center, Logo, Right, MenuItem} = styledNavBar();
 
@@ -9,10 +9,11 @@ const Navbar = () => {
       <Container>
         <Wrapper>
           <Left>
-            <SearchContainer>
-              <Input placeholder="search"/>
-              <BiSearchAlt style={ {color: "gray", fontSize: 16} }/>
-            </SearchContainer>
+            {/*<SearchContainer>*/ }
+            {/*  <Input placeholder="search"/>*/ }
+            {/*  <BiSearchAlt style={ {color: "gray", fontSize: 16} }/>*/ }
+            {/*</SearchContainer>*/ }
+            <SearchBar/>
           </Left>
           <Center>
             <Logo>PLAY CENTER</Logo>

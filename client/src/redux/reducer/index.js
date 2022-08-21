@@ -1,4 +1,15 @@
-import { POST_USER, GET_USERS, GET_USERS_BY_ID, USERS_LOADING, USER_LOADING, GET_ALL_NEWS, ALL_NEWS_LOADING, GET_NEWS_BY_ID, NEWS_LOADING, GET_USER_BY_EMAIL } from "../actions/types"
+import {
+  ALL_NEWS_LOADING,
+  GET_ALL_NEWS,
+  GET_NEWS_BY_ID, GET_NEWS_BY_TITLE,
+  GET_USER_BY_EMAIL,
+  GET_USERS,
+  GET_USERS_BY_ID,
+  NEWS_LOADING,
+  POST_USER,
+  USER_LOADING,
+  USERS_LOADING
+} from "../actions/types"
 
 const initialState = {
   users: [],
@@ -11,7 +22,7 @@ const initialState = {
   isLoadingNews: true
 }
 
-export default function rootReducer(state= initialState, action) {
+export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case USERS_LOADING: {
       return {
@@ -70,6 +81,12 @@ export default function rootReducer(state= initialState, action) {
       return {
         ...state
       };
+    case GET_NEWS_BY_TITLE:
+      return {
+        ...state,
+        news: action.payload,
+        isLoadingNews: false
+      }
     default:
       return {...state}
   }
