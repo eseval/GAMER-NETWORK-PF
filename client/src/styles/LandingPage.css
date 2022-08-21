@@ -1,4 +1,6 @@
 @import url(https://i.pinimg.com/originals/5f/08/58/5f085809f2b711643e4eb4974cc03c0e.gif);
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
 
 body{
     background-image: url(https://i.pinimg.com/originals/5f/08/58/5f085809f2b711643e4eb4974cc03c0e.gif);
@@ -10,6 +12,7 @@ body{
 }
 
 .h1{
+    font-family: 'Play', sans-serif;
     font-size: 60px;
     color: aqua;
     margin-left: 548px;
