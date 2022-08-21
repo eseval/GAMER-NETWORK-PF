@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LoginButton from '../components/Login';
 import LogoutButton from '../components/Logout';
-import '../styles/LandingPage.css'
 
 export default function LandingPage() {
   const { isAuthenticated, user } = useAuth0();
