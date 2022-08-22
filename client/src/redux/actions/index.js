@@ -9,7 +9,8 @@ import {
   NEWS_LOADING,
   POST_USER,
   USER_LOADING,
-  USERS_LOADING
+  USERS_LOADING,
+  SEARCH_NEWS_BY_TITLE
 } from "./types";
 
 const USERS_URL = 'https://pf-henry-gamesportal.herokuapp.com/users';
@@ -105,4 +106,20 @@ export function getNewsByTitle(title) {
       console.log(error);
     }
   }
+}
+
+export function searchBarsearch(payload) {
+  return async function (dispatch) {
+    try {
+      console.log(payload);
+      const json = await axios.get(`${NEWS_URL}?title=${payload}`);
+      console.log(json);
+      return dispatch({
+        type: SEARCH_NEWS_BY_TITLE,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
