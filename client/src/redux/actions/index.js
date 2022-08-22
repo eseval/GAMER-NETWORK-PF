@@ -12,6 +12,7 @@ import {
   USER_LOADING,
   USERS_LOADING,
   SEARCH_NEWS_BY_TITLE,
+  ORDER_NEWS_BY_TITLE
 } from "./types";
 
 const USERS_URL = "https://pf-henry-gamesportal.herokuapp.com/users";
@@ -122,5 +123,12 @@ export function searchBarsearch(payload) {
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+export function orderNewsByTitle(payload) {
+  return {
+    type: ORDER_NEWS_BY_TITLE,
+    payload,
   };
 }

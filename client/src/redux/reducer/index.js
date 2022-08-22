@@ -9,7 +9,8 @@ import {
   POST_USER,
   USER_LOADING,
   USERS_LOADING,
-  SEARCH_NEWS_BY_TITLE
+  SEARCH_NEWS_BY_TITLE,
+  ORDER_NEWS_BY_TITLE
 } from "../actions/types"
 
 const initialState = {
@@ -93,6 +94,22 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allNews: action.payload,
       }
+    case ORDER_NEWS_BY_TITLE:
+      let news = [...state.allNews];
+      news = news.sort((a, b) => {
+        if (a.title.toLowerCase() < b.title.toLowerCase()) {
+          return action.payload === "Asc" ? -1 : 1;
+        }
+        if (a.title.toLowerCase() > b.title.toLowerCase()) {
+          return action.payload === "Desc" ? -1 : 1;
+        } else {
+          return 0;
+        }
+      });
+      return {
+        ...state,
+        allNews: action.payload === "All" ? state.newNews : news,
+      };
     default:
       return {...state}
   }

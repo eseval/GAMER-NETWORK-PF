@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { BsSearch } from "react-icons/bs";
 import styledSearchBar from "../styles/SearchBar";
 import {searchBarsearch , getAllNews} from "../redux/actions/index"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-const { Container, Wrapper, Input, Button } = styledSearchBar();
+const { Container, Wrapper, Input } = styledSearchBar();
 
 export default function Search(){
   

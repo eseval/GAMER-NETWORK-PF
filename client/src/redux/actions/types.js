@@ -10,3 +10,4 @@ export const NEWS_LOADING = "NEWS_LOADING";
 export const POST_USER = "POST_USER";
 export const GET_NEWS_BY_TITLE = "GET_NEWS_BY_TITLE";
 export const SEARCH_NEWS_BY_TITLE = "SEARCH_NEWS_BY_TITLE";
+export const ORDER_NEWS_BY_TITLE = "ORDER_NEWS_BY_TITLE";
