@@ -27,7 +27,7 @@ export default function LandingPage() {
             <h3 className='text-3xl font-semibold text-center text-white'>Welcome, {userDb.length > 0 ? userDb[0].nickname: ""}</h3>
             <div className='flex flex-row-reverse justify-center align-middle'>
               <LogoutButton />
-              <Link className="p-3 mx-5 mt-10 text-center border rounded-md bg-slate-100" to='/home'>Enter</Link>
+              <Link className="p-3 mx-5 mt-10 text-center border rounded-md bg-slate-100" state={userDb[0]} to='/home'>Enter</Link>
             </div>
           </div>
       </div>

@@ -8,7 +8,8 @@ import {
   NEWS_LOADING,
   POST_USER,
   USER_LOADING,
-  USERS_LOADING
+  USERS_LOADING,
+  SEARCH_NEWS_BY_TITLE
 } from "../actions/types"
 
 const initialState = {
@@ -84,8 +85,13 @@ export default function rootReducer(state = initialState, action) {
     case GET_NEWS_BY_TITLE:
       return {
         ...state,
-        news: action.payload,
+        allNews: action.payload,
         isLoadingNews: false
+      }
+    case SEARCH_NEWS_BY_TITLE:
+      return {
+        ...state,
+        allNews: action.payload,
       }
     default:
       return {...state}
