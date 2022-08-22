@@ -11,7 +11,7 @@ const initialState = {
   isLoadingNews: true
 }
 
-export default function rootReducer(state= initialState, action) {
+export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case USERS_LOADING: {
       return {
@@ -70,7 +70,21 @@ export default function rootReducer(state= initialState, action) {
       return {
         ...state
       };
+    case FILTER_ORDER:
+      const all = state.allNews;
+      const sortAll = action.payload === "A-Z" ?
+        all.sort((a, b) => {
+          a.name > b.name ? 1 : 0
+          a.name < b.name ? -1 : 0
+        }) : all.sort((a, b) => {
+          a.name > b.name ? -1 : 0
+          a.name < b.name ? 1 : 0
+        })
+      return ({
+        ...state,
+        allNews: action.payload === 'all' ? all : sortAll
+      })
     default:
-      return {...state}
+      return { ...state }
   }
 }
