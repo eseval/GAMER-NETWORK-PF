@@ -1,16 +1,19 @@
-import { useLocation, Link } from "react-router-dom"
+import { useLocation, Link, useNavigate } from "react-router-dom"
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
 
 export default function ModifyUserForm() {
+  let navigate = useNavigate();
   const location = useLocation();
   const user = location.state;
   
   console.log()
   return (
     <div className="container max-w-md mt-10 overflow-hidden bg-white shadow sm:rounded-lg">
-      <Link className="text-lg text-indigo-800" to={`/profile/${user.id}`}>Return to Profile</Link>
+      <div className="px-5 py-4">
+        <Link className="text-lg text-black" to={`/profile/${user.id}`}>Return to Profile</Link>
+      </div>
       <h3 className="mt-5 text-2xl text-center">Edit Information</h3>
       <Formik 
         initialValues={{
@@ -21,14 +24,15 @@ export default function ModifyUserForm() {
         }}
         validationSchema={
           Yup.object({
-            img: Yup.string().url('Must be an url'),
+            img: Yup.string().url('Must be an url').nullable(),
             nickname: Yup.string()
               .max(15, 'Must be 3-15 characters')
               .min(3, 'Must be 3-15 characters'),
           })
         }
         onSubmit={async values => {
-          await axios.put(`https://pf-henry-gamesportal.herokuapp.com/users/${user.id}`, values)
+          await axios.put(`https://pf-henry-gamesportal.herokuapp.com/users/${user.id}`, values);
+          navigate(`/profile/${user.id}`)
         }}
       >
       <Form>

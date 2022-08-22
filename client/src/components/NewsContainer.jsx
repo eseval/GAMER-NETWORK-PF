@@ -57,22 +57,17 @@ export default function NewsContainer() {
   
   return (
     <div className="container">
-        <Paginate
-          newsPerPage={newsPerPage}
-          allNews={allNews}
-          paginate={paginate}
-          /> 
       <h1 className="m-5 text-5xl font-semibold text-center text-white">News</h1>
       <div className="container flex flex-wrap justify-center">
         {typeof allNews === "object"  ? currentNews.map(news => {
           return <NewsCard news={news} key={news.id}/>
         }) : <p>News not found</p>}
       </div>
-      <Paginate
+      {typeof allNews === "object" ? <Paginate
           newsPerPage={newsPerPage}
           allNews={allNews}
           paginate={paginate}
-          /> 
+          />: ""} 
     </div>
   )
 }

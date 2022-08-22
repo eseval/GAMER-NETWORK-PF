@@ -28,7 +28,9 @@ export default function Profile() {
   console.log(user)
   return (
     <div className='container'>
-      <Link className="text-lg text-indigo-800" to='/home'>Return to Home</Link>  
+      <div className="px-6 py-4">
+        <Link className="text-lg text-white" to='/home'>Return to Home</Link> 
+      </div> 
       <h1 className='m-5 text-5xl font-semibold text-center text-white'>Profile</h1>
       <div class="bg-white shadow overflow-hidden sm:rounded-lg container max-w-lg mt-10">
         <div class="flex flex-row px-4 py-5 sm:px-6 justify-end items-center">
