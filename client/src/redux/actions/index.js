@@ -7,11 +7,11 @@ import {
   GET_USER_BY_EMAIL,
   GET_USERS,
   GET_USERS_BY_ID,
-  NEWS_LOADING,
+  NEWS_LOADING, ORDER_NEWS_BY_TITLE,
   POST_USER,
+  SEARCH_NEWS_BY_TITLE,
   USER_LOADING,
   USERS_LOADING,
-  SEARCH_NEWS_BY_TITLE,
 } from "./types";
 
 const USERS_URL = "https://pf-henry-gamesportal.herokuapp.com/users";
@@ -122,5 +122,12 @@ export function searchBarsearch(payload) {
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+export function orderNewsByTitle(payload) {
+  return {
+    type: ORDER_NEWS_BY_TITLE,
+    payload,
   };
 }
