@@ -52,11 +52,8 @@ export default function Profile() {
               <dt class="text-sm font-medium text-gray-500">Favorite Games</dt>
               <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
 
-                {user.favoriteGames ? user.favoriteGames.join(', ') : 'No games found'}
-                {user.favoriteGames ? user.favoriteGames : 'No games found'}
-
                 {/* {user.favoriteGames ? user.favoriteGames.join(', ') : 'No games found'} */}
-                {user.favoriteGames && user.favoriteGames.length>0? user.favoriteGames : 'No games found'}
+                {user.favoriteGames && user.favoriteGames.length>0 ? user.favoriteGames : 'No games found'}
 
               </dd>
             </div>
@@ -64,18 +61,16 @@ export default function Profile() {
               <dt class="text-sm font-medium text-gray-500">Server</dt>
               <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
 
-                {user.servers  ? user.servers.join(', ') : 'No servers found'}
+                {user.servers && user.servers.length > 0 ? user.servers : 'No servers found'}
 
                 {/* {user.servers  ? user.servers.join(', ') : 'No servers found'} */}
 
-                {user.servers ? user.servers : 'No servers found'}
               </dd>
             </div>
             <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Matched Users</dt>
               <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
 
-                {user.matched_users ? user.matched_users.join(', ') : 'No users found'}
 
                 {user.matched_users && user.matched_users.length>0 ? user.matched_users.join(', ') : 'No users found'}
 
@@ -85,7 +80,6 @@ export default function Profile() {
               <dt class="text-sm font-medium text-gray-500">Missions Completed</dt>
               <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
 
-                {user.missionCompleted ? user.missionCompleted.length : <p>No misions completed yet</p>}
 
                 {user.missionCompleted ? user.missionCompleted.length : ""}
 
