@@ -26,7 +26,7 @@ export default function NewDetail() {
       <div className="container flex justify-center mx-auto mt-10">
         <div className="max-w-6xl mx-5 mb-10 overflow-hidden rounded shadow-lg bg-slate-200">
           <div className="mx-5 mt-3">
-            <Link className="text-lg text-indigo-800" to='/news'>All news</Link>  
+            <Link className="text-lg text-indigo-800" to='/home'>Return to Home</Link>  
           </div>
           <div className="flex flex-col justify-center px-6 py-4 align-middle">
             <div className="text-5xl font-bold">

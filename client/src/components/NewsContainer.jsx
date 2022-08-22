@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import NewsCard from "../components/NewsCard"
+import NewsCard from "./NewsCard"
 import { getAllNews } from "../redux/actions";
 
 export default function NewsContainer() {
