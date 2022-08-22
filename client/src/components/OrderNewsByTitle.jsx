@@ -15,6 +15,7 @@ export default function OrderNewsByTitle() {
         <div>Alphabetical Order</div>
         <select onChange={ (e) => handleOnChange(e) }>
           {/*<option value="All">Default</option>*/}
+          <option disabled>Order</option>
           <option value="Asc">Ascending</option>
           <option value="Desc">Descending</option>
         </select>
