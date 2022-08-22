@@ -5,6 +5,10 @@ import Profile from './pages/Profile';
 import NewsDetail from './components/NewsDetail';
 import About from './pages/About';
 import Contact from './pages/Contact';
+<<<<<<< Updated upstream
+=======
+import ModifyUserForm from './pages/ModifyUserForm';
+>>>>>>> Stashed changes
 
 function App() {
   return (
@@ -12,6 +16,10 @@ function App() {
       <Route path='/' element={<LandingPage />} />
       <Route path='/home' element={<Home />} />
       <Route path='/profile/:id' element={<Profile />} />
+<<<<<<< Updated upstream
+=======
+      <Route path='/profile/:id/edit' element={<ModifyUserForm />} />
+>>>>>>> Stashed changes
       <Route path='/about' element={<About />} />
       <Route path='/contact' element={<Contact />} />
       <Route path='/news/:id' element={<NewsDetail />} />

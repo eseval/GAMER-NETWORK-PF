@@ -51,27 +51,44 @@ export default function Profile() {
             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Favorite Games</dt>
               <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+<<<<<<< Updated upstream
                 {user.favoriteGames ? user.favoriteGames.join(', ') : 'No games found'}
                 {user.favoriteGames ? user.favoriteGames : 'No games found'}
+=======
+                {/* {user.favoriteGames ? user.favoriteGames.join(', ') : 'No games found'} */}
+                {user.favoriteGames && user.favoriteGames.length>0? user.favoriteGames : 'No games found'}
+>>>>>>> Stashed changes
               </dd>
             </div>
             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Server</dt>
               <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+<<<<<<< Updated upstream
                 {user.servers  ? user.servers.join(', ') : 'No servers found'}
+=======
+                {/* {user.servers  ? user.servers.join(', ') : 'No servers found'} */}
+>>>>>>> Stashed changes
                 {user.servers ? user.servers : 'No servers found'}
               </dd>
             </div>
             <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Matched Users</dt>
               <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+<<<<<<< Updated upstream
                 {user.matched_users ? user.matched_users.join(', ') : 'No users found'}
+=======
+                {user.matched_users && user.matched_users.length>0 ? user.matched_users.join(', ') : 'No users found'}
+>>>>>>> Stashed changes
               </dd>
             </div>
             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Missions Completed</dt>
               <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+<<<<<<< Updated upstream
                 {user.missionCompleted ? user.missionCompleted.length : <p>No misions completed yet</p>}
+=======
+                {user.missionCompleted ? user.missionCompleted.length : ""}
+>>>>>>> Stashed changes
               </dd>
             </div>
             <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

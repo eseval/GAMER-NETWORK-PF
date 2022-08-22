@@ -122,4 +122,8 @@ export function searchBarsearch(payload) {
       console.log(error);
     }
   };
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

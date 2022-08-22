@@ -75,4 +75,8 @@ export default function NewsContainer() {
           /> 
     </div>
   )
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
