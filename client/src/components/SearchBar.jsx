@@ -43,8 +43,7 @@ export default function Search(){
         </Wrapper>
     </Container>
   );
-<<<<<<< Updated upstream
+
 }
-=======
-}
->>>>>>> Stashed changes
+
+
