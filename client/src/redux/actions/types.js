@@ -9,3 +9,4 @@ export const GET_NEWS_BY_ID = "GET_NEWS_BY_ID";
 export const NEWS_LOADING = "NEWS_LOADING";
 export const POST_USER = "POST_USER";
 export const FILTER_ORDER = "FILTER_ORDER"; 
+export const GET_NEWS_BY_TITLE = "GET_NEWS_BY_TITLE";

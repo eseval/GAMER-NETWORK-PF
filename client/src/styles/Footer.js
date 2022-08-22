@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function Footer() {
   const Container = styled.footer`
     display: flex;
-    background-color: grey;
+    background-color: whitesmoke;
   `;
 
   const Left = styled.div`
