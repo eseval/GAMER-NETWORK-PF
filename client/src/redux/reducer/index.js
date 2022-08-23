@@ -8,7 +8,8 @@ import {
   NEWS_LOADING,
   POST_USER,
   USER_LOADING,
-  USERS_LOADING
+  USERS_LOADING,
+  //FILTER_ORDER=> esto no estaba importado , es por eso que no anda????
 } from "../actions/types"
 
 const initialState = {
