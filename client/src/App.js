@@ -5,8 +5,9 @@ import Profile from "./pages/Profile";
 import NewsDetail from "./components/NewsDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-
 import ModifyUserForm from "./pages/ModifyUserForm";
+import PaymentStripe from "./pages/PaymentStripe";
+import SubscriptionCards from "./pages/SubscriptionCards";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/news/:id" element={<NewsDetail />} />
+      <Route path="/subscription" element={<SubscriptionCards />} />
+      <Route path="/payment" element={<PaymentStripe />} />
     </Routes>
   );
 }
