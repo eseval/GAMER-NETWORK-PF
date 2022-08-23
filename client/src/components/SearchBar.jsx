@@ -8,7 +8,7 @@ const { Container, Wrapper, Input } = styledSearchBar();
 export default function Search(){
   
   const dispatch = useDispatch();
-  const [title, setTitle] = useState("");
+  const [ setTitle] = useState("");
 
   useEffect(() => {
     dispatch(getAllNews())

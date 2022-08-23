@@ -10,7 +10,8 @@ import {
   USER_LOADING,
   USERS_LOADING,
   SEARCH_NEWS_BY_TITLE,
-  ORDER_NEWS_BY_TITLE
+  ORDER_NEWS_BY_TITLE,
+  POST_FORUM,
 } from "../actions/types"
 
 const initialState = {
@@ -83,6 +84,10 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state
       };
+      case POST_FORUM:
+        return {
+          ...state
+        };
     case GET_NEWS_BY_TITLE:
       return {
         ...state,
