@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserByEmail, postUser } from '../redux/actions';
 import LoginButton from '../components/Login';
 import LogoutButton from '../components/Logout';
+import FormForum from '../components/FormForum';
 
 
 export default function LandingPage() {
@@ -29,6 +30,7 @@ export default function LandingPage() {
               <LogoutButton />
               <Link className="p-3 mx-5 mt-10 text-center border rounded-md bg-slate-100" state={userDb[0]} to='/home'>Enter</Link>
             </div>
+            <br />
           </div>
       </div>
     )} else {
