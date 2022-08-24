@@ -9,7 +9,7 @@ import ModifyUserForm from './pages/ModifyUserForm';
 import PaymentStripe from './pages/PaymentStripe';
 import SubscriptionCards from './pages/SubscriptionCards';
 import Reward from './pages/Reward';
-import GamesContainer from "./components/GamesContainer";
+import GamesContainer from './pages/GamesContainer';
 
 function App() {
 	return (
