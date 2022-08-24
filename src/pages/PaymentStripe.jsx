@@ -2,7 +2,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 import axios from "axios";
 import swal from 'sweetalert';
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const cardElementOptions = {
   style: {
@@ -10,7 +10,7 @@ const cardElementOptions = {
       backgroundColor: 'transparent',
       lineHeight: '2',
       iconColor: 'grey',
-      color: 'black',
+      color: 'white',
       fontWeight: '400',
       fontSize: '18px',
       fontSmoothing: 'antialiased',
@@ -29,9 +29,11 @@ const cardElementOptions = {
 }
 
 export default function PaymentStripe () {
+  const location = useLocation();
   const stripe = useStripe();
   const elements = useElements();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const amount = location.state;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,17 +49,15 @@ export default function PaymentStripe () {
       try {
         const { data } = await axios.post('http://localhost:3001/api/checkout', {
           id, 
-          amount: 100
+          amount: amount*100
         });
         if(data.hasOwnProperty('message')) {
           swal({
             title: "Error!",
             text: data.message,
             icon: "error",
-            buttons: [
-              "Ok",
-              <Link strict to='/home'>Return to home</Link>
-            ]
+            button: "Ok",
+            
           });
         } else {
           swal({
@@ -75,13 +75,12 @@ export default function PaymentStripe () {
     }
   }
 
-
   return (
     <div>
       <h1 className="my-5 text-5xl font-semibold text-center text-white">Payment</h1>
-      <div className="container max-w-2xl p-8 mt-10 border rounded-md bg-slate-200">
-        <div className="mx-5 mt-3">
-          <Link className="text-lg text-indigo-800" to='/home'>Return to Home</Link>  
+      <div className="container max-w-2xl p-8 mt-10 bg-gray-800 border-2 border-gray-700 rounded-md">
+        <div className="mb-5">
+          <Link className="text-blue-400 text-md" to='/home'>Return to Home</Link>  
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col">
           <CardElement options={cardElementOptions} />
