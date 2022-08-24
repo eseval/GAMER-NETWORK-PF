@@ -32,36 +32,36 @@ export default function Profile() {
         <Link className="text-lg text-white" to='/home'>Return to Home</Link> 
       </div> 
       <h1 className='m-5 text-5xl font-semibold text-center text-white'>Profile</h1>
-      <div class="bg-white shadow overflow-hidden sm:rounded-lg container max-w-lg mt-10">
-        <div class="flex flex-row px-4 py-5 sm:px-6 justify-end items-center">
+      <div className="container max-w-lg mt-10 overflow-hidden bg-white shadow sm:rounded-lg">
+        <div className="flex flex-row items-center justify-end px-4 py-5 sm:px-6">
           <div className='flex flex-col items-end'>
-            <h3 class="max-w-2xl text-3xl mx-5">{user.nickname}</h3>
+            <h3 className="max-w-2xl mx-5 text-3xl">{user.nickname}</h3>
             <Link to={`/profile/${id}/edit`} state={user} className='max-w-2xl mx-5 text-sm text-gray-500'>Edit info</Link>
           </div>
           <img src={user.img !== null ? user.img : 'https://proyectoidis.org/wp-content/uploads/2021/06/avatar-default.png'} className='inline-block w-20 h-20 rounded-full ring-2 ring-black' alt={user.nickname}/>
         </div>
-        <div class="border-t border-gray-200">
+        <div className="border-t border-gray-200">
           <dl>
-            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-500">Email</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.email}</dd>
+            <div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Email</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.email}</dd>
             </div>
-            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-500">Plan</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{userPlan()}</dd>
+            <div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Plan</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{userPlan()}</dd>
             </div>
-            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-500">Favorite Games</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Favorite Games</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
 
                 {/* {user.favoriteGames ? user.favoriteGames.join(', ') : 'No games found'} */}
                 {user.favoriteGames && user.favoriteGames.length>0 ? user.favoriteGames : 'No games found'}
 
               </dd>
             </div>
-            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-500">Server</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Server</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
 
                 {user.servers && user.servers.length > 0 ? user.servers : 'No servers found'}
 
@@ -69,27 +69,27 @@ export default function Profile() {
 
               </dd>
             </div>
-            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-500">Matched Users</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <div className="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Matched Users</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
 
 
                 {user.matched_users && user.matched_users.length>0 ? user.matched_users.join(', ') : 'No users found'}
 
               </dd>
             </div>
-            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-500">Missions Completed</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Missions Completed</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
 
 
                 {user.missionCompleted ? user.missionCompleted.length : ""}
 
               </dd>
             </div>
-            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-500">Coins</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.coins}</dd>
+            <div className="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Coins</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.coins}</dd>
             </div>
           </dl>
         </div>
