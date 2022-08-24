@@ -11,7 +11,8 @@ import {
   USERS_LOADING,
   SEARCH_NEWS_BY_TITLE,
   ORDER_NEWS_BY_TITLE,
-  POST_FORUM
+  POST_FORUM,
+  GET_GAMES
 } from "../actions/types"
 
 const initialState = {
@@ -22,7 +23,8 @@ const initialState = {
   allNews: [],
   isLoadingAllNews: true,
   news: {},
-  isLoadingNews: true
+  isLoadingNews: true,
+  games: [],
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -115,6 +117,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state
       };
+    case GET_GAMES: 
+      return {
+        ...state,
+        games: action.payload
+      }
     default:
       return {...state}
   }

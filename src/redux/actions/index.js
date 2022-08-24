@@ -13,12 +13,14 @@ import {
   USERS_LOADING,
   SEARCH_NEWS_BY_TITLE,
   ORDER_NEWS_BY_TITLE,
-  POST_FORUM
+  POST_FORUM,
+  GET_GAMES
 } from "./types";
 
 const USERS_URL = "https://pf-henry-gamesportal.herokuapp.com/users";
 const NEWS_URL = "https://pf-henry-gamesportal.herokuapp.com/news";
 const FORUM_URL = "https://pf-henry-gamesportal.herokuapp.com/forum";
+const GAMES_URL = "https://pf-henry-gamesportal.herokuapp.com/games";
 
 export function postUser(data) {
   return async function (dispatch) {
@@ -144,4 +146,15 @@ export function postForum(payload) {
       console.log(error);
     }
   }
+}
+
+export function getGames() {
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(GAMES_URL);
+      return dispatch({ type: GET_GAMES, payload: json.data })
+    } catch (error) {
+      console.log(error);
+    }
+  } 
 }

@@ -8,6 +8,7 @@ import Contact from "./pages/Contact";
 import ModifyUserForm from "./pages/ModifyUserForm";
 import PaymentStripe from "./pages/PaymentStripe";
 import SubscriptionCards from "./pages/SubscriptionCards";
+import GamesContainer from "./components/GamesContainer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/news/:id" element={<NewsDetail />} />
+      <Route path="/games" element={<GamesContainer />} />
       <Route path="/subscription" element={<SubscriptionCards />} />
       <Route path="/payment" element={<PaymentStripe />} />
     </Routes>
