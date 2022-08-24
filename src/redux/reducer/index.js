@@ -10,7 +10,8 @@ import {
   USER_LOADING,
   USERS_LOADING,
   SEARCH_NEWS_BY_TITLE,
-  ORDER_NEWS_BY_TITLE
+  ORDER_NEWS_BY_TITLE,
+  POST_FORUM
 } from "../actions/types"
 
 const initialState = {
@@ -109,6 +110,10 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         allNews: action.payload === "All" ? state.newNews : news,
+      };
+    case POST_FORUM:
+      return {
+        ...state
       };
     default:
       return {...state}
