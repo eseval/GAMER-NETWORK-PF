@@ -14,3 +14,4 @@ export const ORDER_NEWS_BY_TITLE = 'ORDER_NEWS_BY_TITLE';
 export const POST_FORUM = 'POST_FORUM';
 export const CLAIM_REWARDS = 'CLAIM_REWARDS';
 export const GET_REWARDS = 'GET_REWARDS';
+export const GET_GAMES = "GET_GAMES";

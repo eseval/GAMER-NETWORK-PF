@@ -15,6 +15,7 @@ import {
 	POST_FORUM,
 	GET_REWARDS,
 	CLAIM_REWARDS,
+  GET_GAMES
 } from '../actions/types';
 
 const initialState = {
@@ -27,6 +28,7 @@ const initialState = {
 	news: {},
 	isLoadingNews: true,
 	rewards: [],
+  games: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -128,6 +130,11 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				rewards: action.payload,
 			};
+    case GET_GAMES: 
+    return {
+      ...state,
+      games: action.payload
+    };
 		default:
 			return { ...state };
 	}

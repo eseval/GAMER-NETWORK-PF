@@ -21,6 +21,7 @@ function App() {
 			<Route path="/contact" element={<Contact />} />
 			<Route path="/news/:id" element={<NewsDetail />} />
 			<Route path="/subscription" element={<SubscriptionCards />} />
+      <Route path="/games" element={<GamesContainer />} />
 			<Route path="/payment" element={<PaymentStripe />} />
 			<Route path="/rewards" element={<Reward />} />
 		</Routes>
