@@ -2,18 +2,30 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 import axios from "axios";
 import swal from 'sweetalert';
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const cardElementOptions = {
   style: {
     base: {
-      color: "#666",
-      fontSize: "20px",
+      backgroundColor: 'transparent',
+      lineHeight: '2',
+      iconColor: 'grey',
+      color: 'black',
+      fontWeight: '400',
+      fontSize: '18px',
+      fontSmoothing: 'antialiased',
+      ':-webkit-autofill': {
+        color: 'black',
+      },
+      '::placeholder': {
+        color: 'grey',
+      },
     },
     invalid: {
-      color: "#fa755a",
-      fontSize: "20px",
-    }
-  }
+      iconColor: 'red',
+      color: 'red',
+    },
+  },
 }
 
 export default function PaymentStripe () {
@@ -42,7 +54,10 @@ export default function PaymentStripe () {
             title: "Error!",
             text: data.message,
             icon: "error",
-            button: "Ok",
+            buttons: [
+              "Ok",
+              <Link strict to='/home'>Return to home</Link>
+            ]
           });
         } else {
           swal({
@@ -62,18 +77,23 @@ export default function PaymentStripe () {
 
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="container flex flex-col max-w-xl p-10 mt-10 align-middle border rounded-md bg-slate-200">
-        <CardElement options={cardElementOptions} />
-        <button disabled={!stripe} type="submit" className="p-1 mt-3 text-center border border-black rounded-md w-fit">
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            'Pay'
-          )}
-        </button>
+    <div>
+      <h1 className="my-5 text-5xl font-semibold text-center text-white">Payment</h1>
+      <div className="container max-w-2xl p-8 mt-10 border rounded-md bg-slate-200">
+        <div className="mx-5 mt-3">
+          <Link className="text-lg text-indigo-800" to='/home'>Return to Home</Link>  
+        </div>
+        <form onSubmit={handleSubmit} className="flex flex-col">
+          <CardElement options={cardElementOptions} />
+          <button disabled={!stripe} type="submit" className="w-24 h-12 p-1 mx-auto mt-5 text-center text-white bg-green-700 rounded-md">
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              'Pay'
+            )}
+          </button>
+        </form>
       </div>
-    </form>
+    </div>
   )
 }
-
