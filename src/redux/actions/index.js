@@ -1,16 +1,12 @@
 import axios from 'axios';
 import {
-	ALL_NEWS_LOADING,
 	GET_ALL_NEWS,
 	GET_NEWS_BY_ID,
 	GET_NEWS_BY_TITLE,
 	GET_USER_BY_EMAIL,
 	GET_USERS,
 	GET_USERS_BY_ID,
-	NEWS_LOADING,
 	POST_USER,
-	USER_LOADING,
-	USERS_LOADING,
 	SEARCH_NEWS_BY_TITLE,
 	ORDER_NEWS_BY_TITLE,
 	POST_FORUM,
@@ -40,7 +36,7 @@ export function getUsers() {
 	return async function (dispatch) {
 		try {
 			let json = await axios.get(USERS_URL);
-			return dispatch({ type: USERS_LOADING }), dispatch({ type: GET_USERS, payload: json.data });
+			return dispatch({ type: GET_USERS, payload: json.data });
 		} catch (error) {
 			console.log(error);
 		}
@@ -51,7 +47,7 @@ export function getUserById(id) {
 	return async function (dispatch) {
 		try {
 			let json = await axios.get(`${USERS_URL}/${id}`);
-			return dispatch({ type: USER_LOADING }), dispatch({ type: GET_USERS_BY_ID, payload: json.data });
+			return dispatch({ type: GET_USERS_BY_ID, payload: json.data });
 		} catch (error) {
 			console.log(error);
 		}
@@ -59,21 +55,22 @@ export function getUserById(id) {
 }
 
 export function getUserByEmail(email) {
-	return async function (dispatch) {
-		try {
-			let json = await axios.get(`${USERS_URL}?email=${email}`);
-			return dispatch({ type: GET_USER_BY_EMAIL, payload: json.data });
-		} catch (error) {
-			console.log(error);
-		}
-	};
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(`${USERS_URL}?email=${email}`);
+      window.localStorage.setItem("userLogged", JSON.stringify(json.data[0]));
+      return dispatch({ type: GET_USER_BY_EMAIL, payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export function getAllNews() {
 	return async function (dispatch) {
 		try {
 			let json = await axios.get(NEWS_URL);
-			return dispatch({ type: ALL_NEWS_LOADING }), dispatch({ type: GET_ALL_NEWS, payload: json.data });
+			return dispatch({ type: GET_ALL_NEWS, payload: json.data });
 		} catch (error) {
 			console.log(error);
 		}
@@ -84,7 +81,7 @@ export function getNewsById(id) {
 	return async function (dispatch) {
 		try {
 			let json = await axios.get(`${NEWS_URL}/${id}`);
-			return dispatch({ type: NEWS_LOADING }), dispatch({ type: GET_NEWS_BY_ID, payload: json.data });
+			return dispatch({ type: GET_NEWS_BY_ID, payload: json.data });
 		} catch (error) {
 			console.log(error);
 		}

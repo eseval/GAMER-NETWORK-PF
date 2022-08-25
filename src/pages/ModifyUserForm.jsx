@@ -32,6 +32,8 @@ export default function ModifyUserForm() {
         }
         onSubmit={async values => {
           await axios.put(`https://pf-henry-gamesportal.herokuapp.com/users/${user.id}`, values);
+          const newDataUser = await axios.get(`https://pf-henry-gamesportal.herokuapp.com/users/${user.id}`)
+          window.localStorage.setItem("userLogged", JSON.stringify(newDataUser.data));
           navigate(`/profile/${user.id}`)
         }}
       >

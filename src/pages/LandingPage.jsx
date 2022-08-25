@@ -13,12 +13,16 @@ export default function LandingPage() {
   const userDb = useSelector(state => state.user);
 
   useEffect(() => {
-    dispatch(postUser(user));
-    if(user) {
-      dispatch(getUserByEmail(user.email));
+    if(userDb.length>0){}
+    else{
+      if(user) {
+        dispatch(postUser(user));
+        dispatch(getUserByEmail(user.email));
+      }
     }
-  }, [dispatch, user]);
+  }, [dispatch,user,userDb]);
   
+
   if(isAuthenticated) {
     return (
       <div className='container text-center'>
@@ -32,6 +36,7 @@ export default function LandingPage() {
           </div>
       </div>
     )} else {
+      window.localStorage.setItem("userLogged", "");
       return (
         <div className='container text-center'>
           <h1 className='text-5xl font-semibold text-white'>Play Center</h1>

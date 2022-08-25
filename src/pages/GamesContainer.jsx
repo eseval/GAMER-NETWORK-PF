@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGames } from '../redux/actions';
 import GamesCard from '../components/GamesCard';
+import NavBar from '../components/NavBar';
 
 export default function GamesContainer() {
   const dispatch = useDispatch();
@@ -37,23 +38,26 @@ export default function GamesContainer() {
 
 
   return(
-    <div className="container">
-      <h1 className="m-5 text-5xl font-semibold text-center text-white">Games</h1>
-      <div className="container flex flex-col">
-        <div>
-          <input type="text" placeholder="Search a game..." onChange={handleChange} value={search} />
-        </div>
-        <div className="container flex flex-row items-center mt-5">
+    <div>
+      <NavBar />
+      <div className="container">
+        <h1 className="m-5 text-5xl font-semibold text-center text-white">Games</h1>
+        <div className="container flex flex-col">
           <div>
-            <button className="px-4 py-2 text-sm text-indigo-600 bg-white border rounded-lg hover:bg-indigo-800 hover:text-white"  onClick={prevPage}>Prev</button>
+            <input type="text" placeholder="Search a game..." onChange={handleChange} value={search} />
           </div>
-          <div className="container flex flex-wrap justify-center">
-            {allGames && gamesToShow.map(game => {
-              return <GamesCard game={game} />
-            })}
-          </div>
-          <div>
-            <button className="px-4 py-2 text-sm text-indigo-600 bg-white border rounded-lg hover:bg-indigo-800 hover:text-white"  onClick={nextPage}>Next</button>
+          <div className="container flex flex-row items-center mt-5">
+            <div>
+              <button className="px-4 py-2 text-sm text-indigo-600 bg-white border rounded-lg hover:bg-indigo-800 hover:text-white"  onClick={prevPage}>Prev</button>
+            </div>
+            <div className="container flex flex-wrap justify-center">
+              {allGames && gamesToShow.map(game => {
+                return <GamesCard game={game} />
+              })}
+            </div>
+            <div>
+              <button className="px-4 py-2 text-sm text-indigo-600 bg-white border rounded-lg hover:bg-indigo-800 hover:text-white"  onClick={nextPage}>Next</button>
+            </div>
           </div>
         </div>
       </div>
