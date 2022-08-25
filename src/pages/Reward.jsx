@@ -8,21 +8,11 @@ import RewardCard from '../components/RewardCard';
 export default function Reward() {
 	const dispatch = useDispatch();
 	const rewards = useSelector(state => state.rewards);
-	// const user = useSelector(state => state.user);
 
 	useEffect(() => {
 		dispatch(getRewards());
 	}, []);
 
-	// const handleSubmit = e => {
-	// 	e.preventDefault();
-	// 	if (rewards.price < user.coins) {
-	// 		const newTotal = user.coins - rewards.price;
-	// 		dispatch(claimRewards(newTotal));
-	// 	} else {
-	// 		console.log('Insufficient balance!');
-	// 	}
-	// };
 	return (
 		<div>
 			{[...rewards].map(re => (
@@ -34,9 +24,6 @@ export default function Reward() {
 					recompenseType={re.recompenseType}
 				/>
 			))}
-			{/* <button className="button-submit" onClick={handleSubmit}>
-				Claim
-			</button> */}
 		</div>
 	);
 }

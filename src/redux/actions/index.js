@@ -12,14 +12,15 @@ import {
 	POST_FORUM,
 	GET_REWARDS,
 	CLAIM_REWARDS,
-  GET_GAMES
+	GET_GAMES,
+	GET_REWARDS_BY_ID,
 } from './types';
 
 const USERS_URL = 'https://pf-henry-gamesportal.herokuapp.com/users';
 const NEWS_URL = 'https://pf-henry-gamesportal.herokuapp.com/news';
 const FORUM_URL = 'https://pf-henry-gamesportal.herokuapp.com/forum';
 const REWARDS_URL = 'https://pf-henry-gamesportal.herokuapp.com/reward';
-const GAMES_URL = "https://pf-henry-gamesportal.herokuapp.com/games";
+const GAMES_URL = 'https://pf-henry-gamesportal.herokuapp.com/games';
 
 export function postUser(data) {
 	return async function (dispatch) {
@@ -55,15 +56,15 @@ export function getUserById(id) {
 }
 
 export function getUserByEmail(email) {
-  return async function (dispatch) {
-    try {
-      let json = await axios.get(`${USERS_URL}?email=${email}`);
-      window.localStorage.setItem("userLogged", JSON.stringify(json.data[0]));
-      return dispatch({ type: GET_USER_BY_EMAIL, payload: json.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+	return async function (dispatch) {
+		try {
+			let json = await axios.get(`${USERS_URL}?email=${email}`);
+			window.localStorage.setItem('userLogged', JSON.stringify(json.data[0]));
+			return dispatch({ type: GET_USER_BY_EMAIL, payload: json.data });
+		} catch (error) {
+			console.log(error);
+		}
+	};
 }
 
 export function getAllNews() {
@@ -126,20 +127,22 @@ export function orderNewsByTitle(payload) {
 }
 
 export function postForum(payload) {
-  return async function (dispatch) {
-    try {
-      await axios.post(FORUM_URL, payload);
-      return dispatch({ type: POST_FORUM });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}
-
-export function claimRewards(data) {
 	return async function (dispatch) {
 		try {
-			await axios.put(`${USERS_URL}/${data.id}`, data);
+			await axios.post(FORUM_URL, payload);
+			return dispatch({ type: POST_FORUM });
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export function claimRewards(data, id) {
+	return async function (dispatch) {
+		try {
+			await axios.put(`${USERS_URL}/${id}`, data);
+			const newDataUser = await axios.get(`https://pf-henry-gamesportal.herokuapp.com/users/${id}`);
+			window.localStorage.setItem('userLogged', JSON.stringify(newDataUser.data));
 			return dispatch({ type: CLAIM_REWARDS });
 		} catch (error) {
 			console.log(error);
@@ -158,13 +161,24 @@ export function getRewards() {
 	};
 }
 
+export function getRewardsById(id) {
+	return async function (dispatch) {
+		try {
+			let json = await axios.get(`${REWARDS_URL}/${id}`);
+			return dispatch({ type: GET_REWARDS_BY_ID, payload: json.data });
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
 export function getGames() {
-  return async function (dispatch) {
-    try {
-      let json = await axios.get(GAMES_URL);
-      return dispatch({ type: GET_GAMES, payload: json.data })
-    } catch (error) {
-      console.log(error);
-    }
-  } 
+	return async function (dispatch) {
+		try {
+			let json = await axios.get(GAMES_URL);
+			return dispatch({ type: GET_GAMES, payload: json.data });
+		} catch (error) {
+			console.log(error);
+		}
+	};
 }
