@@ -3,6 +3,7 @@ import axios from "axios";
 import swal from 'sweetalert';
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Loader from "../components/Loader";
 
 const cardElementOptions = {
   style: {
@@ -86,7 +87,7 @@ export default function PaymentStripe () {
           <CardElement options={cardElementOptions} />
           <button disabled={!stripe} type="submit" className="w-24 h-12 p-1 mx-auto mt-5 text-center text-white bg-green-700 rounded-md">
             {loading ? (
-              <p>Loading...</p>
+              <Loader width={8} />
             ) : (
               'Pay'
             )}
