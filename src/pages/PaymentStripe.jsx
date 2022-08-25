@@ -36,6 +36,8 @@ export default function PaymentStripe () {
   const [loading, setLoading] = useState(false);
   const amount = location.state;
 
+  const dataUser = JSON.parse(window.localStorage.userLogged);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,7 +52,8 @@ export default function PaymentStripe () {
       try {
         const { data } = await axios.post('http://localhost:3001/api/checkout', {
           id, 
-          amount: amount*100
+          amount: amount*100,
+          dataUser
         });
         if(data.hasOwnProperty('message')) {
           swal({

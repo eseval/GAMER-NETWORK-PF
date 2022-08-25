@@ -30,7 +30,7 @@ export default function LandingPage() {
         <div className='container text-center'>
           <h1 className='text-5xl font-semibold text-white'>Play Center</h1>
           <div className='mt-10'>
-            <Loader width={16} />
+            <Loader width={8} />
           </div>
         </div>
       )
