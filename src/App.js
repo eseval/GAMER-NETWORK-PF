@@ -1,18 +1,19 @@
-import { Routes, Route } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import NewsDetail from './components/NewsDetail';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import ModifyUserForm from './pages/ModifyUserForm';
-import PaymentStripe from './pages/PaymentStripe';
-import SubscriptionCards from './pages/SubscriptionCards';
-import Reward from './pages/Reward';
-import GamesContainer from './pages/GamesContainer';
+import { Route, Routes } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import NewsDetail from "./components/NewsDetail";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import ModifyUserForm from "./pages/ModifyUserForm";
+import PaymentStripe from "./pages/PaymentStripe";
+import SubscriptionCards from "./pages/SubscriptionCards";
+import Reward from "./pages/Reward";
+import GamesContainer from "./pages/GamesContainer";
+import RewardDetails from "./pages/RewardDetails";
 
 function App() {
-	return (
+  return (
     <Routes>
       <Route index element={<LandingPage />} />
       <Route path="/home" element={<Home />} />
@@ -25,8 +26,9 @@ function App() {
       <Route path="/games" element={<GamesContainer />} />
       <Route path="/payment" element={<PaymentStripe />} />
       <Route path="/rewards" element={<Reward />} />
+      <Route path="/rewards/:id" element={<RewardDetails />} />
     </Routes>
-	);
+  );
 }
 
 export default App;
