@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { postForum } from "../redux/actions/index.js"
 
 
-export default function FormForum({nickname}){
-
-    const dispatch = useDispatch();
+export default function FormForum(){
+  const dataUser= JSON.parse(window.localStorage.userLogged)
+  const dispatch = useDispatch();
 
     const [input, setInput] = useState({
-        nickname: nickname,
+        nickname: dataUser.nickname,
         text: "",
         title: "",
     })
@@ -24,7 +24,7 @@ export default function FormForum({nickname}){
         e.preventDefault()
         dispatch (postForum(input))
         setInput({
-            nickname: nickname,
+            nickname: dataUser.nickname,
             title: "",
             text: "",
         })

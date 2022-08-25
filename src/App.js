@@ -13,19 +13,19 @@ import GamesContainer from './pages/GamesContainer';
 
 function App() {
 	return (
-		<Routes>
-			<Route path="/" element={<LandingPage />} />
-			<Route path="/home" element={<Home />} />
-			<Route path="/profile/:id" element={<Profile />} />
-			<Route path="/profile/:id/edit" element={<ModifyUserForm />} />
-			<Route path="/about" element={<About />} />
-			<Route path="/contact" element={<Contact />} />
-			<Route path="/news/:id" element={<NewsDetail />} />
-			<Route path="/subscription" element={<SubscriptionCards />} />
+    <Routes>
+      <Route index element={<LandingPage />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/profile/:id" element={<Profile />} />
+      <Route path="/profile/:id/edit" element={<ModifyUserForm />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/news/:id" element={<NewsDetail />} />
+      <Route path="/subscription" element={<SubscriptionCards />} />
       <Route path="/games" element={<GamesContainer />} />
-			<Route path="/payment" element={<PaymentStripe />} />
-			<Route path="/rewards" element={<Reward />} />
-		</Routes>
+      <Route path="/payment" element={<PaymentStripe />} />
+      <Route path="/rewards" element={<Reward />} />
+    </Routes>
 	);
 }
 
