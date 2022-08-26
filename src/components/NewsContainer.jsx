@@ -4,6 +4,7 @@ import NewsCard from "./NewsCard"
 import { getAllNews } from "../redux/actions";
 import Paginate from "./Paginate.jsx";
 import OrderNewsByTitle from "./OrderNewsByTitle";
+import SearchBar from "../components/SearchBar"
 
 export default function NewsContainer() {
   // ESTA RUTA VA A CONTENER TODAS LAS NOTICIAS CON FILTRADO Y LAS VA A PASAR A NEWS CARD
@@ -32,6 +33,8 @@ export default function NewsContainer() {
   return (
     <div className="container">
       <h1 className="m-5 text-5xl font-semibold text-center text-white">News</h1>
+      
+      <SearchBar/>
       <OrderNewsByTitle/>
       <div className="container flex flex-wrap justify-center">
         {typeof allNews === "object"  ? currentNews.map(news => {

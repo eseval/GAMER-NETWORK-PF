@@ -1,12 +1,25 @@
 import { useDispatch } from "react-redux";
-import React, { useState } from 'react';
-import { postForum } from "../redux/actions/index.js"
-
+import React, { useState , useEffect } from 'react';
+import { postForum, getAllPosts,editPost } from "../redux/actions/index.js"
+// import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function FormForum(){
-  const dataUser= JSON.parse(window.localStorage.userLogged)
-  const dispatch = useDispatch();
+    const navigate= useNavigate()
+    let id=""
+    id=useParams()
 
+    const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+      if(!dataUser || dataUser===""){
+        navigate("/")
+      }
+    },[dataUser])
+    
     const [input, setInput] = useState({
         nickname: dataUser.nickname,
         text: "",
@@ -22,12 +35,15 @@ export default function FormForum(){
 
     function handleOnSubmit(e) {
         e.preventDefault()
-        dispatch (postForum(input))
-        setInput({
-            nickname: dataUser.nickname,
-            title: "",
-            text: "",
-        })
+        if(!id.id){
+        dispatch (postForum(input)) 
+        }
+        else{
+        dispatch(editPost(id.id,input))
+        console.log(id)
+        }
+        dispatch (getAllPosts())
+        navigate("/forum")
     }
 
     return (
@@ -43,4 +59,5 @@ export default function FormForum(){
             </form>
         </div>
     )
+
 }

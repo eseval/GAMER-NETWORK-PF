@@ -2,58 +2,73 @@ import React, { useEffect } from "react";
 import { claimRewards, getRewardsById } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function RewardDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const reward = useSelector((state) => state.rewardsById);
-  const dataUser = JSON.parse(window.localStorage.userLogged);
-
+  const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
+  const { isAuthenticated } = useAuth0();
+  const navigate= useNavigate()
+  
   useEffect(() => {
     dispatch(getRewardsById(id));
-  }, []);
+  }, [dispatch]);
+
+  useEffect(()=>{
+    if(!dataUser || dataUser===""){
+      navigate("/")
+    }
+  },[dataUser])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const newTotal = dataUser.coins - reward.price;
     dataUser.coins = newTotal;
     if (newTotal > 0) {
-      dispatch(claimRewards(dataUser, dataUser.id));
+      dispatch(claimRewards(dataUser, dataUser.id,reward.price));
     } else {
-      console.log("Insufficient balance!");
+      alert("Insufficient balance!");
     }
   };
-  return (
-    <div>
-      <a
-        href="#"
-        className="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 p-4 mx-4 my-4"
-      >
-        <img
-          className="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-          src={reward.image}
-          alt="Image not found!"
-        />
-        <div className="flex flex-col justify-between p-4 leading-normal">
-          <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            {reward.title}
-          </h3>
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            💰{reward.price} Coins
-          </h5>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {reward.recompenseType}
-          </p>
-        </div>
-        <button
-          className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
-          onClick={(e) => handleSubmit(e)}
+
+
+    return (
+      <div>
+        <a
+          href="#"
+          className="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 p-4 mx-4 my-4"
         >
-          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-            Claim
-          </span>
-        </button>
-      </a>
-    </div>
-  );
+          <img
+            className="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+            src={reward.image}
+            alt="Image not found!"
+          />
+          <div className="flex flex-col justify-between p-4 leading-normal">
+            <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              {reward.title}
+            </h3>
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              💰{reward.price} Coins
+            </h5>
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              {reward.recompenseType}
+            </p>
+          </div>
+          <button
+            className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+            onClick={(e) => handleSubmit(e)}
+          >
+            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+              Claim
+            </span>
+          </button>
+        </a>
+      </div>
+    );
+ 
 }
