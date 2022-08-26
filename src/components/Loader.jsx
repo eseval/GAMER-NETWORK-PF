@@ -1,10 +1,10 @@
 import React from 'react';
 import loaderGif from '../assets/loader/loader.gif';
 
-export default function Loader({ width }) {
+export default function Loader() {
   return (
     <div>
-      <img src={loaderGif} alt='loader' className={`w-${width} mx-auto`}/>
+      <img src={loaderGif} alt='loader' className={'w-8 mx-auto'} />
     </div>
   );
 }

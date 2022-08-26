@@ -103,7 +103,7 @@ export default function PaymentStripe () {
             <CardElement options={cardElementOptions} />
             <button disabled={!stripe} type="submit" className="w-24 h-12 p-1 mx-auto mt-5 text-center text-white bg-green-700 rounded-md">
               {loading ? (
-                <Loader width={8} />
+                <Loader />
               ) : (
                 'Pay'
               )}
