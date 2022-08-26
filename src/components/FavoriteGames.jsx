@@ -4,7 +4,7 @@ import {getGames} from "../redux/actions/index"
 
 
 export default function FavoriteGames(){
-const dataUser = JSON.parse(window.localStorage.userLogged)
+const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
 const dispatch = useDispatch()
 
 const allGames = useSelector(state => state.games);

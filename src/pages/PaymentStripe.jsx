@@ -42,7 +42,7 @@ export default function PaymentStripe () {
   const [loading, setLoading] = useState(false);
   const amount = location.state;
 
-  const dataUser = window.localStorage.userLogged ? JSON.parse(window.localStorage.userLogged): "";
+  const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
 
   useEffect(()=>{
     if(!dataUser || dataUser===""){

@@ -20,7 +20,7 @@ export default function GamesContainer() {
     dispatch(getGames());
   }, [dispatch]);
 
-  const dataUser = window.localStorage.userLogged ? JSON.parse(window.localStorage.userLogged): "";
+  const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
 
   useEffect(()=>{
     if(!dataUser || dataUser===""){

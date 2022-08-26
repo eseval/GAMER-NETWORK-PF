@@ -9,7 +9,7 @@ export default function ModifyUserForm() {
   const location = useLocation();
   const user = location.state;
   
-  const dataUser = window.localStorage.userLogged ? JSON.parse(window.localStorage.userLogged): "";
+  const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
   useEffect(()=>{
     if(!dataUser || dataUser===""){
       navigate("/")

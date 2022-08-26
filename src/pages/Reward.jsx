@@ -17,7 +17,7 @@ export default function Reward() {
     dispatch(getRewards());
   }, [dispatch]);
   
-  const dataUser = window.localStorage.userLogged ? JSON.parse(window.localStorage.userLogged): "";
+  const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
   useEffect(()=>{
     if(!dataUser || dataUser===""){
       navigate("/")

@@ -6,7 +6,7 @@ import {useEffect} from "react"
 
 export default function Forum(){
     const navigate= useNavigate()
-    const dataUser = window.localStorage.userLogged ? JSON.parse(window.localStorage.userLogged): "";
+    const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
     useEffect(()=>{
       if(!dataUser || dataUser===""){
         navigate("/")

@@ -8,7 +8,7 @@ import FavoriteGames from "../components/FavoriteGames"
 export default function Profile() {
   const { isAuthenticated } = useAuth0();
   const navigate= useNavigate()
-  const dataUser = window.localStorage.userLogged ? JSON.parse(window.localStorage.userLogged): "";
+  const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
 
   useEffect(()=>{
     if(!dataUser || dataUser===""){

@@ -9,7 +9,7 @@ export default function RewardDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const reward = useSelector((state) => state.rewardsById);
-  const dataUser = window.localStorage.userLogged ? JSON.parse(window.localStorage.userLogged): "";
+  const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
   const { isAuthenticated } = useAuth0();
   const navigate= useNavigate()
   
