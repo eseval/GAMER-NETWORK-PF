@@ -18,16 +18,16 @@ favoriteGames=favoriteGames.flat(Infinity)
 
 
 return(
-    <div>
-       {favoriteGames.length>0 ? favoriteGames.map(e=>{
+    <div className="container flex flex-row flex-wrap">
+      {favoriteGames.length>0 ? favoriteGames.map(e=>{
         console.log(e)
         return(
-            <div key={e.name}>
-                {e.name}
-               <img src={e.img} width="100px"/>
-            </div>
+          <div key={e.name} className="w-24 m-2 overflow-hidden text-center text-white align-middle bg-gray-800 border border-gray-700 rounded-md shadow-lg">
+          <img src={e.img} width="100px" alt={e.name}/>
+          <p>{e.name}</p>
+          </div>
         )
-       }):"No games found"}
+      }):"No games found"}
     </div>
 )
 
