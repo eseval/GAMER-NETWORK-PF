@@ -22,7 +22,6 @@ export default function Forum(){
                 <br/>
                 <br/>
                 <ContainerForum/>
-               
             </div>
         )
  

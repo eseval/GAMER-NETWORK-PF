@@ -4,6 +4,10 @@ import NewsContainer from "../components/NewsContainer";
 import { useNavigate } from 'react-router-dom';
 import NavBar from "../components/NavBar";
 import {useEffect} from "react"
+import DetailForum from "../components/DetailForum";
+import AnswerForum from "../components/AnswerForum";
+import ForumContainer from "../components/ForumContainer";
+import Forum from "./Forum";
 
 
 export default function Home() {
@@ -20,9 +24,10 @@ export default function Home() {
    return (
       <div>
         {<NavBar/>}
-        <Slider />
-        <NewsContainer />
-        <Footer />
+        <Forum/>
+        {/*<Slider />*/}
+        {/*<NewsContainer />*/}
+        {/*<Footer />*/}
       </div>
     )
 

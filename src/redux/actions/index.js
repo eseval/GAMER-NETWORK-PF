@@ -3,7 +3,7 @@ import {
   CLAIM_REWARDS,
   CONTAINER_POSTS,
   EDIT_POST,
-  GET_ALL_NEWS,
+  GET_ALL_NEWS, GET_FORUM_ANSWERS,
   GET_GAMES,
   GET_NEWS_BY_ID,
   GET_NEWS_BY_TITLE,
@@ -24,6 +24,7 @@ const NEWS_URL = "https://pf-henry-gamesportal.herokuapp.com/news";
 const FORUM_URL = "https://pf-henry-gamesportal.herokuapp.com/forum";
 const REWARDS_URL = "https://pf-henry-gamesportal.herokuapp.com/reward";
 const GAMES_URL = "https://pf-henry-gamesportal.herokuapp.com/games";
+const ANSWER_URL = "https://pf-henry-gamesportal.herokuapp.com/answers";
 
 export function postUser(data) {
   return async function (dispatch) {
@@ -226,8 +227,19 @@ export function editPost(id, data) {
 export function postForumAnswers(payload) {
   return async function (dispatch) {
     try {
-      await axios.post(FORUM_URL, payload); // Necesitamos una tabla para guardar los comentarios del foro
+      await axios.post(ANSWER_URL, payload); // Necesitamos una tabla para guardar los comentarios del foro
       return dispatch({ type: POST_FORUM_ANSWERS });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getForumAnswers(id) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(`${ANSWER_URL}?post_id=${id}`);
+      return dispatch({ type: GET_FORUM_ANSWERS, payload: json.data });
     } catch (error) {
       console.log(error);
     }

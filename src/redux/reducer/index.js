@@ -2,7 +2,7 @@ import {
   CLAIM_REWARDS,
   CONTAINER_POSTS,
   EDIT_POST,
-  GET_ALL_NEWS,
+  GET_ALL_NEWS, GET_FORUM_ANSWERS,
   GET_GAMES,
   GET_NEWS_BY_ID,
   GET_NEWS_BY_TITLE,
@@ -26,6 +26,7 @@ const initialState = {
   rewards: [],
   games: [],
   rewardsById: [],
+  forumAnswers: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -126,6 +127,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case GET_FORUM_ANSWERS:
+      return {
+        ...state,
+        forumAnswers: action.payload,
+      }
     default:
       return { ...state };
   }

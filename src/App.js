@@ -32,6 +32,7 @@ function App() {
       <Route path="/forum" element={<Forum />} />
       <Route path="/post" element={<FormForum />} />
       <Route path="/post/:id" element={<FormForum />} />
+      <Route path="/postDetails/:id" element={<forumDetail />} />
     </Routes>
   );
 }

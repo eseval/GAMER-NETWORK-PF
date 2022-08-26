@@ -1,46 +1,32 @@
-import React from "react";
-
-const ForumContainer = () => {
-  const temas = [
-    {
-      title: "Nueva política de servicios publicitarios",
-      autor: "Pato",
-      img: "https://i.imgur.com/qkKy8.jpg",
-    },
-    {
-      title: "Calendario de bandas predestinadas de la temporada 4",
-      autor: "Fede",
-    },
-  ];
-
-  return (
-      <div>
-        {/*<NavBar/>*/ }
-        <div>
-          { temas?.map((e) => {
-            return (
-                <div>
-                  <div>
-                    <a href="/detailForum">
-                      <h3>{ e.title }</h3>
-                    </a>
-                  </div>
-                  <h4>{ e.autor }</h4>
-                </div>
-                // <div>
-                //   <Link to="/detailForum">
-                //     <div>
-                //       <h3>{ e.title }</h3>
-                //       <h4>{ e.autor }</h4>
-                //     </div>
-                //   </Link>
-                // </div>
-            );
-          }) }
-        </div>
-        <p>Componente Pato</p>
-      </div>
-  );
-};
-
-export default ForumContainer
+// import React from "react";
+// import { useSelector } from "react-redux";
+// import Forum from "../pages/Forum";
+//
+// const ForumContainer = () => {
+//   const temas = useSelector((state) => state.forumAnswers);
+//
+//   return (
+//       <div>
+//         <h1>PRIMER ARCHIVO</h1>
+//         {/*<NavBar/>*/ }
+//         <div>
+//           { temas?.map((e) => {
+//             return (
+//                 <div>
+//                   <div>
+//                     <a href="/detailForum">
+//                       <h3>{ e.title }</h3>
+//                     </a>
+//                   </div>
+//                   <h4>{ e.user.nickname }</h4>
+//                   <span>{ e.comment }</span>
+//                 </div>
+//             );
+//           }) }
+//         </div>
+//         <Forum/>
+//       </div>
+//   );
+// };
+//
+// export default ForumContainer
