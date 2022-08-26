@@ -64,10 +64,11 @@ export default function PaymentStripe () {
           amount: amount*100,
           dataUser
         });
-        if(data.hasOwnProperty('message')) {
+        console.log("data",data,"data.stripeCardError",data.StripeCardError,"fin")
+        if(data.code) {
           swal({
             title: "Error!",
-            text: data.message,
+            text: `${data.code.toString().replace("_"," ").toUpperCase()} - ${data.decline_code.toString().replace("_"," ").toUpperCase()}`,
             icon: "error",
             button: "Ok",
             
