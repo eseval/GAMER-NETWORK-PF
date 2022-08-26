@@ -1,12 +1,10 @@
 import React , {useEffect} from "react";
 import { Link } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import FavoriteGames from "../components/FavoriteGames"
 
 
 export default function Profile() {
-  const { isAuthenticated } = useAuth0();
   const navigate= useNavigate()
   const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
 
@@ -14,7 +12,7 @@ export default function Profile() {
     if(!dataUser || dataUser===""){
       navigate("/")
     }
-  },[dataUser])
+  },[dataUser, navigate])
   
   const userPlan = () => {
     if(dataUser.plan) {
@@ -23,7 +21,6 @@ export default function Profile() {
       return 'Free'
     }
   }
-
   
     return (
       <div className='container'>
