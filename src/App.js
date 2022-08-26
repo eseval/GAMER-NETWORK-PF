@@ -11,6 +11,8 @@ import SubscriptionCards from "./pages/SubscriptionCards";
 import Reward from "./pages/Reward";
 import GamesContainer from "./pages/GamesContainer";
 import RewardDetails from "./pages/RewardDetails";
+import Forum from "./pages/Forum";
+import FormForum from "./pages/FormForum";
 
 function App() {
   return (
@@ -27,6 +29,9 @@ function App() {
       <Route path="/payment" element={<PaymentStripe />} />
       <Route path="/rewards" element={<Reward />} />
       <Route path="/rewards/:id" element={<RewardDetails />} />
+      <Route path="/forum" element={<Forum />} />
+      <Route path="/post" element={<FormForum />} />
+      <Route path="/post/:id" element={<FormForum />} />
     </Routes>
   );
 }

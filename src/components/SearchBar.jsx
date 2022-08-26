@@ -19,7 +19,7 @@ export default function Search() {
   }
 
   return (
-      <div className="h-6 bg-white flex items-center justify-center text-sm font-medium">
+      <div className="flex items-center justify-center text-sm font-medium">
         <div className="px-2 py-5 flex items-center justify-between">
           <input
               type="text"

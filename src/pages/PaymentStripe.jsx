@@ -4,6 +4,10 @@ import swal from 'sweetalert';
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Loader from "../components/Loader";
+import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
+import {useEffect} from "react"
+
 
 const cardElementOptions = {
   style: {
@@ -30,13 +34,21 @@ const cardElementOptions = {
 }
 
 export default function PaymentStripe () {
+  const { isAuthenticated } = useAuth0();
+  const navigate= useNavigate()
   const location = useLocation();
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const amount = location.state;
 
-  const dataUser = JSON.parse(window.localStorage.userLogged);
+  const dataUser = window.localStorage.userLogged ? JSON.parse(window.localStorage.userLogged): "";
+
+  useEffect(()=>{
+    if(!dataUser || dataUser===""){
+      navigate("/")
+    }
+  },[dataUser])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,24 +91,26 @@ export default function PaymentStripe () {
     }
   }
 
-  return (
-    <div>
-      <h1 className="my-5 text-5xl font-semibold text-center text-white">Payment</h1>
-      <div className="container max-w-2xl p-8 mt-10 bg-gray-800 border-2 border-gray-700 rounded-md">
-        <div className="mb-5">
-          <Link className="text-blue-400 text-md" to='/home'>Return to Home</Link>  
+
+    return (
+      <div>
+        <h1 className="my-5 text-5xl font-semibold text-center text-white">Payment</h1>
+        <div className="container max-w-2xl p-8 mt-10 bg-gray-800 border-2 border-gray-700 rounded-md">
+          <div className="mb-5">
+            <Link className="text-blue-400 text-md" to='/home'>Return to Home</Link>  
+          </div>
+          <form onSubmit={handleSubmit} className="flex flex-col">
+            <CardElement options={cardElementOptions} />
+            <button disabled={!stripe} type="submit" className="w-24 h-12 p-1 mx-auto mt-5 text-center text-white bg-green-700 rounded-md">
+              {loading ? (
+                <Loader width={8} />
+              ) : (
+                'Pay'
+              )}
+            </button>
+          </form>
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col">
-          <CardElement options={cardElementOptions} />
-          <button disabled={!stripe} type="submit" className="w-24 h-12 p-1 mx-auto mt-5 text-center text-white bg-green-700 rounded-md">
-            {loading ? (
-              <Loader width={8} />
-            ) : (
-              'Pay'
-            )}
-          </button>
-        </form>
       </div>
-    </div>
-  )
+    )
+ 
 }

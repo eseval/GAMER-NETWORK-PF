@@ -7,7 +7,7 @@ export default function NavBar() {
   console.log(window.localStorage.userLogged)
 
   if(window.localStorage.userLogged) {
-    const dataUser = JSON.parse(window.localStorage.userLogged);
+    const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
     
     return (
     <nav className="bg-white shadow dark:bg-gray-800">
@@ -47,6 +47,12 @@ export default function NavBar() {
                 Games
               </Link>
               <Link
+                to={'/forum'}
+                className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+              >
+                Forum
+              </Link>
+              <Link
                 to={'/subscription'}
                 className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
               >
@@ -70,10 +76,6 @@ export default function NavBar() {
               >
                 Contact
               </Link>
-            </div>
-
-            <div>
-              <SearchBar/>
             </div>
 
             <div className="flex items-center mt-4 md:mt-0">
