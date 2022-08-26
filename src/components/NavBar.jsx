@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LogoutButton from "./Logout";
-import SearchBar from "./SearchBar";
 
 export default function NavBar() {
   console.log(window.localStorage.userLogged)
