@@ -1,85 +1,86 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LogoutButton from "./Logout";
-import SearchBar from "./SearchBar";
 
 export default function NavBar() {
-  console.log(window.localStorage.userLogged)
+  console.log(window.localStorage.userLogged);
 
-  if(window.localStorage.userLogged) {
-    const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
-    
+  if (window.localStorage.userLogged) {
+    const dataUser = !window.localStorage.userLogged
+      ? ""
+      : JSON.parse(window.localStorage.userLogged);
+
     return (
-    <nav className="bg-white shadow dark:bg-gray-800">
-      <div className="container px-6 py-4 mx-auto">
-        <div className="md:flex md:items-center md:justify-between">
-          <div className="flex items-center justify-between">
-            <div className="text-xl font-semibold text-gray-700">
-              <a
-                className="text-2xl font-bold text-gray-800 transition-colors duration-200 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300"
-                href="/home"
-              >
-                Play Center
-              </a>
-            </div>
+      <nav className="bg-white shadow dark:bg-gray-800">
+        <div className="container px-6 py-4 mx-auto">
+          <div className="md:flex md:items-center md:justify-between">
+            <div className="flex items-center justify-between">
+              <div className="text-xl font-semibold text-gray-700">
+                <a
+                  className="text-2xl font-bold text-gray-800 transition-colors duration-200 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300"
+                  href="/home"
+                >
+                  Play Center
+                </a>
+              </div>
 
-            <div className="flex md:hidden">
-              <button
+              <div className="flex md:hidden">
+                <button
                   type="button"
                   className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
                   aria-label="toggle menu"
-              >
-                <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
-                  <path
+                >
+                  <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
+                    <path
                       fillRule="evenodd"
                       d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-                  ></path>
-                </svg>
-              </button>
+                    ></path>
+                  </svg>
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="flex-1 md:flex md:items-center md:justify-between">
-            <div className="flex flex-col -mx-4 md:flex-row md:items-center md:mx-8">
-              <Link
-                to={'/games'}
-                className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
-              >
-                Games
-              </Link>
-              <Link
-                to={'/forum'}
-                className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
-              >
-                Forum
-              </Link>
-              <Link
-                to={'/subscription'}
-                className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
-              >
-                Subscription
-              </Link>
-              <Link
-                to="/rewards"
-                className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
-              >
-                Rewards
-              </Link>
-              <Link
-                to="/about"
-                className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
-              >
-                About
-              </Link>
-              <Link
-                to="/contact"
-                className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
-              >
-                Contact
-              </Link>
-            </div>
+            <div className="flex-1 md:flex md:items-center md:justify-between">
+              <div className="flex flex-col -mx-4 md:flex-row md:items-center md:mx-8">
+                <Link
+                  to={"/games"}
+                  className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                >
+                  Games
+                </Link>
+                <Link
+                  to={"/forum"}
+                  className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                >
+                  Forum
+                </Link>
+                <Link
+                  to={"/subscription"}
+                  className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                >
+                  Subscription
+                </Link>
+                <Link
+                  to="/rewards"
+                  className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                >
+                  Rewards
+                </Link>
+                <Link
+                  to="/about"
+                  className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                >
+                  About
+                </Link>
+                <Link
+                  to="/contact"
+                  className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                >
+                  Contact
+                </Link>
+              </div>
 
-            <div className="flex items-center mt-4 md:mt-0">
-              {/* <button
+              <div className="flex items-center mt-4 md:mt-0">
+                {/* <button
                   className="hidden mx-4 text-gray-600 transition-colors duration-200 transform md:block dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none"
                   aria-label="show notifications"
               >
@@ -99,38 +100,34 @@ export default function NavBar() {
                 </svg>
               </button> */}
 
-              <Link to={ `/profile/${ dataUser.id }` }>
-                <button
+                <Link to={`/profile/${dataUser.id}`}>
+                  <button
                     type="button"
                     className="flex items-center focus:outline-none"
                     aria-label="toggle profile dropdown"
-                >
-                  <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                    <img
-                        src={ dataUser.img }
+                  >
+                    <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
+                      <img
+                        src={dataUser.img}
                         className="object-cover w-full h-full"
                         alt="avatar"
-                    />
-                  </div>
-                  <h3 className="mx-2 text-sm font-medium text-gray-700 dark:text-gray-200 md:hidden">
-                    Khatab wedaa
-                  </h3>
-                </button>
-              </Link>
-              <div>
-                <LogoutButton />
+                      />
+                    </div>
+                    <h3 className="mx-2 text-sm font-medium text-gray-700 dark:text-gray-200 md:hidden">
+                      Khatab wedaa
+                    </h3>
+                  </button>
+                </Link>
+                <div>
+                  <LogoutButton />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </nav>
-  );
+      </nav>
+    );
   } else {
-    return (
-      <div></div>
-    )
+    return <div></div>;
   }
-
-  
 }
