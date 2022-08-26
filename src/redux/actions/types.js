@@ -18,3 +18,4 @@ export const GET_GAMES = "GET_GAMES";
 export const POST_FORUM = "POST_FORUM";
 export const CONTAINER_POSTS = "CONTAINER_POSTS";
 export const EDIT_POST = "EDIT_POST";
+export const POST_FORUM_ANSWERS = "POST_FORUM_ANSWERS";
