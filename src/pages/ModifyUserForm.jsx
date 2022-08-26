@@ -14,7 +14,7 @@ export default function ModifyUserForm() {
     if(!dataUser || dataUser===""){
       navigate("/")
     }
-  },[dataUser])
+  },[dataUser, navigate])
   
     return (
       <div className="container max-w-md mt-10 overflow-hidden bg-white shadow sm:rounded-lg">

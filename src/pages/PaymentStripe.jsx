@@ -4,7 +4,6 @@ import swal from 'sweetalert';
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Loader from "../components/Loader";
-import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import {useEffect} from "react"
 
@@ -13,7 +12,6 @@ const cardElementOptions = {
   style: {
     base: {
       backgroundColor: 'transparent',
-      lineHeight: '2',
       iconColor: 'grey',
       color: 'white',
       fontWeight: '400',
@@ -34,7 +32,6 @@ const cardElementOptions = {
 }
 
 export default function PaymentStripe () {
-  const { isAuthenticated } = useAuth0();
   const navigate= useNavigate()
   const location = useLocation();
   const stripe = useStripe();
@@ -48,7 +45,7 @@ export default function PaymentStripe () {
     if(!dataUser || dataUser===""){
       navigate("/")
     }
-  },[dataUser])
+  },[dataUser, navigate])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,7 +59,7 @@ export default function PaymentStripe () {
     if(!error) {
       const { id } = paymentMethod;
       try {
-        const { data } = await axios.post('http://localhost:3001/api/checkout', {
+        const { data } = await axios.post('https://pf-henry-gamesportal.herokuapp.com/api/checkout', {
           id, 
           amount: amount*100,
           dataUser
@@ -82,6 +79,8 @@ export default function PaymentStripe () {
             icon: "success",
             button: "Ok",
           });
+          const newDataUser = await axios.get(`https://pf-henry-gamesportal.herokuapp.com/users/${dataUser.id}`)
+          window.localStorage.setItem("userLogged", JSON.stringify(newDataUser.data));
         }
         elements.getElement(CardElement).clear();
       } catch(error) {
