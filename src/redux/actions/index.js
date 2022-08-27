@@ -3,7 +3,8 @@ import {
   CLAIM_REWARDS,
   CONTAINER_POSTS,
   EDIT_POST,
-  GET_ALL_NEWS, GET_FORUM_ANSWERS,
+  GET_ALL_NEWS,
+  GET_FORUM,
   GET_GAMES,
   GET_NEWS_BY_ID,
   GET_NEWS_BY_TITLE,
@@ -227,6 +228,7 @@ export function editPost(id, data) {
 export function postForumAnswers(payload) {
   return async function (dispatch) {
     try {
+      console.log(payload);
       await axios.post(ANSWER_URL, payload); // Necesitamos una tabla para guardar los comentarios del foro
       return dispatch({ type: POST_FORUM_ANSWERS });
     } catch (error) {
@@ -235,14 +237,13 @@ export function postForumAnswers(payload) {
   };
 }
 
-export function getForumAnswers(id) {
+export function getForum(id) {
   return async function (dispatch) {
     try {
       let json = await axios.get(`${FORUM_URL}/${id}`);
-      return dispatch({ type: GET_FORUM_ANSWERS, payload: json.data });
+      return dispatch({ type: GET_FORUM, payload: json.data });
     } catch (error) {
       console.log(error);
     }
   };
 }
-

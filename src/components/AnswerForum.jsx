@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { Mention, MentionsInput } from "react-mentions";
 import merge from "lodash/merge";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers, postForumAnswers } from "../redux/actions";
+import { postForumAnswers } from "../redux/actions";
 
-const AnswerForum = () => {
+const AnswerForum = ({ forumId, comments }) => {
   const dataUser = JSON.parse(window.localStorage.userLogged);
+
+  const [comment, setComment] = useState("");
 
   const dispatch = useDispatch();
 
   const [value, setValue] = useState({
-    username: "",
+    idForum: forumId,
+    idUser: dataUser.id,
     comment: "",
+    nickname: dataUser.nickname,
   });
-
-  const [comments, setComments] = useState([]);
 
   const user = useSelector((state) => state.users);
 
   useEffect(() => {
-    dispatch(getUsers());
-    dispatch(postForumAnswers(comments));
-  }, [dispatch]);
+    setComment(comments);
+  }, [comments]);
 
   const userNickname = user.map((user) => {
     return {
+      key: user.id,
       id: user.id,
       display: user.nickname,
     };
@@ -45,14 +46,17 @@ const AnswerForum = () => {
     }
   );
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (value.comment === "") {
       alert("Please fill in all fields");
-      return;
     }
-    setComments({
-      username: "",
+    dispatch(postForumAnswers(value));
+    setValue({
+      idForum: forumId,
+      idUser: dataUser.id,
       comment: "",
+      nickname: dataUser.nickname,
     });
   };
   const current = new Date();
@@ -60,29 +64,26 @@ const AnswerForum = () => {
     current.getMonth() + 1
   }/${current.getFullYear()}`;
 
+  function handleOnChange(e) {
+    e.preventDefault();
+    setValue({ ...value, comment: e.target.value });
+  }
+
   return (
     <div className="border my-8">
       <h1>ANSWER FORUM</h1>
       <section>
         <h2>Let's get started</h2>
-        <input
-          disabled={true}
-          type="text"
-          value={dataUser.nickname}
-          onChange={(e) => setValue({ ...value, username: e.target.value })}
-          placeholder="Input your Name"
-        />
-        <MentionsInput
-          placeholder="Add Comment. Use '@' for mention"
-          style={customStyle}
-          // value={value.comment}
-          // onChange={(e) => setValue({ ...value, comment: e.target.value })}
-
-          a11ySuggestionsListLabel={"Suggested mentions"}
-        >
-          <Mention data={userNickname} />
-        </MentionsInput>
-        <button onClick={(e) => handleSubmit(e)}>Submit</button>
+        <p>{dataUser.nickname}</p>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <input
+            placeholder="Add your comment"
+            style={customStyle}
+            value={value.comment}
+            onChange={(e) => handleOnChange(e)}
+          ></input>
+          <button type="submit">Submit</button>
+        </form>
       </section>
       {/*{comments.length === 0 ? null : (*/}
       {/*  <section>*/}

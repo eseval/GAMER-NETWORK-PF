@@ -1,18 +1,17 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getForumAnswers } from "../redux/actions";
+import { getForum } from "../redux/actions";
 import AnswerForum from "./AnswerForum";
-import ForumAnswers from "./ForumAnswers";
 
 export default function ForumDetail() {
   const {id} = useParams();
   const dispatch = useDispatch();
-  const details = useSelector((state) => state.forumAnswers);
-  console.log(details);
+  const details = useSelector((state) => state.forumById);
+  // console.log(details);
 
   useEffect(() => {
-    dispatch(getForumAnswers(id));
+    dispatch(getForum(id));
   }, [dispatch, id]);
 
   return (
@@ -22,11 +21,11 @@ export default function ForumDetail() {
           <p>{ details?.title }</p>
           { details?.text }
         </div>
-        <AnswerForum />
-        <div>
-          {/*<p>{details?.answers.map(e => e.comment)}</p>*/}
-        </div>
-        <ForumAnswers />
+        <AnswerForum forumId={ id } comments={ details.answers }/>
+        { details?.answers?.map((e) => (
+            <div key={ e.id }>{ e.comment }</div>
+        )) }
+        {/*<ForumAnswers />*/ }
       </div>
   );
 }
