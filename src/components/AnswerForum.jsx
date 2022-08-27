@@ -50,14 +50,7 @@ const AnswerForum = () => {
       alert("Please fill in all fields");
       return;
     }
-    setComments((comments) => [
-      ...comments,
-      {
-        username: dataUser.nickname,
-        comment: value.comment,
-      },
-    ]);
-    setValue({
+    setComments({
       username: "",
       comment: "",
     });
@@ -68,7 +61,8 @@ const AnswerForum = () => {
   }/${current.getFullYear()}`;
 
   return (
-    <div>
+    <div className="border my-8">
+      <h1>ANSWER FORUM</h1>
       <section>
         <h2>Let's get started</h2>
         <input
@@ -81,26 +75,27 @@ const AnswerForum = () => {
         <MentionsInput
           placeholder="Add Comment. Use '@' for mention"
           style={customStyle}
-          value={value.comment}
-          onChange={(e) => setValue({ ...value, comment: e.target.value })}
+          // value={value.comment}
+          // onChange={(e) => setValue({ ...value, comment: e.target.value })}
+
           a11ySuggestionsListLabel={"Suggested mentions"}
         >
           <Mention data={userNickname} />
         </MentionsInput>
         <button onClick={(e) => handleSubmit(e)}>Submit</button>
       </section>
-      {comments.length === 0 ? null : (
-        <section>
-          {comments.map((comment, i) => (
-            <div key={i}>
-              <p>
-                {comment.username} on {date}
-              </p>
-              <h2>{comment.comment}</h2>
-            </div>
-          ))}
-        </section>
-      )}
+      {/*{comments.length === 0 ? null : (*/}
+      {/*  <section>*/}
+      {/*    /!*{comments.map((comment, i) => (*!/*/}
+      {/*    /!*  <div key={i}>*!/*/}
+      {/*    /!*    <p>*!/*/}
+      {/*    /!*      {comment.username} on {date}*!/*/}
+      {/*    /!*    </p>*!/*/}
+      {/*    /!*    <h2>{comment.comment}</h2>*!/*/}
+      {/*    /!*  </div>*!/*/}
+      {/*    /!*))}*!/*/}
+      {/*  </section>*/}
+      {/*)}*/}
     </div>
   );
 };

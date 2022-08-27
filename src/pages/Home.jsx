@@ -1,34 +1,29 @@
 import Footer from "../components/Footer";
 import Slider from "../components/Slider";
 import NewsContainer from "../components/NewsContainer";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import {useEffect} from "react"
-import DetailForum from "../components/DetailForum";
-import AnswerForum from "../components/AnswerForum";
-import ForumContainer from "../components/ForumContainer";
-import Forum from "./Forum";
-
+import { useEffect } from "react";
 
 export default function Home() {
   let navigate = useNavigate();
 
-  const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
+  const dataUser = !window.localStorage.userLogged
+    ? ""
+    : JSON.parse(window.localStorage.userLogged);
 
-  useEffect(()=>{
-    if(!dataUser || dataUser===""){
-      navigate("/")
+  useEffect(() => {
+    if (!dataUser || dataUser === "") {
+      navigate("/");
     }
-  },[dataUser])
+  }, [dataUser]);
 
-   return (
-      <div>
-        {<NavBar/>}
-        <Forum/>
-        {/*<Slider />*/}
-        {/*<NewsContainer />*/}
-        {/*<Footer />*/}
-      </div>
-    )
-
+  return (
+    <div>
+      {<NavBar />}
+      <Slider />
+      <NewsContainer />
+      <Footer />
+    </div>
+  );
 }

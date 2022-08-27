@@ -14,7 +14,7 @@ export default function Forum(){
     },[dataUser])
   
         return (
-            <div>
+            <div className="border p-4 bg">
                 <Link to="/home"><button>Back to home</button></Link>
                 <br/>
                 <br/>

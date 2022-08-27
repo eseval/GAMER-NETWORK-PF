@@ -238,10 +238,11 @@ export function postForumAnswers(payload) {
 export function getForumAnswers(id) {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`${ANSWER_URL}?post_id=${id}`);
+      let json = await axios.get(`${FORUM_URL}/${id}`);
       return dispatch({ type: GET_FORUM_ANSWERS, payload: json.data });
     } catch (error) {
       console.log(error);
     }
   };
 }
+
