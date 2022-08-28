@@ -15,7 +15,7 @@ export default function ForumDetail() {
   }, [dispatch, id]);
 
   return (
-      <div className="border my-8">
+      <div className="p-4">
         <h1>FORUM DETAIL</h1>
         <div>
           <p>{ details?.title }</p>

@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import LogoutButton from "./Logout";
 
 export default function NavBar() {
-  console.log(window.localStorage.userLogged);
-
   if (window.localStorage.userLogged) {
     const dataUser = !window.localStorage.userLogged
       ? ""

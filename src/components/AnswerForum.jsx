@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import merge from "lodash/merge";
 import { useDispatch, useSelector } from "react-redux";
 import { postForumAnswers } from "../redux/actions";
 
@@ -31,21 +30,6 @@ const AnswerForum = ({ forumId, comments }) => {
     };
   });
 
-  let customStyle = merge(
-    {},
-    {
-      input: {
-        height: 80,
-        overflow: "auto",
-      },
-      highlighter: {
-        height: 80,
-        overflow: "hidden",
-        boxSizing: "border-box",
-      },
-    }
-  );
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (value.comment === "") {
@@ -71,18 +55,27 @@ const AnswerForum = ({ forumId, comments }) => {
 
   return (
     <div className="border my-8">
-      <h1>ANSWER FORUM</h1>
+      <h1>Answer this forum</h1>
       <section>
-        <h2>Let's get started</h2>
-        <p>{dataUser.nickname}</p>
+        <p className="text-lg font-bold">{dataUser.nickname}</p>
         <form onSubmit={(e) => handleSubmit(e)}>
-          <input
-            placeholder="Add your comment"
-            style={customStyle}
-            value={value.comment}
-            onChange={(e) => handleOnChange(e)}
-          ></input>
-          <button type="submit">Submit</button>
+          <div className="my-4">
+            <label
+              htmlFor="message"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+            >
+              Your Comment
+            </label>
+            <textarea
+              placeholder="Add your comment"
+              cols="50"
+              rows="5"
+              value={value.comment}
+              onChange={(e) => handleOnChange(e)}
+              className="max-w-xl block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            ></textarea>
+            <button type="submit">Submit</button>
+          </div>
         </form>
       </section>
       {/*{comments.length === 0 ? null : (*/}

@@ -14,18 +14,20 @@ export default function Forum() {
   }, [dataUser]);
 
   return (
-    <div>
-      <Link to="/home">
-        <button>Back to home</button>
-      </Link>
-      <br />
-      <br />
-      <Link to="/post">
-        <button>New Post</button>
-      </Link>
-      <br />
-      <br />
-      <ContainerForum />
+    <div className="p-4">
+      <div className="text-4xl font-normal text-gray-900 dark:text-white text-center">
+        <Link to="/post">
+          <button
+            type="button"
+            className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+          >
+            NEW POST
+          </button>
+        </Link>
+      </div>
+      <div className="my-8 max-w-sm rounded overflow-hidden shadow-lg bg-slate-400 mb-10 max-w-screen-md">
+        <ContainerForum />
+      </div>
     </div>
   );
 }
