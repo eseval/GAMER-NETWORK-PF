@@ -2,7 +2,6 @@ import Footer from "../components/Footer";
 import Slider from "../components/Slider";
 import NewsContainer from "../components/NewsContainer";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../components/NavBar";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -20,7 +19,6 @@ export default function Home() {
 
   return (
     <div>
-      {<NavBar />}
       <Slider />
       <NewsContainer />
       <Footer />
