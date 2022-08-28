@@ -28,7 +28,7 @@ export default function Profile() {
         <NavBar />
         <div className='container mb-10'>
           <h1 className='m-5 text-5xl font-semibold text-center text-white'>Profile</h1>
-          <div className="container max-w-xl mt-10 overflow-hidden bg-gray-800 border border-gray-700 shadow sm:rounded-lg">
+          <div className="container max-w-2xl mt-10 overflow-hidden bg-gray-800 border border-gray-700 shadow sm:rounded-lg">
             <div className="flex flex-row items-center justify-end px-4 py-5 sm:px-6">
               <div className='flex flex-col items-end'>
                 <h3 className="max-w-2xl mx-5 text-3xl font-semibold text-white">{dataUser.nickname}</h3>
