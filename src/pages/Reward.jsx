@@ -27,9 +27,10 @@ export default function Reward() {
 
   return (
     <div>
-      <div className="flex flex-row">
+      <div className="grid grid-cols-4 ">
         {[...rewards].map((re) => (
           <RewardCard
+            key={re.id}
             id={re.id}
             title={re.title}
             image={re.image}
