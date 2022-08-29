@@ -25,7 +25,7 @@ const gamesSlider = [
 
 
 export default function Slider() {
-  const [game, setGame] = useState(Math.floor(Math.random()*4));
+  const [game, setGame] = useState(Math.floor(Math.random()*3));
 
   return (
     <div className="container mt-5">

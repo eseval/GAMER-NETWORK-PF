@@ -20,7 +20,8 @@ import {
   CLEAN_NEWS_STATE,
   CLEAN_REWAR_STATE,
   CLEAN_ALLNEWS_STATE,
-  CLEAN_GAMES_STATE
+  CLEAN_GAMES_STATE,
+  CLEAN_FORUM
 } from "../actions/types";
 
 const initialState = {
@@ -157,6 +158,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         games: [],
+      };
+    case CLEAN_FORUM:
+      return {
+        ...state,
+        forumById: [],
       };
     default:
       return { ...state };
