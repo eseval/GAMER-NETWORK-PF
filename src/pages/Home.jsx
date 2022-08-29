@@ -26,7 +26,7 @@ export default function Home() {
         :
         <></>
       }
-      {/* <Slider /> */}
+      <Slider />
       <NewsContainer />
       <Footer />
     </div>

@@ -66,7 +66,6 @@ export default function FavoriteGames(){
       </div>
       <div className="container flex flex-row flex-wrap">
         {paginatedGames().map(e => {
-          console.log(e)
           return(
             <div key={e.name} className="w-24 h-32 m-2 overflow-hidden text-center text-white align-middle bg-gray-800 border border-gray-700 rounded-md shadow-lg">
               <img src={e.img} width="100px" alt={e.name}/>
