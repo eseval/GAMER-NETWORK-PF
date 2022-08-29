@@ -20,13 +20,13 @@ export default function Home() {
 
   return (
     <div>
-      {<NavBar/>}
+      <NavBar/>
       {!dataUser.plan ?
         <BannerSubscription />
         :
         <></>
       }
-      <Slider />
+      {/* <Slider /> */}
       <NewsContainer />
       <Footer />
     </div>
