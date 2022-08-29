@@ -25,7 +25,7 @@ export default function Forum() {
           </button>
         </Link>
       </div>
-      <div className="my-8 max-w-sm rounded overflow-hidden shadow-lg bg-slate-400 mb-10 max-w-screen-md">
+      <div className="my-8 rounded overflow-hidden shadow-lg bg-slate-400 mb-10">
         <ContainerForum />
       </div>
     </div>

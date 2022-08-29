@@ -7,6 +7,9 @@ module.exports = {
     container: {
       center: true,
     },
+    minWidth: {
+      '1/2': '50%',
+    }
   },
   plugins: [],
 }

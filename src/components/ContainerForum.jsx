@@ -25,7 +25,7 @@ export default function ContainerForum() {
     );
   }
   return (
-      <div>
+      <div className="grid grid-cols-4">
         { themes.length > 0
             ? themes.map((e) => {
               return (
@@ -33,9 +33,9 @@ export default function ContainerForum() {
                     { e.deleteFlag === true ? (
                         ""
                     ) : (
-                        <div className="p-4">
+                        <div className="p-2 border-2">
                           <div
-                              className="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                              className="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 h-40">
                             <ul className="menu bg-base-100 w-56 p-2 rounded-box">
                               <li>
                                   <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
