@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import LogoutButton from "./Logout";
 
 export default function NavBar() {
-  console.log(window.localStorage.userLogged)
+  console.log(window.localStorage.userLogged);
 
-  if(window.localStorage.userLogged) {
-    const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
+  if (window.localStorage.userLogged) {
+    const dataUser = !window.localStorage.userLogged
+        ? ""
+        : JSON.parse(window.localStorage.userLogged);
 
     return (
         <nav className="bg-gray-800 shadow">
@@ -39,19 +41,19 @@ export default function NavBar() {
               <div className="flex-1 md:flex md:items-center md:justify-between">
                 <div className="flex flex-col -mx-4 md:flex-row md:items-center md:mx-8">
                   <Link
-                      to={'/games'}
+                      to={ "/games" }
                       className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
                   >
                     Games
                   </Link>
                   <Link
-                      to={'/forum'}
+                      to={ "/forum" }
                       className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
                   >
                     Forum
                   </Link>
                   <Link
-                      to={'/subscription'}
+                      to={ "/subscription" }
                       className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
                   >
                     Subscription
@@ -78,8 +80,12 @@ export default function NavBar() {
 
                 <div className="flex items-center mt-4 md:mt-0">
                   <div className="flex flex-col items-end mx-3">
-                    <h3 className="max-w-2xl text-2xl text-white">{dataUser.nickname}</h3>
-                    <span className="text-xs text-gray-900 dark:text-white">💰 {dataUser.coins}</span>
+                    <h3 className="max-w-2xl text-2xl text-white">
+                      { dataUser.nickname }
+                    </h3>
+                    <span className="text-xs text-gray-900 dark:text-white">
+                    💰 { dataUser.coins }
+                  </span>
                   </div>
                   <Link to={ `/profile/${ dataUser.id }` }>
                     <div className="w-16 h-16 overflow-hidden border-2 border-gray-400 rounded-full">
@@ -91,7 +97,7 @@ export default function NavBar() {
                     </div>
                   </Link>
                   <div>
-                    <LogoutButton />
+                    <LogoutButton/>
                   </div>
                 </div>
               </div>
@@ -100,10 +106,6 @@ export default function NavBar() {
         </nav>
     );
   } else {
-    return (
-        <div></div>
-    )
+    return <div></div>;
   }
-
-
 }
