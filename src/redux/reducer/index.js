@@ -1,20 +1,22 @@
 import {
+  CLAIM_REWARDS,
+  CONTAINER_POSTS,
+  EDIT_POST,
   GET_ALL_NEWS,
+  GET_FORUM,
+  GET_GAMES,
   GET_NEWS_BY_ID,
   GET_NEWS_BY_TITLE,
+  GET_REWARDS,
+  GET_REWARDS_BY_ID,
   GET_USER_BY_EMAIL,
   GET_USERS,
   GET_USERS_BY_ID,
+  ORDER_NEWS_BY_TITLE,
+  POST_FORUM,
+  POST_FORUM_ANSWERS,
   POST_USER,
   SEARCH_NEWS_BY_TITLE,
-  ORDER_NEWS_BY_TITLE,
-  GET_REWARDS,
-  CLAIM_REWARDS,
-  GET_GAMES,
-  GET_REWARDS_BY_ID,
-  POST_FORUM,
-  CONTAINER_POSTS,
-  EDIT_POST,
 } from "../actions/types";
 
 const initialState = {
@@ -25,6 +27,7 @@ const initialState = {
   rewards: [],
   games: [],
   rewardsById: [],
+  forumById: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -112,10 +115,6 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         rewardsById: action.payload,
       };
-    case POST_FORUM:
-      return {
-        ...state,
-      };
     case CONTAINER_POSTS:
       return {
         ...state,
@@ -124,6 +123,15 @@ export default function rootReducer(state = initialState, action) {
     case EDIT_POST:
       return {
         ...state,
+      };
+    case POST_FORUM_ANSWERS:
+      return {
+        ...state,
+      };
+    case GET_FORUM:
+      return {
+        ...state,
+        forumById: action.payload,
       };
     default:
       return { ...state };
