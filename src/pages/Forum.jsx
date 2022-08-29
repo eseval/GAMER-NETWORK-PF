@@ -17,7 +17,7 @@ export default function Forum() {
   return (
     <div>
       <NavBar />
-      <div className="p-4">
+      <div className="container p-4">
         <div className="text-4xl font-normal text-center text-gray-900 dark:text-white">
           <Link to="/post">
             <button

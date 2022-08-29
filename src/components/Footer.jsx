@@ -1,34 +1,5 @@
 export default function Footer() {
   return (
-    // <footer className="flex bg-white">
-    //   <div className="flex-1 flex flex-col p-1">
-    //     <h1>Play Center</h1>
-    //     <p className="m-20">
-    //       There are many variations of passages of Lorem Ipsum available, but
-    //       the majority have suffered alteration in some form, by injected
-    //       humour, or randomised words which don’t look even slightly believable.
-    //     </p>
-    //   </div>
-    //   <div className="flex-1 p-20">
-    //     <h3 className="mb-30">Useful Links</h3>
-    //     <ul className="m-0 p-0 list-none flex flex-wrap flex-col" >
-    //       <li className="w-6/12 mb-10">
-    //         <Link to="/home">Home</Link>
-    //       </li>
-    //       <li className="w-6/12 mb-10">
-    //         <Link to="/about">About Us</Link>
-    //       </li>
-    //       <li>
-    //         <Link to="/contact">Contact Us</Link>
-    //       </li>
-    //     </ul>
-    //   </div>
-    //   <div className="flex-1 p-20">
-    //   </div>
-    // </footer>
-    //   );
-    // }
-
     <footer className="bg-white dark:bg-gray-800">
       <div className="container px-6 py-4 mx-auto">
         <div className="lg:flex">
@@ -44,7 +15,7 @@ export default function Footer() {
               </div>
 
               <p className="max-w-md mt-2 text-gray-500 dark:text-gray-400">
-                Vis nam verterem legimus nominavi in qualisque diam.
+               Fun, information and gifts in one place.
               </p>
 
               <div className="flex mt-4 -mx-2">
@@ -114,96 +85,19 @@ export default function Footer() {
             <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
               <div>
                 <h3 className="text-gray-700 uppercase dark:text-white">
-                  About
-                </h3>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                >
-                  Company
-                </a>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                >
-                  community
-                </a>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                >
-                  Careers
-                </a>
-              </div>
-
-              <div>
-                <h3 className="text-gray-700 uppercase dark:text-white">
-                  Blog
-                </h3>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                >
-                  Tec
-                </a>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                >
-                  Music
-                </a>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                >
-                  Videos
-                </a>
-              </div>
-
-              <div>
-                <h3 className="text-gray-700 uppercase dark:text-white">
-                  Products
-                </h3>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                >
-                  Mega cloud
-                </a>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                >
-                  Aperion UI
-                </a>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                >
-                  Meraki UI
-                </a>
-              </div>
-
-              <div>
-                <h3 className="text-gray-700 uppercase dark:text-white">
                   Contact
                 </h3>
                 <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-                  (581) 403-0312
+                  (387) 403-031212
                 </span>
                 <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-                  laurence.ayers@example.com
+                  pfhenryfinal@gmail.com
                 </span>
               </div>
             </div>
           </div>
         </div>
         <hr className="h-px my-6 bg-gray-300 border-none dark:bg-gray-700" />
-        {/*<div>*/}
-        {/*  <p className="text-center text-gray-800 dark:text-white">*/}
-        {/*    © Brand 2020 - All rights reserved*/}
-        {/*  </p>*/}
-        {/*</div>*/}
       </div>
     </footer>
   );

@@ -21,7 +21,8 @@ import {
   CLEAN_NEWS_STATE,
   CLEAN_REWAR_STATE,
   CLEAN_ALLNEWS_STATE,
-  CLEAN_GAMES_STATE
+  CLEAN_GAMES_STATE,
+  CLEAN_FORUM
 } from "./types";
 
 const USERS_URL = "https://pf-henry-gamesportal.herokuapp.com/users";
@@ -282,5 +283,11 @@ export function cleanAllNewsState() {
 export function cleanGamesState() {
   return {
     type: CLEAN_GAMES_STATE,
+  };
+}
+
+export function cleanForum() {
+  return {
+    type: CLEAN_FORUM,
   };
 }

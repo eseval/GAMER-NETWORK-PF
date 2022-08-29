@@ -56,7 +56,7 @@ const AnswerForum = ({forumId, comments}) => {
   return (
       <div className="mx-4">
         <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Answer this forum
+          Answer this post
         </h3>
         <section>
           <form onSubmit={ (e) => handleSubmit(e) }>
