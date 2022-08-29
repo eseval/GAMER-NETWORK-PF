@@ -27,7 +27,7 @@ export default function GamesContainer() {
     if (!dataUser || dataUser === "") {
       navigate("/");
     }
-  }, [dataUser]);
+  }, [dataUser, navigate]);
 
   const handleChange = (e) => {
     setCurrentPage(0);
@@ -60,10 +60,10 @@ export default function GamesContainer() {
           Games
         </h1>
         <div className="container flex flex-col">
-          <div className="mx-24 max-w-md">
+          <div className="max-w-md mx-24">
             <form>
               <div className="relative">
-                <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <svg
                     aria-hidden="true"
                     className="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -83,7 +83,7 @@ export default function GamesContainer() {
                 <input
                   type="text"
                   id="default-search"
-                  className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Search for a game..."
                   required=""
                   onChange={handleChange}
@@ -95,7 +95,7 @@ export default function GamesContainer() {
           <div className="container flex flex-row items-center mt-5">
             <div className="ml-3">
               <button
-                className="text-gray-800 hover:text-white transition duration-500 ease-in-out"
+                className="text-gray-800 transition duration-500 ease-in-out hover:text-white"
                 onClick={prevPage}
               >
                 <BsFillArrowLeftCircleFill size="40px" />
@@ -109,7 +109,7 @@ export default function GamesContainer() {
             </div>
             <div className="mr-3">
               <button
-                className="text-gray-800 hover:text-white transition duration-500 ease-in-out"
+                className="text-gray-800 transition duration-500 ease-in-out hover:text-white"
                 onClick={nextPage}
               >
                 <BsFillArrowRightCircleFill size="40px" />
