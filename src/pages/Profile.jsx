@@ -34,7 +34,9 @@ export default function Profile() {
                 <h3 className="max-w-2xl mx-5 text-3xl font-semibold text-white">{dataUser.nickname}</h3>
                 <Link to={`/profile/${dataUser.id}/edit`} state={dataUser} className='max-w-2xl mx-5 text-sm text-slate-400'>Edit info</Link>
               </div>
-              <img src={dataUser.img} className='inline-block w-20 h-20 rounded-full ring-2 ring-gray-700' alt={dataUser.nickname}/>
+              <div className="w-24 h-24 overflow-hidden border-2 border-gray-400 rounded-full">
+                <img src={dataUser.img} className='object-cover w-full h-full' alt={dataUser.nickname}/>
+              </div>
             </div>
             <div className="border-t border-gray-200">
               <dl>
