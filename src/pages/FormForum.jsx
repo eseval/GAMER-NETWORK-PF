@@ -19,7 +19,7 @@ export default function FormForum() {
     if (!dataUser || dataUser === "") {
       navigate("/");
     }
-  }, [dataUser]);
+  }, [dataUser, navigate]);
 
   const [input, setInput] = useState({
     userId: dataUser.id,

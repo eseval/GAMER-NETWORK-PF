@@ -5,6 +5,7 @@ import RewardCard from "../components/RewardCard";
 // import { useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../components/NavBar";
 
 export default function Reward() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ export default function Reward() {
 
   return (
     <div>
+      <NavBar />
       <div className="grid grid-cols-4 ">
         {[...rewards].map((re) => (
           <RewardCard

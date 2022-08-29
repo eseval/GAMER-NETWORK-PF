@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import LogoutButton from "./Logout";
 
 export default function NavBar() {
-  if(window.localStorage.userLogged) {
     const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
     
     return (
@@ -89,4 +88,5 @@ export default function NavBar() {
             </div>
           </div>
         </nav>
+    )
 }
