@@ -14,16 +14,18 @@ export default function ContainerForum() {
     dispatch(getAllPosts());
   }, [dispatch]);
 
+
   while (!themes) {
     return (
         <div className="container text-center">
           <h1 className="text-5xl font-semibold text-white">Play Center</h1>
           <div className="mt-10">
-            <Loader width={ 8 }/>
+            <Loader />
           </div>
         </div>
     );
   }
+
   return (
       <div className="grid grid-cols-4">
         { themes.length > 0
@@ -35,11 +37,11 @@ export default function ContainerForum() {
                     ) : (
                         <div className="p-2 border-2">
                           <div
-                              className="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 h-40">
-                            <ul className="menu bg-base-100 w-56 p-2 rounded-box">
+                              className="h-40 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                            <ul className="w-56 p-2 menu bg-base-100 rounded-box">
                               <li>
                                   <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                    { e.title }
+                                    { e.title.length<=16? e.title : e.title.slice(0,16)+"..." }
                                   </h5>
                               </li>
                             </ul>
@@ -47,12 +49,12 @@ export default function ContainerForum() {
                               <div>
                                 <a
                                     href={ `/postDetails/${ e.id }` }
-                                    className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 >
                                   Read more
                                   <svg
                                       aria-hidden="true"
-                                      className="ml-2 -mr-1 w-4 h-4"
+                                      className="w-4 h-4 ml-2 -mr-1"
                                       fill="currentColor"
                                       viewBox="0 0 20 20"
                                       xmlns="http://www.w3.org/2000/svg"

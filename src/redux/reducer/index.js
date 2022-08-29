@@ -21,7 +21,8 @@ import {
   CLEAN_REWAR_STATE,
   CLEAN_ALLNEWS_STATE,
   CLEAN_GAMES_STATE,
-  CLEAN_FORUM
+  CLEAN_FORUM,
+  ORDER_BY_COMMENTS
 } from "../actions/types";
 
 const initialState = {
@@ -163,6 +164,20 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         forumById: [],
+      };
+    case ORDER_BY_COMMENTS:
+      let post = [...state.posts];
+      post =
+        action.payload === "most"
+          ? post.sort(function (b, a) {
+              return a.answers.length - b.answers.length;
+            })
+          : post.sort(function (b, a) {
+              return b.answers.length - a.answers.length;
+            });
+      return {
+        ...state,
+        posts: action.payload === "most" ? post : post,
       };
     default:
       return { ...state };

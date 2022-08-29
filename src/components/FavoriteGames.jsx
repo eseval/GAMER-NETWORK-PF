@@ -67,10 +67,10 @@ export default function FavoriteGames(){
       <div className="container flex flex-row flex-wrap">
         {paginatedGames().map(e => {
           return(
-            <div key={e.name} className="w-24 h-32 m-2 overflow-hidden text-center text-white align-middle bg-gray-800 border border-gray-700 rounded-md shadow-lg">
-              <img src={e.img} width="100px" alt={e.name}/>
+            <div key={e.name} className="w-24 m-2 overflow-hidden text-center text-white align-middle bg-gray-800 border border-gray-700 rounded-md shadow-lg h-fit">
+              <img src={e.img} className='w-full' alt={e.name}/>
               <p>{e.name}</p>
-              <button onClick={(event)=>handleClick(event, e.id)}>Remove</button>
+              <button className="px-2 py-1 mx-auto mb-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-800" onClick={(event)=>handleClick(event, e.id)}>Remove</button>
             </div>
           )
         })}
