@@ -1,21 +1,23 @@
 import axios from "axios";
 import {
+  CLAIM_REWARDS,
+  CONTAINER_POSTS,
+  EDIT_POST,
   GET_ALL_NEWS,
+  GET_FORUM,
+  GET_GAMES,
   GET_NEWS_BY_ID,
   GET_NEWS_BY_TITLE,
+  GET_REWARDS,
+  GET_REWARDS_BY_ID,
   GET_USER_BY_EMAIL,
   GET_USERS,
   GET_USERS_BY_ID,
-  POST_USER,
-  SEARCH_NEWS_BY_TITLE,
   ORDER_NEWS_BY_TITLE,
   POST_FORUM,
-  GET_REWARDS,
-  CLAIM_REWARDS,
-  GET_GAMES,
-  GET_REWARDS_BY_ID,
-  CONTAINER_POSTS,
-  EDIT_POST,
+  POST_FORUM_ANSWERS,
+  POST_USER,
+  SEARCH_NEWS_BY_TITLE,
 } from "./types";
 
 const USERS_URL = "https://pf-henry-gamesportal.herokuapp.com/users";
@@ -23,6 +25,7 @@ const NEWS_URL = "https://pf-henry-gamesportal.herokuapp.com/news";
 const FORUM_URL = "https://pf-henry-gamesportal.herokuapp.com/forum";
 const REWARDS_URL = "https://pf-henry-gamesportal.herokuapp.com/reward";
 const GAMES_URL = "https://pf-henry-gamesportal.herokuapp.com/games";
+const ANSWER_URL = "https://pf-henry-gamesportal.herokuapp.com/answers";
 
 export function postUser(data) {
   return async function (dispatch) {
@@ -219,5 +222,28 @@ export function editPost(id, data) {
         type: EDIT_POST,
       });
     } catch (error) {}
+  };
+}
+
+export function postForumAnswers(payload) {
+  return async function (dispatch) {
+    try {
+      console.log(payload);
+      await axios.post(ANSWER_URL, payload); // Necesitamos una tabla para guardar los comentarios del foro
+      return dispatch({ type: POST_FORUM_ANSWERS });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getForum(id) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(`${FORUM_URL}/${id}`);
+      return dispatch({ type: GET_FORUM, payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }

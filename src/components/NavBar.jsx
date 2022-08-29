@@ -67,35 +67,26 @@ export default function NavBar() {
                 Contact
               </Link>
             </div>
-
             <div className="flex items-center mt-4 md:mt-0">
-              <div className="flex flex-col items-end mx-3">
-                <h3 className="max-w-2xl text-2xl text-white">{dataUser.nickname}</h3>
-                <span className="text-xs text-gray-900 dark:text-white">💰 {dataUser.coins}</span>
-              </div>
-              <Link to={ `/profile/${ dataUser.id }` }>
-                  <div className="w-16 h-16 overflow-hidden border-2 border-gray-400 rounded-full">
-                    <img
-                        src={ dataUser.img }
-                        className="object-cover w-full h-full"
-                        alt="avatar"
-                    />
+                  <div className="flex flex-col items-end mx-3">
+                    <h3 className="max-w-2xl text-2xl text-white">{dataUser.nickname}</h3>
+                    <span className="text-xs text-gray-900 dark:text-white">💰 {dataUser.coins}</span>
                   </div>
-              </Link>
-              <div>
-                <LogoutButton />
+                  <Link to={ `/profile/${ dataUser.id }` }>
+                    <div className="w-16 h-16 overflow-hidden border-2 border-gray-400 rounded-full">
+                      <img
+                          src={ dataUser.img }
+                          className="object-cover w-full h-full"
+                          alt="avatar"
+                      />
+                    </div>
+                  </Link>
+                  <div>
+                    <LogoutButton />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </nav>
-  );
-  } else {
-    return (
-      <div></div>
-    )
-  }
-
-  
+        </nav>
 }

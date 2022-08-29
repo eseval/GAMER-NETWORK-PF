@@ -1,11 +1,6 @@
-import NavBar from "../components/NavBar";
-
 export default function Contact() {
   return (
     <div>
-      <div>
-        <NavBar />
-      </div>
       <div className="bg-gray-300">
         <section className="text-gray-600 body-font relative">
           <div className="container px-5 py-24 mx-auto">
