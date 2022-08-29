@@ -17,6 +17,10 @@ import {
   POST_FORUM_ANSWERS,
   POST_USER,
   SEARCH_NEWS_BY_TITLE,
+  CLEAN_NEWS_STATE,
+  CLEAN_REWAR_STATE,
+  CLEAN_ALLNEWS_STATE,
+  CLEAN_GAMES_STATE
 } from "../actions/types";
 
 const initialState = {
@@ -99,6 +103,7 @@ export default function rootReducer(state = initialState, action) {
     case CLAIM_REWARDS:
       return {
         ...state,
+        user: action.payload
       };
     case GET_REWARDS:
       return {
@@ -132,6 +137,26 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         forumById: action.payload,
+      };
+    case CLEAN_NEWS_STATE:
+      return {
+        ...state,
+        news: [],
+      };
+    case CLEAN_REWAR_STATE:
+      return {
+        ...state,
+        rewards: [],
+      };
+    case CLEAN_ALLNEWS_STATE:
+      return {
+        ...state,
+        allNews: [],
+      };
+    case CLEAN_GAMES_STATE:
+      return {
+        ...state,
+        games: [],
       };
     default:
       return { ...state };

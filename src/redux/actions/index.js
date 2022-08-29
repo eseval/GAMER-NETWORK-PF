@@ -18,6 +18,10 @@ import {
   POST_FORUM_ANSWERS,
   POST_USER,
   SEARCH_NEWS_BY_TITLE,
+  CLEAN_NEWS_STATE,
+  CLEAN_REWAR_STATE,
+  CLEAN_ALLNEWS_STATE,
+  CLEAN_GAMES_STATE
 } from "./types";
 
 const USERS_URL = "https://pf-henry-gamesportal.herokuapp.com/users";
@@ -148,7 +152,8 @@ export function claimRewards(data, id, price) {
       let newDataUser = await axios.get(
         `https://pf-henry-gamesportal.herokuapp.com/users/${id}`
       );
-      if (newDataUser.data.coins > price) {
+      console.log(newDataUser);
+      if (newDataUser.data.coins >= price) {
         await axios.put(`${USERS_URL}/${id}`, data);
         newDataUser = await axios.get(
           `https://pf-henry-gamesportal.herokuapp.com/users/${id}`
@@ -158,9 +163,17 @@ export function claimRewards(data, id, price) {
           JSON.stringify(newDataUser.data)
         );
       } else {
+        window.localStorage.setItem(
+          "userLogged",
+          JSON.stringify(newDataUser.data)
+        );
         return alert("insuficient founds");
       }
-      return dispatch({ type: CLAIM_REWARDS });
+      window.localStorage.setItem(
+        "userLogged",
+        JSON.stringify(newDataUser.data)
+      );
+      return dispatch({ type: CLAIM_REWARDS, payload: newDataUser });
     } catch (error) {
       console.log(error);
     }
@@ -245,5 +258,29 @@ export function getForum(id) {
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+export function cleanNewsState() {
+  return {
+    type: CLEAN_NEWS_STATE,
+  };
+}
+
+export function cleanRewardState() {
+  return {
+    type: CLEAN_REWAR_STATE,
+  };
+}
+
+export function cleanAllNewsState() {
+  return {
+    type: CLEAN_ALLNEWS_STATE,
+  };
+}
+
+export function cleanGamesState() {
+  return {
+    type: CLEAN_GAMES_STATE,
   };
 }

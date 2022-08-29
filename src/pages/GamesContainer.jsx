@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getGames } from "../redux/actions";
+import { cleanGamesState, getGames } from "../redux/actions";
 import GamesCard from "../components/GamesCard";
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill, } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +15,9 @@ export default function GamesContainer() {
 
   useEffect(() => {
     dispatch(getGames());
+    return()=>{
+      dispatch(cleanGamesState());
+    }
   }, [dispatch]);
 
   const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
