@@ -59,7 +59,7 @@ export default function ContainerForum() {
         </Link>
       </div>
       <table className="w-full text-left table-auto text-md">
-        <thead className="text-gray-400 bg-gray-700 uppercas e">
+        <thead className="text-gray-400 uppercase bg-gray-700">
           <tr>
             <th scope="col" className="px-6 py-3">Subject</th>
             <th scope="col" className="px-6 py-3 text-center">Author</th>

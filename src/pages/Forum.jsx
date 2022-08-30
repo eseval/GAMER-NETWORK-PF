@@ -1,5 +1,5 @@
 import ContainerForum from "../components/ContainerForum";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import NavBar from "../components/NavBar";
 

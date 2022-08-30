@@ -23,8 +23,6 @@ export default function ForumDetail() {
     }
   }, [dataUser, navigate]);
 
-
-
   useEffect(() => {
     dispatch(getForum(id));
     return()=>{dispatch(cleanForum())}
@@ -33,29 +31,40 @@ export default function ForumDetail() {
   return (
       <div>
         <NavBar/>
-        <Link to="/forum">Go back</Link>
-        <div className="container flex flex-col items-center align-middle">
-          <div className="p-4 mx-4 my-4 bg-gray-800 border-gray-700 rounded-lg shadow-md h-fit w-fit min-w-1/2">
-            <div>
-              <div className="flex flex-row-reverse items-center justify-end align-middle">
-                <h3 className="max-w-2xl mx-5 text-xl font-semibold text-white">{details?.user?.nickname}</h3>
-                <div className="w-16 h-16 overflow-hidden border-2 border-gray-400 rounded-full">
+        <div className="container flex flex-col max-w-5xl p-4 my-5 align-middle bg-gray-200 border-gray-700 rounded-lg shadow-md">
+          <Link to="/forum">
+            <button
+            type="button"
+            className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+          >
+            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+              All posts
+            </span>
+          </button>
+          </Link>
+
+          <div className="mt-5">
+            <div className="flex flex-row-reverse justify-between">
+              <div className="flex flex-row items-center">
+                <h3 className="mx-2 text-xl font-semibold text-gray-900">{details?.user?.nickname}</h3>
+                <div className="w-24 h-24 overflow-hidden border border-gray-600 rounded-full">
                   <img src={details?.user?.img} className='object-cover w-full h-full' alt={dataUser.nickname}/>
                 </div>
               </div>
-              <h5 className="mb-2 text-3xl font-semibold tracking-tight text-center text-white">
-                { details.title }
-              </h5>
-              <div className="h-64 overflow-hidden rounded shadow-lg bg-slate-400 ">
-                <p className="p-1">{ details?.text }</p>
-              </div>
-              <div className="mt-5 text-slate-600">
-                <p>Created at: {details?.createdAt?.split("T")[0]} - {details?.createdAt?.split("T")[1].split(":")[0]}:{details?.createdAt?.split("T")[1].split(":")[1]}</p>            
+              <div className="mt-5 text-gray-500">
+                <p>Created: {details?.createdAt?.split("T")[0]} - {details?.createdAt?.split("T")[1].split(":")[0]}:{details?.createdAt?.split("T")[1].split(":")[1]}</p>            
                 <p>Last update : {details?.updatedAt?.split("T")[0]} - {details?.updatedAt?.split("T")[1].split(":")[0]}:{details?.updatedAt?.split("T")[1].split(":")[1]}</p>            
-                <h4>Comments: {details?.answers?.length}</h4>
+                <p>Comments: {details?.answers?.length}</p>
               </div>
             </div>
+            <div className="text-center overscroll-contain">
+              <h3 className="my-3 text-5xl tracking-tight text-gray-900">{ details?.title }</h3>
+            </div>
+            <div className="my-5 overflow-hidden h-fit w-fit">
+              <p className="m-1 text-gray-800 indent-1">{ details?.text }</p>
+            </div>
           </div>
+
           <AnswerForum forumId={ id } comments={ details?.answers }/>
           <div className="max-w-sm mx-5 my-3 mb-10 overflow-hidden rounded shadow-lg bg-slate-400">
             { details?.answers?.map((e) => (
