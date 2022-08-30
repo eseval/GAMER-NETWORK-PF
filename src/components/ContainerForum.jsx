@@ -1,18 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllPosts } from "../redux/actions";
 import Loader from "../components/Loader";
+import Paginate from "./Paginate";
+import ForumFilterByMostComments from "../components/ForumFilterByMostComments"
 
 export default function ContainerForum() {
   const dataUser = !window.localStorage.userLogged
       ? ""
       : JSON.parse(window.localStorage.userLogged);
   const dispatch = useDispatch();
+  
   const themes = useSelector((state) => state.posts);
+  
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(12);
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage; 
+  const currentPost = themes?.slice(indexOfFirstPost, indexOfLastPost);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+};
+  
+  if (currentPage > Math.ceil(themes?.length / postPerPage) && currentPage !== 1) {
+    setCurrentPage(1);
+}
 
 
   while (!themes) {
@@ -27,13 +44,17 @@ export default function ContainerForum() {
   }
 
   return (
+    <div>
+      <div>
+      <ForumFilterByMostComments/>
+      </div>
       <div className="grid grid-cols-4">
-        { themes.length > 0
-            ? themes.map((e) => {
+        { currentPost.length > 0
+            ? currentPost.map((e) => {
               return (
                   <div key={ e.id }>
                     { e.deleteFlag === true ? (
-                        ""
+                      ""
                     ) : (
                         <div className="p-2 border-2">
                           <div
@@ -91,5 +112,7 @@ export default function ContainerForum() {
             })
             : "" }
       </div>
+      <Paginate thingPerPage={postPerPage} array={themes} paginate={paginate} />
+    </div>
   );
 }
