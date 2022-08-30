@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function Paginate({ newsPerPage, allNews, paginate }) {
+export default function Paginate({ thingPerPage, array, paginate }) {
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(allNews.length / newsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(array.length / thingPerPage); i++) {
         pageNumbers.push(i);
     }
 

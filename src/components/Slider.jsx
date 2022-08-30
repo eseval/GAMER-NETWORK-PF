@@ -1,105 +1,39 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { sliderItems } from "../data";
-import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  margin-top: 10px;
-`;
+const gamesSlider = [
+  {
+    id: 3498,
+    name: "Grand Theft Auto V",
+    img: "https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg",
+  },
+  {
+    id: 3328,
+    name: "The Witcher 3: Wild Hunt",
+    img: "https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg",
+  },
+  {
+    id: 4291,
+    name: "Counter-Strike: Global Offensive",
+    img: "https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg",
+  },
+  {
+    id: 5679,
+    name: "The Elder Scrolls V: Skyrim",
+    img: "https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg",
+  }
+]
 
-const Arrow = styled.div`
-  width: 50px;
-  height: 50px;
-  background-color: #fff7f7;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: ${(props) => props.direction === "left" && "10px"};
-  right: ${(props) => props.direction === "right" && "10px"};
-  margin: auto;
-  cursor: pointer;
-  opacity: 0.5;
-  z-index: 2;
-`;
 
-const Wrapper = styled.div`
-  height: 100%;
-  display: flex;
-  transform: translateX(${(props) => props.slideIndex * -100}vw);
-  transition: all 1.5s ease;
-`;
-const Slide = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  background: #${(props) => props.bg};
-`;
-const ImgContainer = styled.div`
-  height: 100%;
-  flex: 1;
-  margin-left: 20px;
-`;
+export default function Slider() {
+  const [game, setGame] = useState(Math.floor(Math.random()*3));
 
-const Image = styled.img`
-  height: 80%;
-`;
-
-const InfoContainer = styled.div`
-  flex: 1;
-  padding: 50px;
-`;
-const Title = styled.h1`
-  font-size: 70px;
-`;
-const Description = styled.p`
-  margin: 50px 0;
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: 3px;
-`;
-
-const Slider = () => {
-  const [slideIndex, setSlideIndex] = useState(0);
-  const handleClick = (direction) => {
-    if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
-    } else {
-      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
-    }
-  };
   return (
-    <Container>
-      <Arrow direction="left" onClick={() => handleClick("left")}>
-        <BiLeftArrowAlt />
-      </Arrow>
-      <Wrapper slideIndex={slideIndex}>
-        {sliderItems.map((item) => (
-          <Slide bg={item.bg} key={item.id}>
-            <ImgContainer>
-              <Image src={item.img} />
-            </ImgContainer>
-            <InfoContainer>
-              <Title>{item.title}</Title>
-              <Description>{item.description}</Description>
-            </InfoContainer>
-          </Slide>
-        ))}
-      </Wrapper>
-      <Arrow direction="right" onClick={() => handleClick("right")}>
-        <BiRightArrowAlt />
-      </Arrow>
-    </Container>
-  );
-};
-
-export default Slider;
+    <div className="container mt-5">
+      <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
+        <div className="ease-in-out" key={gamesSlider[game].id}>
+          <img src={gamesSlider[game].img} className="absolute block object-cover w-full" alt={gamesSlider[game].name} />
+        </div>
+      </div>
+    </div>
+  )
+}

@@ -4,6 +4,7 @@ import NewsContainer from "../components/NewsContainer";
 import { useNavigate } from 'react-router-dom';
 import NavBar from "../components/NavBar";
 import {useEffect} from "react"
+import BannerSubscription from "../components/BannerSubscription";
 
 
 export default function Home() {
@@ -15,15 +16,19 @@ export default function Home() {
     if(!dataUser || dataUser===""){
       navigate("/")
     }
-  },[dataUser])
+  },[dataUser, navigate])
 
-   return (
-      <div>
-        {<NavBar/>}
-        <Slider />
-        <NewsContainer />
-        <Footer />
-      </div>
-    )
-
+  return (
+    <div>
+      <NavBar/>
+      {!dataUser.plan ?
+        <BannerSubscription />
+        :
+        <></>
+      }
+      <Slider />
+      <NewsContainer />
+      <Footer />
+    </div>
+  )
 }

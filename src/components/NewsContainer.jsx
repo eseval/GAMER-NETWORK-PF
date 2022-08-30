@@ -1,14 +1,11 @@
 import { useEffect , useState} from "react";
 import { useDispatch, useSelector } from "react-redux"
 import NewsCard from "./NewsCard"
-import { getAllNews } from "../redux/actions";
+import { getAllNews, cleanAllNewsState } from "../redux/actions";
 import Paginate from "./Paginate.jsx";
-import OrderNewsByTitle from "./OrderNewsByTitle";
 import SearchBar from "../components/SearchBar"
 
 export default function NewsContainer() {
-  // ESTA RUTA VA A CONTENER TODAS LAS NOTICIAS CON FILTRADO Y LAS VA A PASAR A NEWS CARD
-  // NO TE OLVIDES DEL FILTRADO!!
   const dispatch = useDispatch();
   const allNews = useSelector(state => state.allNews);
   
@@ -25,9 +22,11 @@ export default function NewsContainer() {
     setCurrentPage(1);
 }
 
-
   useEffect(() => {
     dispatch(getAllNews())
+    return()=>{
+    dispatch(cleanAllNewsState())
+    }
   }, [dispatch]);
   
   return (
@@ -35,15 +34,14 @@ export default function NewsContainer() {
       <h1 className="m-5 text-5xl font-semibold text-center text-white">News</h1>
       
       <SearchBar/>
-      <OrderNewsByTitle/>
       <div className="container flex flex-wrap justify-center">
         {typeof allNews === "object"  ? currentNews.map(news => {
           return <NewsCard news={news} key={news.id}/>
         }) : <p>News not found</p>}
       </div>
       {typeof allNews === "object" ? <Paginate
-          newsPerPage={newsPerPage}
-          allNews={allNews}
+          thingPerPage={newsPerPage}
+          array={allNews}
           paginate={paginate}
           />: ""} 
     </div>

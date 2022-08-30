@@ -4,6 +4,7 @@ import {
   CONTAINER_POSTS,
   EDIT_POST,
   GET_ALL_NEWS,
+  GET_FORUM,
   GET_GAMES,
   GET_NEWS_BY_ID,
   GET_NEWS_BY_TITLE,
@@ -17,6 +18,12 @@ import {
   POST_FORUM_ANSWERS,
   POST_USER,
   SEARCH_NEWS_BY_TITLE,
+  CLEAN_NEWS_STATE,
+  CLEAN_REWAR_STATE,
+  CLEAN_ALLNEWS_STATE,
+  CLEAN_GAMES_STATE,
+  CLEAN_FORUM,
+  ORDER_BY_COMMENTS
 } from "./types";
 
 const USERS_URL = "https://pf-henry-gamesportal.herokuapp.com/users";
@@ -24,6 +31,7 @@ const NEWS_URL = "https://pf-henry-gamesportal.herokuapp.com/news";
 const FORUM_URL = "https://pf-henry-gamesportal.herokuapp.com/forum";
 const REWARDS_URL = "https://pf-henry-gamesportal.herokuapp.com/reward";
 const GAMES_URL = "https://pf-henry-gamesportal.herokuapp.com/games";
+const ANSWER_URL = "https://pf-henry-gamesportal.herokuapp.com/answers";
 
 export function postUser(data) {
   return async function (dispatch) {
@@ -146,7 +154,8 @@ export function claimRewards(data, id, price) {
       let newDataUser = await axios.get(
         `https://pf-henry-gamesportal.herokuapp.com/users/${id}`
       );
-      if (newDataUser.data.coins > price) {
+      console.log(newDataUser);
+      if (newDataUser.data.coins >= price) {
         await axios.put(`${USERS_URL}/${id}`, data);
         newDataUser = await axios.get(
           `https://pf-henry-gamesportal.herokuapp.com/users/${id}`
@@ -156,9 +165,17 @@ export function claimRewards(data, id, price) {
           JSON.stringify(newDataUser.data)
         );
       } else {
+        window.localStorage.setItem(
+          "userLogged",
+          JSON.stringify(newDataUser.data)
+        );
         return alert("insuficient founds");
       }
-      return dispatch({ type: CLAIM_REWARDS });
+      window.localStorage.setItem(
+        "userLogged",
+        JSON.stringify(newDataUser.data)
+      );
+      return dispatch({ type: CLAIM_REWARDS, payload: newDataUser });
     } catch (error) {
       console.log(error);
     }
@@ -226,10 +243,60 @@ export function editPost(id, data) {
 export function postForumAnswers(payload) {
   return async function (dispatch) {
     try {
-      await axios.post(FORUM_URL, payload); // Necesitamos una tabla para guardar los comentarios del foro
+      console.log(payload);
+      await axios.post(ANSWER_URL, payload); // Necesitamos una tabla para guardar los comentarios del foro
       return dispatch({ type: POST_FORUM_ANSWERS });
     } catch (error) {
       console.log(error);
     }
   };
+}
+
+export function getForum(id) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(`${FORUM_URL}/${id}`);
+      return dispatch({ type: GET_FORUM, payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function cleanNewsState() {
+  return {
+    type: CLEAN_NEWS_STATE,
+  };
+}
+
+export function cleanRewardState() {
+  return {
+    type: CLEAN_REWAR_STATE,
+  };
+}
+
+export function cleanAllNewsState() {
+  return {
+    type: CLEAN_ALLNEWS_STATE,
+  };
+}
+
+export function cleanGamesState() {
+  return {
+    type: CLEAN_GAMES_STATE,
+  };
+}
+
+export function cleanForum() {
+  return {
+    type: CLEAN_FORUM,
+  };
+}
+
+export function orderByComments(value) {
+  try {
+    return { type: ORDER_BY_COMMENTS, payload: value };
+  } catch (error) {
+    console.log(error);
+  }
 }

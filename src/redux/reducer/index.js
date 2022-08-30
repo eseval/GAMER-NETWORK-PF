@@ -3,6 +3,7 @@ import {
   CONTAINER_POSTS,
   EDIT_POST,
   GET_ALL_NEWS,
+  GET_FORUM,
   GET_GAMES,
   GET_NEWS_BY_ID,
   GET_NEWS_BY_TITLE,
@@ -16,6 +17,12 @@ import {
   POST_FORUM_ANSWERS,
   POST_USER,
   SEARCH_NEWS_BY_TITLE,
+  CLEAN_NEWS_STATE,
+  CLEAN_REWAR_STATE,
+  CLEAN_ALLNEWS_STATE,
+  CLEAN_GAMES_STATE,
+  CLEAN_FORUM,
+  ORDER_BY_COMMENTS
 } from "../actions/types";
 
 const initialState = {
@@ -26,6 +33,7 @@ const initialState = {
   rewards: [],
   games: [],
   rewardsById: [],
+  forumById: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -97,6 +105,7 @@ export default function rootReducer(state = initialState, action) {
     case CLAIM_REWARDS:
       return {
         ...state,
+        user: action.payload
       };
     case GET_REWARDS:
       return {
@@ -125,6 +134,50 @@ export default function rootReducer(state = initialState, action) {
     case POST_FORUM_ANSWERS:
       return {
         ...state,
+      };
+    case GET_FORUM:
+      return {
+        ...state,
+        forumById: action.payload,
+      };
+    case CLEAN_NEWS_STATE:
+      return {
+        ...state,
+        news: [],
+      };
+    case CLEAN_REWAR_STATE:
+      return {
+        ...state,
+        rewards: [],
+      };
+    case CLEAN_ALLNEWS_STATE:
+      return {
+        ...state,
+        allNews: [],
+      };
+    case CLEAN_GAMES_STATE:
+      return {
+        ...state,
+        games: [],
+      };
+    case CLEAN_FORUM:
+      return {
+        ...state,
+        forumById: [],
+      };
+    case ORDER_BY_COMMENTS:
+      let post = [...state.posts];
+      post =
+        action.payload === "most"
+          ? post.sort(function (b, a) {
+              return a.answers.length - b.answers.length;
+            })
+          : post.sort(function (b, a) {
+              return b.answers.length - a.answers.length;
+            });
+      return {
+        ...state,
+        posts: action.payload === "most" ? post : post,
       };
     default:
       return { ...state };

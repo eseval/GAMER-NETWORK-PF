@@ -2,20 +2,21 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { getNewsById } from "../redux/actions";
+import { getNewsById, cleanNewsState } from "../redux/actions";
 import Loader from "../components/Loader";
 
 export default function NewDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   let news = useSelector((state) => state.news[0]);
-  const isLoading = useSelector((state) => state.isLoadingNews);
 
   useEffect(() => {
     dispatch(getNewsById(id));
+    return () => {
+        dispatch(cleanNewsState()) }
   }, [dispatch, id]);
 
-  while (!news || id != news.id) {
+  while (Number(!news) || Number(id) !== Number(news.id)) {
     return (
       <div className="container text-center">
         <h1 className="text-5xl font-semibold text-white">Play Center</h1>

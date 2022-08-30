@@ -28,13 +28,15 @@ export default function Profile() {
         <NavBar />
         <div className='container mb-10'>
           <h1 className='m-5 text-5xl font-semibold text-center text-white'>Profile</h1>
-          <div className="container max-w-xl mt-10 overflow-hidden bg-gray-800 border border-gray-700 shadow sm:rounded-lg">
+          <div className="container max-w-2xl mt-10 overflow-hidden bg-gray-800 border border-gray-700 shadow sm:rounded-lg">
             <div className="flex flex-row items-center justify-end px-4 py-5 sm:px-6">
               <div className='flex flex-col items-end'>
                 <h3 className="max-w-2xl mx-5 text-3xl font-semibold text-white">{dataUser.nickname}</h3>
                 <Link to={`/profile/${dataUser.id}/edit`} state={dataUser} className='max-w-2xl mx-5 text-sm text-slate-400'>Edit info</Link>
               </div>
-              <img src={dataUser.img} className='inline-block w-20 h-20 rounded-full ring-2 ring-gray-700' alt={dataUser.nickname}/>
+              <div className="w-24 h-24 overflow-hidden border-2 border-gray-400 rounded-full">
+                <img src={dataUser.img} className='object-cover w-full h-full' alt={dataUser.nickname}/>
+              </div>
             </div>
             <div className="border-t border-gray-200">
               <dl>
