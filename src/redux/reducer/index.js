@@ -1,10 +1,16 @@
 import {
   CLAIM_REWARDS,
+  CLEAN_ALLNEWS_STATE,
+  CLEAN_FORUM, CLEAN_GAMES_BY_ID_STATE,
+  CLEAN_GAMES_STATE,
+  CLEAN_NEWS_STATE,
+  CLEAN_REWAR_STATE,
   CONTAINER_POSTS,
   EDIT_POST,
   GET_ALL_NEWS,
   GET_FORUM,
   GET_GAMES,
+  GET_GAMES_BY_ID,
   GET_NEWS_BY_ID,
   GET_NEWS_BY_TITLE,
   GET_REWARDS,
@@ -12,17 +18,12 @@ import {
   GET_USER_BY_EMAIL,
   GET_USERS,
   GET_USERS_BY_ID,
+  ORDER_BY_COMMENTS,
   ORDER_NEWS_BY_TITLE,
   POST_FORUM,
   POST_FORUM_ANSWERS,
   POST_USER,
   SEARCH_NEWS_BY_TITLE,
-  CLEAN_NEWS_STATE,
-  CLEAN_REWAR_STATE,
-  CLEAN_ALLNEWS_STATE,
-  CLEAN_GAMES_STATE,
-  CLEAN_FORUM,
-  ORDER_BY_COMMENTS
 } from "../actions/types";
 
 const initialState = {
@@ -34,6 +35,7 @@ const initialState = {
   games: [],
   rewardsById: [],
   forumById: [],
+  gamesDetails: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -105,7 +107,7 @@ export default function rootReducer(state = initialState, action) {
     case CLAIM_REWARDS:
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
       };
     case GET_REWARDS:
       return {
@@ -179,6 +181,16 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         posts: action.payload === "most" ? post : post,
       };
+    case GET_GAMES_BY_ID:
+      return {
+        ...state,
+        gamesDetails: action.payload,
+      };
+    case CLEAN_GAMES_BY_ID_STATE:
+      return {
+        ...state,
+        gamesDetails: [],
+      }
     default:
       return { ...state };
   }
