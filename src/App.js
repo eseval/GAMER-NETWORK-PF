@@ -15,6 +15,7 @@ import FormForum from "./pages/FormForum";
 import ForumDetail from "./pages/ForumDetail";
 import GamesDetails from "./pages/GamesDetails";
 
+
 function App() {
   return (
     <div>
