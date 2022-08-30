@@ -25,6 +25,7 @@ import {
   POST_FORUM_ANSWERS,
   POST_USER,
   SEARCH_NEWS_BY_TITLE,
+  LOADING_USER
 } from "./types";
 
 const USERS_URL = "https://pf-henry-gamesportal.herokuapp.com/users";
@@ -60,7 +61,7 @@ export function getUserById(id) {
   return async function (dispatch) {
     try {
       let json = await axios.get(`${USERS_URL}/${id}`);
-      return dispatch({ type: GET_USERS_BY_ID, payload: json.data });
+      return dispatch({ type: GET_USERS_BY_ID, payload: json.data }, { type: LOADING_USER });
     } catch (error) {
       console.log(error);
     }
