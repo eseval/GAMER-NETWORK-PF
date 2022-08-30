@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import NavBar from "../components/NavBar";
 
 export default function SubscriptionCards() {
   const navigate = useNavigate();
@@ -13,10 +14,11 @@ export default function SubscriptionCards() {
     if (!dataUser || dataUser === "") {
       navigate("/");
     }
-  }, [dataUser]);
+  }, [dataUser, navigate]);
 
   return (
       <div>
+        <NavBar />
         <div className="container">
           <h1 className="my-5 text-5xl font-semibold text-center text-white">
             Subscription
