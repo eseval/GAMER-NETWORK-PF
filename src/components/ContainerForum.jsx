@@ -45,74 +45,60 @@ export default function ContainerForum() {
 
   return (
     <div>
-      <div>
-      <ForumFilterByMostComments/>
+      <div className="flex justify-between mx-5 my-3">
+        <ForumFilterByMostComments/>
+        <Link to="/post">
+          <button
+            type="button"
+            className="relative inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+          >
+            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+              NEW POST
+            </span>
+          </button>
+        </Link>
       </div>
-      <div className="grid grid-cols-4">
-        { currentPost.length > 0
-            ? currentPost.map((e) => {
+      <table className="w-full text-left table-auto text-md">
+        <thead className="text-gray-400 bg-gray-700 uppercas e">
+          <tr>
+            <th scope="col" className="px-6 py-3">Subject</th>
+            <th scope="col" className="px-6 py-3 text-center">Author</th>
+            <th scope="col" className="px-6 py-3 text-center">Comments</th>
+            <th scope="col" className="px-6 py-3 text-center">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          { currentPost.length > 0 ? currentPost.map(post => {
               return (
-                  <div key={ e.id }>
-                    { e.deleteFlag === true ? (
-                      ""
-                    ) : (
-                        <div className="p-2 border-2">
-                          <div
-                              className="h-40 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                            <ul className="w-56 p-2 menu bg-base-100 rounded-box">
-                              <li>
-                                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                    { e.title.length<=16? e.title : e.title.slice(0,16)+"..." }
-                                  </h5>
-                              </li>
-                            </ul>
-                            <div className="flex justify-between">
-                              <div>
-                                <a
-                                    href={ `/postDetails/${ e.id }` }
-                                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                >
-                                  Read more
-                                  <svg
-                                      aria-hidden="true"
-                                      className="w-4 h-4 ml-2 -mr-1"
-                                      fill="currentColor"
-                                      viewBox="0 0 20 20"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                        clipRule="evenodd"
-                                    ></path>
-                                  </svg>
-                                </a>
-                              </div>
-                              <div>
-                                { e.deleteFlag === false &&
-                                e.userId === dataUser.id ? (
-                                    <Link to={ `/post/${ e.id }` }>
-                                      <button
-                                          type="button"
-                                          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                                      >
-                                        Edit Post
-                                      </button>
-                                    </Link>
-                                ) : (
-                                    ""
-                                ) }
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                    ) }
-                  </div>
-              );
-            })
-            : "" }
+                <>
+                  { post.deleteFlag === true ? (<tr></tr>)
+                    : 
+                    <tr key={ post.id } className="bg-gray-800 border-b border-gray-700">
+                      <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <Link to={`/postDetails/${ post.id }`}>
+                          { post.title.length<=16? post.title : post.title.slice(0,16)+"..." }
+                        </Link>
+                      </th>
+                      <td className="px-6 py-3 text-center text-gray-500">
+                        { post.user !== null ? post.user.nickname : "Unknown user" }
+                      </td>
+                      <td className="px-6 py-3 text-center text-gray-500">
+                        { post.answers.length > 0 ? post.answers.length : 0}
+                      </td>
+                      <td className="px-6 py-3 text-center text-gray-500">
+                        {post?.createdAt?.split("T")[0]}
+                      </td>
+                    </tr>
+                  }
+                </>
+              )
+            }) 
+          : "" } 
+        </tbody>
+      </table>
+      <div className="mt-5">
+        <Paginate thingPerPage={postPerPage} array={themes} paginate={paginate} />
       </div>
-      <Paginate thingPerPage={postPerPage} array={themes} paginate={paginate} />
     </div>
   );
 }

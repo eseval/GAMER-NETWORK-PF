@@ -17,18 +17,9 @@ export default function Forum() {
   return (
     <div>
       <NavBar />
-      <div className="container p-4">
-        <div className="text-4xl font-normal text-center text-gray-900 dark:text-white">
-          <Link to="/post">
-            <button
-              type="button"
-              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-            >
-              NEW POST
-            </button>
-          </Link>
-        </div>
-        <div className="my-8 mb-10 overflow-hidden rounded shadow-lg bg-slate-400">
+      <div className="container max-w-5xl p-4">
+        <h1 className='m-5 text-5xl font-semibold text-center text-white'>Forum</h1>
+        <div className="my-8 mb-10 overflow-hidden bg-gray-700 rounded shadow-lg">
           <ContainerForum />
         </div>
       </div>
