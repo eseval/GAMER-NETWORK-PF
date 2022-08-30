@@ -1,11 +1,17 @@
 import axios from "axios";
 import {
   CLAIM_REWARDS,
+  CLEAN_ALLNEWS_STATE,
+  CLEAN_FORUM, CLEAN_GAMES_BY_ID_STATE,
+  CLEAN_GAMES_STATE,
+  CLEAN_NEWS_STATE,
+  CLEAN_REWAR_STATE,
   CONTAINER_POSTS,
   EDIT_POST,
   GET_ALL_NEWS,
   GET_FORUM,
   GET_GAMES,
+  GET_GAMES_BY_ID,
   GET_NEWS_BY_ID,
   GET_NEWS_BY_TITLE,
   GET_REWARDS,
@@ -13,17 +19,12 @@ import {
   GET_USER_BY_EMAIL,
   GET_USERS,
   GET_USERS_BY_ID,
+  ORDER_BY_COMMENTS,
   ORDER_NEWS_BY_TITLE,
   POST_FORUM,
   POST_FORUM_ANSWERS,
   POST_USER,
   SEARCH_NEWS_BY_TITLE,
-  CLEAN_NEWS_STATE,
-  CLEAN_REWAR_STATE,
-  CLEAN_ALLNEWS_STATE,
-  CLEAN_GAMES_STATE,
-  CLEAN_FORUM,
-  ORDER_BY_COMMENTS
 } from "./types";
 
 const USERS_URL = "https://pf-henry-gamesportal.herokuapp.com/users";
@@ -299,4 +300,21 @@ export function orderByComments(value) {
   } catch (error) {
     console.log(error);
   }
+}
+
+export function getGamesById(id) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(`${GAMES_URL}/${id}`);
+      return dispatch({ type: GET_GAMES_BY_ID, payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function cleanGamesByIdState() {
+  return {
+    type: CLEAN_GAMES_BY_ID_STATE,
+  };
 }

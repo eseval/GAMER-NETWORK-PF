@@ -36,39 +36,39 @@ export default function NavBar() {
               <div className="flex flex-col -mx-4 md:flex-row md:items-center md:mx-8">
                 <Link
                     to={ '/games' }
-                    className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                    className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-200 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
                 >
                   Games
                 </Link>
                 <Link
                     to={ '/forum' }
-                    className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                    className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-200 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
                 >
                   Forum
                 </Link>
                 <Link
                     to="/rewards"
-                    className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                    className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-200 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
                 >
                   Rewards
                 </Link>
                 <Link
                     to="/about"
-                    className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                    className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-200 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
                 >
                   About
                 </Link>
                 <Link
                     to="/contact"
-                    className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                    className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-200 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
                 >
                   Contact
                 </Link>
               </div>
               <div className="flex items-center mt-4 md:mt-0">
                 <div className="flex flex-col items-end mx-3">
-                  <h3 className="max-w-2xl text-2xl text-white">{ dataUser.nickname }</h3>
-                  <span className="text-xs text-gray-900 dark:text-white">💰 { dataUser.coins }</span>
+                  <h3 className="max-w-2xl text-2xl text-gray-200">{ dataUser.nickname }</h3>
+                  <span className="text-xs text-gray-200 dark:text-white">💰 { dataUser.coins }</span>
                 </div>
                 <Link to={ `/profile/${ dataUser.id }` }>
                   <div className="w-16 h-16 overflow-hidden border-2 border-gray-400 rounded-full">
