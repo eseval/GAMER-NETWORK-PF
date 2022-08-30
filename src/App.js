@@ -13,6 +13,7 @@ import GamesContainer from "./pages/GamesContainer";
 import Forum from "./pages/Forum";
 import FormForum from "./pages/FormForum";
 import ForumDetail from "./components/ForumDetail";
+import Chat from "./components/Chat";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/post" element={<FormForum />} />
         <Route path="/post/:id" element={<FormForum />} />
         <Route path="/postDetails/:id" element={<ForumDetail />} />
+        <Route path="/chat" element={<Chat />} />
       </Routes>
     </div>
   );
