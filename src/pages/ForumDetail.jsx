@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import { cleanForum, getForum } from "../redux/actions";
@@ -32,32 +32,30 @@ export default function ForumDetail() {
   return (
     <div>
       <NavBar />
-      <br />
-      <div className="container flex flex-col items-center align-middle">
+      <div className="container flex flex-col items-center mt-5 align-middle">
         <div className="p-4 mx-4 my-4 bg-gray-800 border-gray-700 rounded-lg shadow-md h-fit w-fit min-w-1/2">
           <div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center justify-start align-middle">
-                <div className="w-16 h-16 overflow-hidden border-2 border-gray-400 rounded-full">
+            <div className="flex flex-row-reverse items-center justify-between">
+              <div className="flex flex-row-reverse items-center justify-start align-middle">
+                <div className="w-24 h-24 overflow-hidden border-2 border-gray-400 rounded-full">
                   <img
                     src={details?.user?.img}
                     className="object-cover w-full h-full"
                     alt={dataUser.nickname}
                   />
                 </div>
-                <h3 className="max-w-2xl mx-5 text-xl font-semibold text-white">
+                <h3 className="max-w-2xl mx-2 text-2xl font-semibold text-white">
                   {details?.user?.nickname}
                 </h3>
               </div>
-
-              <div className="grid grid-cols-1 place-items-end mx-6">
-                <a href="/forum">
-                  <button className="relative inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+              <div className="grid grid-cols-1 place-items-end">
+                <Link to="/forum">
+                  <button className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
                     <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                       Back
                     </span>
                   </button>
-                </a>
+                </Link>
               </div>
             </div>
             <h5 className="mb-2 text-3xl font-semibold tracking-tight text-center text-white">
@@ -66,18 +64,35 @@ export default function ForumDetail() {
             <div className="h-64 overflow-hidden rounded shadow-lg bg-slate-400 ">
               <p className="p-1">{details?.text}</p>
             </div>
-            <div className="mt-5 text-slate-600">
-              <p>
-                Created at: {details?.createdAt?.split("T")[0]} -{" "}
-                {details?.createdAt?.split("T")[1].split(":")[0]}:
-                {details?.createdAt?.split("T")[1].split(":")[1]}
-              </p>
-              <p>
-                Last update : {details?.updatedAt?.split("T")[0]} -{" "}
-                {details?.updatedAt?.split("T")[1].split(":")[0]}:
-                {details?.updatedAt?.split("T")[1].split(":")[1]}
-              </p>
-              <h4>Comments: {details?.answers?.length}</h4>
+            <div className="flex flex-row items-center justify-between align-middle">
+              <div className="mt-5 text-slate-600">
+                <p>
+                  Created: {details?.createdAt?.split("T")[0]} -{" "}
+                  {details?.createdAt?.split("T")[1].split(":")[0]}:
+                  {details?.createdAt?.split("T")[1].split(":")[1]}
+                </p>
+                <p>
+                  Last update : {details?.updatedAt?.split("T")[0]} -{" "}
+                  {details?.updatedAt?.split("T")[1].split(":")[0]}:
+                  {details?.updatedAt?.split("T")[1].split(":")[1]}
+                </p>
+                <p>Comments: {details?.answers?.length}</p>
+              </div>
+              {console.log(details)}
+              {
+                details.deleteFlag === false &&
+                details.userId === dataUser.id ? (
+                  <Link to={`/post/${ details.id }`}>
+                    <button className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                      <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                        Edit
+                      </span>
+                    </button>
+                  </Link>
+                ) :
+                  ""
+              }
+              
             </div>
           </div>
         </div>
@@ -110,3 +125,4 @@ export default function ForumDetail() {
     </div>
   );
 }
+

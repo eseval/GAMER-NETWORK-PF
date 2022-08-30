@@ -1,9 +1,7 @@
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 import axios from "axios";
 import swal from 'sweetalert';
-import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import Loader from "../components/Loader";
 import { useNavigate } from 'react-router-dom';
 import {useEffect} from "react"
 import NavBar from "../components/NavBar";
@@ -37,7 +35,6 @@ export default function PaymentStripe () {
   const location = useLocation();
   const stripe = useStripe();
   const elements = useElements();
-  const [loading, setLoading] = useState(false);
   const amount = location.state;
 
   const dataUser = !window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged);
@@ -55,7 +52,6 @@ export default function PaymentStripe () {
       type: 'card',
       card: elements.getElement(CardElement)
     });
-    setLoading(true);
 
     if(!error) {
       const { id } = paymentMethod;
@@ -88,7 +84,6 @@ export default function PaymentStripe () {
       } catch(error) {
         console.log(error)
       }
-      setLoading(false);
     }
   }
 
