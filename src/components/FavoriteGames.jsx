@@ -7,7 +7,7 @@ import {
 } from "react-icons/bs";
 import axios from "axios";
 
-export default function FavoriteGames(){
+export default function FavoriteGames({ user }){
   const [dataUser, setDataUser] = useState(!window.localStorage.userLogged ? "" : JSON.parse(window.localStorage.userLogged))
   const dispatch = useDispatch()
   const allGames = useSelector(state => state.games);
@@ -20,7 +20,16 @@ export default function FavoriteGames(){
     }
   },[dispatch])
 
-  let favoriteGames = dataUser.favoriteGames.map(g =>allGames.filter(e=>(e.id===g)))
+  /* console.log(dataUser.id);
+  console.log(user.id) */
+
+  let favoriteGames = []
+  if(dataUser.id !== user.id) {
+    favoriteGames = user.favoriteGames.map(g =>allGames.filter(e=>(e.id===g)))
+  } else {
+    favoriteGames = dataUser.favoriteGames.map(g =>allGames.filter(e=>(e.id===g))) 
+  }
+  
   favoriteGames = favoriteGames.flat(Infinity)
 
   const paginatedGames = () => {
@@ -70,7 +79,9 @@ export default function FavoriteGames(){
             <div key={e.name} className="w-24 m-2 overflow-hidden text-center text-white align-middle bg-gray-800 border border-gray-700 rounded-md shadow-lg h-fit">
               <img src={e.img} className='w-full' alt={e.name}/>
               <p>{e.name}</p>
-              <button className="px-2 py-1 mx-auto mb-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-800" onClick={(event)=>handleClick(event, e.id)}>Remove</button>
+              {dataUser.id === user.id ? (
+                <button className="px-2 py-1 mx-auto mb-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-800" onClick={(event)=>handleClick(event, e.id)}>Remove</button>
+              ) : ""}
             </div>
           )
         })}
