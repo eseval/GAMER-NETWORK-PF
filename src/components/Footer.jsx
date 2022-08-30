@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-      <footer className="bg-white dark:bg-gray-800">
+      <footer className="bg-gray-800 shadow">
         <div className="container px-6 py-4 mx-auto">
           <div className="lg:flex items-center px-6">
             <div className="w-24 h-24 mr-6">
@@ -10,7 +10,7 @@ export default function Footer() {
             </div>
             <div className="w-full -mx-6 lg:w-2/5">
               <div className="px-6">
-                <p className="max-w-md mt-2 text-gray-500 dark:text-gray-400">
+                <p className="max-w-md mt-2 text-gray-200 dark:text-gray-400">
                   Fun, information and gifts in one place.
                 </p>
                 <div className="flex mt-4 -mx-2">
@@ -83,13 +83,13 @@ export default function Footer() {
             <div className="mt-6 lg:mt-0 lg:flex-1">
               <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
                 <div>
-                  <h3 className="text-gray-700 uppercase dark:text-white">
+                  <h3 className="text-gray-200 uppercase dark:text-white">
                     Contact
                   </h3>
-                  <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
+                  <span className="block mt-2 text-sm text-gray-200 dark:text-gray-400 hover:underline">
                   (387) 403-031212
                 </span>
-                  <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
+                  <span className="block mt-2 text-sm text-gray-200 dark:text-gray-400 hover:underline">
                   pfhenryfinal@gmail.com
                 </span>
                 </div>
