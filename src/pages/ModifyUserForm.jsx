@@ -26,20 +26,42 @@ export default function ModifyUserForm() {
         <div className="container max-w-md mt-10 overflow-hidden bg-white shadow sm:rounded-lg">
           <Formik 
             initialValues={{
-              nickname: user.nickname,
+              nickname: "",
+              description: user.description,
               servers: user.servers,
             }}
             validationSchema={
               Yup.object({
                 nickname: Yup.string()
                   .max(15, 'Must be 3-15 characters')
-                  .min(3, 'Must be 3-15 characters'),
+                  .min(3, 'Must be 3-15 characters')
+                  .test('Unique nickname', 'Nickname already in use',
+                    function(value) {
+                      return new Promise((res, rej) => {
+                        axios.get(`https://pf-henry-gamesportal.herokuapp.com/users?findNickname=nickname`)
+                          .then((response) => {
+                            if(response.data.includes(value)) {
+                              res(false)
+                            } else {
+                              res(true)
+                            }
+                          })
+                          .catch((error) => {
+                            console.log(error)
+                          })
+                      })
+                    }
+                    ),
+                description: Yup.string()
+                  .max(256, 'Max 256 characters')
               })
             }
+            validateOnBlur={true}
             onSubmit={async values => {
               await axios.put(`https://pf-henry-gamesportal.herokuapp.com/users/${user.id}`, {
                 img,
-                nickname: values.nickname,
+                nickname: values.nickname !== "" ? values.nickname : user.nickname,
+                description: values.description,
                 servers: values.servers
               });
               const newDataUser = await axios.get(`https://pf-henry-gamesportal.herokuapp.com/users/${user.id}`)
@@ -48,7 +70,7 @@ export default function ModifyUserForm() {
             }}
           >
           <Form>
-            <div className="flex items-center justify-center m-5">
+            <div className="flex items-center justify-start m-5">
               <label for="img" className="block text-lg font-medium text-gray-700">Avatar</label>
               <div className="mx-3 bg-indigo-600 rounded-md">
                 <Widget 
@@ -70,7 +92,18 @@ export default function ModifyUserForm() {
                 placeholder={user.nickname} 
                 className="w-full px-3 py-2 mx-3 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               />
-              <ErrorMessage name="nickname" />
+              <ErrorMessage component="div" className="text-xs italic text-red-500" name="nickname" />
+            </div>
+            <div className="flex items-center justify-center m-5">
+              <label for="description" className="block text-lg font-medium text-gray-700">Description</label>
+              <Field 
+                as="textarea" 
+                name="description" 
+                id="description" 
+                placeholder={user.description} 
+                className="w-full px-3 py-2 mx-3 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              />
+              <ErrorMessage component="div" className="text-xs italic text-red-500" name="description" />
             </div>
             <div className="flex items-center justify-center m-5">
               <label for="servers" className="block text-lg font-medium text-gray-700">Server</label>
