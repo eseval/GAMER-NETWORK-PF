@@ -4,6 +4,7 @@ import swal from 'sweetalert';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import NavBar from '../components/NavBar';
 
 const cardElementOptions = {
@@ -70,6 +71,7 @@ export default function PaymentStripe() {
 						icon: 'error',
 						button: 'Ok',
 					});
+					toast.error('Try again!');
 				} else {
 					swal({
 						title: 'Success!',
@@ -81,6 +83,7 @@ export default function PaymentStripe() {
 						`https://pf-henry-gamesportal.herokuapp.com/users/${dataUser.id}`
 					);
 					window.localStorage.setItem('userLogged', JSON.stringify(newDataUser.data));
+					toast.success('Thanks for joining play center');
 				}
 				elements.getElement(CardElement).clear();
 			} catch (error) {
@@ -112,6 +115,28 @@ export default function PaymentStripe() {
 					</form>
 				</div>
 			</div>
+			<Toaster
+				position="button-left"
+				reverseOrder={false}
+				gutter={8}
+				containerClassName=""
+				containerStyle={{}}
+				toastOptions={{
+					className: '',
+					duration: 5000,
+					style: {
+						background: '#363636',
+						color: '#fff',
+					},
+					success: {
+						duration: 3000,
+						theme: {
+							primary: 'green',
+							secondary: 'black',
+						},
+					},
+				}}
+			/>
 		</div>
 	);
 }
