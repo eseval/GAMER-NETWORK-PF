@@ -1,7 +1,8 @@
 import {
   CLAIM_REWARDS,
   CLEAN_ALLNEWS_STATE,
-  CLEAN_FORUM, CLEAN_GAMES_BY_ID_STATE,
+  CLEAN_FORUM,
+  CLEAN_GAMES_BY_ID_STATE,
   CLEAN_GAMES_STATE,
   CLEAN_NEWS_STATE,
   CLEAN_REWAR_STATE,
@@ -138,6 +139,7 @@ export default function rootReducer(state = initialState, action) {
     case POST_FORUM_ANSWERS:
       return {
         ...state,
+        forumById: action.payload,
       };
     case GET_FORUM:
       return {

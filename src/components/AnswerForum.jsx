@@ -1,34 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { postForumAnswers } from "../redux/actions";
 
 const AnswerForum = ({forumId, comments}) => {
   const dataUser = JSON.parse(window.localStorage.userLogged);
 
-  const [comment, setComment] = useState("");
-
   const dispatch = useDispatch();
-
+    
   const [value, setValue] = useState({
     idForum: forumId,
     idUser: dataUser.id,
     comment: "",
-    nickname: dataUser.nickname,
   });
 
-  const user = useSelector((state) => state.users);
 
-  useEffect(() => {
-    setComment(comments);
-  }, [comments]);
 
-  const userNickname = user.map((user) => {
-    return {
-      key: user.id,
-      id: user.id,
-      display: user.nickname,
-    };
-  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,10 +29,6 @@ const AnswerForum = ({forumId, comments}) => {
       nickname: dataUser.nickname,
     });
   };
-  const current = new Date();
-  const date = `${ current.getDate() }/${
-      current.getMonth() + 1
-  }/${ current.getFullYear() }`;
 
   function handleOnChange(e) {
     e.preventDefault();
