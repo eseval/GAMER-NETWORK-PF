@@ -25,11 +25,13 @@ import {
   POST_FORUM_ANSWERS,
   POST_USER,
   SEARCH_NEWS_BY_TITLE,
+  LOADING_USER
 } from "../actions/types";
 
 const initialState = {
   users: [],
   user: {},
+  userLoading: true,
   allNews: [],
   news: {},
   rewards: [],
@@ -51,7 +53,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         user: action.payload,
-        isLoadingUser: false,
+        userLoading: false,
       };
     case GET_USER_BY_EMAIL:
       return {
@@ -192,7 +194,12 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         gamesDetails: [],
-      };
+      }
+    case LOADING_USER:
+      return {
+        ...state,
+        userLoading: false
+      }
     default:
       return { ...state };
   }
