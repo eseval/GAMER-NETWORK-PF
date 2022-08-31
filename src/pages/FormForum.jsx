@@ -28,7 +28,7 @@ export default function FormForum() {
     nickname: dataUser.nickname,
     text: "",
     title: "",
-    genres: [],
+    genra: "",
   });
 
   function handleOnChange(e) {
@@ -55,28 +55,20 @@ export default function FormForum() {
   }, [dispatch]);
 
   function handleOnChangeGenre(e) {
-    if (e.target.checked) {
-      setInput({
-        ...input,
-        genres: [...input.genres, e.target.value],
-      });
-    } else {
-      setInput({
-        ...input,
-        genres: input.genres.filter((genre) => genre !== e.target.value),
-      });
-    }
+    setInput({
+      ...input,
+      genra: e.target.value,
+    });
+    console.log(input, e.target.value);
   }
-
-  console.log(input);
 
   return (
     <div>
       <NavBar />
       <div className="p-8 ">
         <form onSubmit={(e) => handleOnSubmit(e)}>
-          <div>
-            <div>
+          <div className=" flex w-1/2 ">
+            <div className="mr-6">
               <label
                 htmlFor="message"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
@@ -92,24 +84,26 @@ export default function FormForum() {
                 onChange={(e) => handleOnChange(e)}
               />
             </div>
-          </div>
-          <div>
-            <label>Genres</label>
-          <div>
-            {allGenres.map((genre, i) =>{
-              return(
-                  <div key={i}>
-                    <input
-                        type="checkbox"
-                        id={i}
-                        name={genre.name}
-                        value={genre.name}
-                        onChange={(e) => handleOnChangeGenre(e)}
-                    />
-                    <label>{genre.name}</label>
-                  </div>
-              )
-            } )}
+
+          <div className="w-fit">
+            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+              Choose a genre:
+            </label>
+            <select
+              onChange={(e) => handleOnChangeGenre(e)}
+              className="block p-2.5 mb-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected disabled hidden>
+                Choose a genre
+              </option>
+              {allGenres.map((genre, i) => {
+                return (
+                  <option key={i} value={i.name}>
+                    {genre.name}
+                  </option>
+                );
+              })}
+            </select>
           </div>
           </div>
 
@@ -126,14 +120,14 @@ export default function FormForum() {
               onChange={(e) => handleOnChange(e)}
               cols="50"
               rows="5"
-              className="max-w-3xl block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="max-w-xl block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Leave a comment..."
             ></textarea>
           </div>
           <button
             type="submit"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            disabled={!input.text || !input.title}
+            disabled={!input.text || !input.title || !input.genra}
           >
             Submit
           </button>
