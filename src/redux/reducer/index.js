@@ -12,6 +12,7 @@ import {
   GET_FORUM,
   GET_GAMES,
   GET_GAMES_BY_ID,
+  GET_GENRES,
   GET_NEWS_BY_ID,
   GET_NEWS_BY_TITLE,
   GET_REWARDS,
@@ -19,13 +20,13 @@ import {
   GET_USER_BY_EMAIL,
   GET_USERS,
   GET_USERS_BY_ID,
+  LOADING_USER,
   ORDER_BY_COMMENTS,
   ORDER_NEWS_BY_TITLE,
   POST_FORUM,
   POST_FORUM_ANSWERS,
   POST_USER,
   SEARCH_NEWS_BY_TITLE,
-  LOADING_USER
 } from "../actions/types";
 
 const initialState = {
@@ -39,6 +40,7 @@ const initialState = {
   rewardsById: [],
   forumById: [],
   gamesDetails: [],
+  genres: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -194,12 +196,17 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         gamesDetails: [],
-      }
+      };
     case LOADING_USER:
       return {
         ...state,
-        userLoading: false
-      }
+        userLoading: false,
+      };
+    case GET_GENRES:
+      return {
+        ...state,
+        genres: action.payload,
+      };
     default:
       return { ...state };
   }

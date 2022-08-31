@@ -26,7 +26,7 @@ import {
   POST_FORUM_ANSWERS,
   POST_USER,
   SEARCH_NEWS_BY_TITLE,
-  LOADING_USER
+  LOADING_USER, GET_GENRES
 } from "./types";
 
 const USERS_URL = "https://pf-henry-gamesportal.herokuapp.com/users";
@@ -35,6 +35,7 @@ const FORUM_URL = "https://pf-henry-gamesportal.herokuapp.com/forum";
 const REWARDS_URL = "https://pf-henry-gamesportal.herokuapp.com/reward";
 const GAMES_URL = "https://pf-henry-gamesportal.herokuapp.com/games";
 const ANSWER_URL = "https://pf-henry-gamesportal.herokuapp.com/answers";
+const GENRES_URL = "https://pf-henry-gamesportal.herokuapp.com/genre"
 
 export function postUser(data) {
   return async function (dispatch) {
@@ -322,3 +323,15 @@ export function cleanGamesByIdState() {
     type: CLEAN_GAMES_BY_ID_STATE,
   };
 }
+
+export function getGenres() {
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(GENRES_URL);
+      return dispatch({ type: GET_GENRES, payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+

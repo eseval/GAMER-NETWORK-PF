@@ -18,8 +18,6 @@ export default function GamesDetails() {
     };
   }, [dispatch, id]);
 
-  console.log(details);
-
   return (
       <div>
         <NavBar/>

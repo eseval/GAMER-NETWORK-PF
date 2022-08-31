@@ -74,7 +74,7 @@ export default function ContainerForum() {
                   { post.deleteFlag === true ? (<tr></tr>)
                     : 
                     <tr key={ post.id } className="bg-gray-800 border-b border-gray-700">
-                      <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      <th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <Link to={`/postDetails/${ post.id }`}>
                           { post.title.length<=16? post.title : post.title.slice(0,16)+"..." }
                         </Link>
