@@ -2,7 +2,8 @@ import axios from "axios";
 import {
   CLAIM_REWARDS,
   CLEAN_ALLNEWS_STATE,
-  CLEAN_FORUM, CLEAN_GAMES_BY_ID_STATE,
+  CLEAN_FORUM,
+  CLEAN_GAMES_BY_ID_STATE,
   CLEAN_GAMES_STATE,
   CLEAN_NEWS_STATE,
   CLEAN_REWAR_STATE,
@@ -247,8 +248,9 @@ export function postForumAnswers(payload) {
   return async function (dispatch) {
     try {
       console.log(payload);
-      await axios.post(ANSWER_URL, payload); // Necesitamos una tabla para guardar los comentarios del foro
-      return dispatch({ type: POST_FORUM_ANSWERS });
+      await axios.post(ANSWER_URL, payload);
+      let json = await axios.get(`${FORUM_URL}/${payload.idForum}`);
+      return dispatch({ type: POST_FORUM_ANSWERS, payload: json.data });
     } catch (error) {
       console.log(error);
     }
@@ -259,6 +261,7 @@ export function getForum(id) {
   return async function (dispatch) {
     try {
       let json = await axios.get(`${FORUM_URL}/${id}`);
+      console.log("index getforum", json.data);
       return dispatch({ type: GET_FORUM, payload: json.data });
     } catch (error) {
       console.log(error);
@@ -331,3 +334,4 @@ export function getGenres() {
     }
   }
 }
+

@@ -141,6 +141,7 @@ export default function rootReducer(state = initialState, action) {
     case POST_FORUM_ANSWERS:
       return {
         ...state,
+        forumById: action.payload,
       };
     case GET_FORUM:
       return {

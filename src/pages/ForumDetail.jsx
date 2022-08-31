@@ -8,8 +8,7 @@ import NavBar from "../components/NavBar";
 export default function ForumDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const details = useSelector((state) => state.forumById);
-  // console.log(details);
+  let details = useSelector((state) => state.forumById);
 
   const navigate = useNavigate();
   const dataUser = !window.localStorage.userLogged
@@ -98,7 +97,7 @@ export default function ForumDetail() {
         </div>
         <AnswerForum forumId={id} comments={details?.answers} />
         <div className="max-w-sm mx-5 my-3 mb-10 overflow-hidden rounded shadow-lg bg-slate-400">
-          {details?.answers?.map((e) => (
+          {details?.answers?.reverse().map((e) => (
             <div key={e.id} className="border">
               <div className="px-4 mx-5 my-6">
                 <div className="flex my-2">
