@@ -28,7 +28,7 @@ export default function FormForum() {
     nickname: dataUser.nickname,
     text: "",
     title: "",
-    genra: "",
+    genre: "",
   });
 
   function handleOnChange(e) {
@@ -57,7 +57,7 @@ export default function FormForum() {
   function handleOnChangeGenre(e) {
     setInput({
       ...input,
-      genra: e.target.value,
+      genre: e.target.value,
     });
     console.log(input, e.target.value);
   }
@@ -93,7 +93,7 @@ export default function FormForum() {
               onChange={(e) => handleOnChangeGenre(e)}
               className="block p-2.5 mb-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option selected disabled hidden>
+              <option hidden>
                 Choose a genre
               </option>
               {allGenres.map((genre, i) => {
@@ -127,7 +127,7 @@ export default function FormForum() {
           <button
             type="submit"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            disabled={!input.text || !input.title || !input.genra}
+            disabled={!input.text || !input.title || !input.genre}
           >
             Submit
           </button>
