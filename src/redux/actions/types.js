@@ -29,3 +29,4 @@ export const ORDER_BY_COMMENTS = "ORDER_BY_COMMENTS";
 export const GET_GAMES_BY_ID = "GET_GAMES_BY_ID";
 export const CLEAN_GAMES_BY_ID_STATE = "CLEAN_GAMES_BY_ID_STATE";
 export const LOADING_USER = "LOADING_USER";
+export const GET_GENRES = "GET_GENRES";
