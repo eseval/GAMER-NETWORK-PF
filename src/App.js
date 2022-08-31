@@ -15,6 +15,7 @@ import FormForum from "./pages/FormForum";
 import ForumDetail from "./pages/ForumDetail";
 import GamesDetails from "./pages/GamesDetails";
 import Chat from "./components/Chat";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/postDetails/:id" element={<ForumDetail />} />
         <Route path="/games/:id" element={<GamesDetails />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </div>
   );
