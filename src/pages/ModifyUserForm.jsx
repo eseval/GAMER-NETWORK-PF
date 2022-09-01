@@ -27,7 +27,7 @@ export default function ModifyUserForm() {
 			<h3 className="mt-10 mx-5 text-7xl opacity-85 font-totifont text-center text-white">Edit Information</h3>
 			<div className="container max-w-5x1 mt-10 overflow-hidden bg-white shadow sm:rounded-lg">
 				<div className="mx-5 mt-3">
-					<Link className="text-lg text-indigo-800" to="/profile">
+					<Link className="text-lg text-indigo-800" to={`/profile/${user.id}`}>
 						<img
 							className="h-12 w-12"
 							src="https://cdn-icons-png.flaticon.com/512/5166/5166467.png"
