@@ -68,6 +68,9 @@ export default function ContainerForum() {
 						<th scope="col" className="px-6 py-3 text-center">
 							Date
 						</th>
+						<th scope="col" className="px-6 py-3 text-center">
+							Genre
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -97,6 +100,9 @@ export default function ContainerForum() {
 												</td>
 												<td className="px-6 py-3 text-center text-gray-500">
 													{post?.createdAt?.split('T')[0]}
+												</td>
+												<td className="px-6 py-3 text-center text-gray-500">
+													{post?.genre}
 												</td>
 											</tr>
 										)}
