@@ -30,10 +30,9 @@ export default function NewsContainer() {
 
 	return (
 		<div className="container">
-			<h1 className="m-5 text-5xl font-semibold text-center text-white">News</h1>
-
-			<SearchBar />
-			<div className="container flex flex-wrap justify-center">
+			<h1 className="mt-5 mx-5 text-7xl opacity-85 font-totifont text-center text-white">NEWS</h1>
+			<SearchBar className="inset-px " />
+			<div className="mt-3 container flex flex-wrap justify-center">
 				{typeof allNews === 'object' ? (
 					currentNews.map(news => {
 						return <NewsCard news={news} key={news.id} />;
