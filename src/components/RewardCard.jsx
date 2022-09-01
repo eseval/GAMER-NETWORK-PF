@@ -1,5 +1,5 @@
 import React from 'react';
-import { claimRewards} from '../redux/actions';
+import { claimRewards } from '../redux/actions';
 import { useDispatch } from 'react-redux';
 import swal from 'sweetalert';
 
@@ -12,8 +12,8 @@ export default function RewardCard({ title, image, price, recompenseType }) {
 		swal({
 			title: 'Confirm claim!',
 			text: 'Are you sure to claim this reward?',
-			buttons:["Cancel", "Confirm"],
-			icon: 'warning'
+			buttons: ['Cancel', 'Confirm'],
+			icon: 'warning',
 		}).then(res => {
 			if (res) {
 				const newTotal = dataUser.coins - price;
@@ -24,7 +24,7 @@ export default function RewardCard({ title, image, price, recompenseType }) {
 						text: 'The claim has been completed!',
 						icon: 'success',
 					});
-				}else{
+				} else {
 					swal({
 						text: "You don't have enough coins!",
 						icon: 'error',
@@ -49,12 +49,15 @@ export default function RewardCard({ title, image, price, recompenseType }) {
 						</h5>
 					</a>
 					<div className="flex items-center justify-between">
-            <span className="text-2xl font-bold text-gray-900 dark:text-black">💎 {price} Coins</span>
-            <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800" onClick={e=>handleSubmit(e)}>
-              <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-            Claim
-              </span>
-            </button>
+						<span className="text-2xl font-bold text-gray-900 dark:text-black">💎 {price} Coins</span>
+						<button
+							className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+							onClick={e => handleSubmit(e)}
+						>
+							<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+								Claim
+							</span>
+						</button>
 					</div>
 				</div>
 			</div>
