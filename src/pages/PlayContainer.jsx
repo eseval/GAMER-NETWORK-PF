@@ -12,16 +12,14 @@ export default function PlayContainer() {
 	const navigate = useNavigate();
 	const allUsers = useSelector(state => state.users);
 	const [currentPage, setCurrentPage] = useState(0);
-	// const [search, setSearch] = useState('');
 
 	useEffect(() => {
 		dispatch(getUsers());
-		// return () => {
-		// 	dispatch(cleanGamesState());
-		// };
 	}, [dispatch]);
 
 	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
+	const otherUser = allUsers.filter(e => dataUser.id !== e.id);
+	console.log(otherUser);
 
 	useEffect(() => {
 		if (!dataUser || dataUser === '') {
@@ -29,18 +27,13 @@ export default function PlayContainer() {
 		}
 	}, [dataUser, navigate]);
 
-	// const handleChange = e => {
-	// 	setCurrentPage(0);
-	// 	setSearch(e.target.value);
-	// };
-
-	const users = allUsers.filter(user => user.nickname.toLowerCase());
+	const usersByAdd = otherUser.filter(user => user.nickname.toLowerCase());
 	const paginatedUsers = () => {
-		return users.slice(currentPage, currentPage + 1);
+		return usersByAdd.slice(currentPage, currentPage + 1);
 	};
 
 	const nextPage = () => {
-		if (users.length > currentPage + 1) {
+		if (usersByAdd.length > currentPage + 1) {
 			setCurrentPage(currentPage + 1);
 		}
 	};
@@ -55,7 +48,7 @@ export default function PlayContainer() {
 		<div>
 			<NavBar />
 			<div className="container">
-				<h1 className="m-5 text-5xl font-semibold text-center text-white">Play!</h1>
+				<h1 className="m-5 text-5xl font-semibold text-center text-white">Community</h1>
 				<div className="container flex flex-col">
 					<div className="max-w-md mx-24"></div>
 					<div className="container flex flex-row items-center mt-5">
@@ -69,8 +62,8 @@ export default function PlayContainer() {
 						</div>
 						<div className="container flex flex-wrap justify-center">
 							{allUsers &&
-								usersToShow.map(user => {
-									return <UserCard user={user} key={user.id} />;
+								usersToShow.map(filterUsers => {
+									return <UserCard user={filterUsers} key={filterUsers.id} />;
 								})}
 						</div>
 						<div className="mr-3">

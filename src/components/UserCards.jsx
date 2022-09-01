@@ -1,21 +1,21 @@
 import { Link } from 'react-router-dom';
-
 import FavoriteGames from './FavoriteGames';
 
 export default function UserCard({ user }) {
 	return (
-		<div className="max-w-sm rounded overflow-hidden shadow-lg bg-slate-200 mx-5 mb-10">
-			<img className="w-full" src={user.img} alt={user.nickname} />
-			<div className="px-6 py-4">
-				<div className="font-bold text-xl mb-2">
-					<Link to={`/profile/${user.id}`}>{user.nickname}</Link>
-				</div>
-				<p className="text-gray-700 text-base">{user.description}</p>
-				<FavoriteGames user={user} />
-				<button className="px-2 py-1 mx-auto mb-2 text-sm text-white bg-indigo-600 rounded-lg hover:bg-indigo-800">
-					Match!
-				</button>
+		<div className="bg-white font-semibold text-center rounded-3xl border shadow-lg p-20 max-w-xs">
+			<img className="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto" src={user.img} alt={user.nickname} />
+			<div className="text-lg text-gray-700">
+				<Link to={`/profile/${user.id}`}>{user.nickname}</Link>
 			</div>
+			<p className="text-sm text-gray-400 ">{user.description}</p>
+			{/* <div className="justify-center  px-4 py-2 max-w-xs"> */}
+			<FavoriteGames user={user} />
+			{/* </div> */}
+			<br></br>
+			<button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+				Add!
+			</button>
 		</div>
 	);
 }

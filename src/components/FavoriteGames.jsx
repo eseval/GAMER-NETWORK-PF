@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getGames, cleanGamesState } from '../redux/actions/index';
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function FavoriteGames({ user }) {
 	const [dataUser, setDataUser] = useState(
@@ -29,16 +30,16 @@ export default function FavoriteGames({ user }) {
 	favoriteGames = favoriteGames.flat(Infinity);
 
 	const paginatedGames = () => {
-		return favoriteGames.slice(currentPage, currentPage + 6);
+		return favoriteGames.slice(currentPage, currentPage + 1);
 	};
 
 	const nextPage = () => {
-		if (favoriteGames.length > currentPage + 6) {
-			setCurrentPage(currentPage + 6);
+		if (favoriteGames.length > currentPage + 1) {
+			setCurrentPage(currentPage + 1);
 		}
 	};
 	const prevPage = () => {
-		if (currentPage > 0) setCurrentPage(currentPage - 6);
+		if (currentPage > 0) setCurrentPage(currentPage - 1);
 	};
 
 	async function removeFavorite(id) {
@@ -74,8 +75,10 @@ export default function FavoriteGames({ user }) {
 								key={e.name}
 								className="w-24 m-2 overflow-hidden text-center text-white align-middle bg-gray-800 border border-gray-700 rounded-md shadow-lg h-fit"
 							>
-								<img src={e.img} className="w-full" alt={e.name} />
-								<p>{e.name}</p>
+								<Link to={`/games/${e.id}`}>
+									<img src={e.img} className="w-full" alt={e.name} />
+								</Link>
+								{/* <p>{e.name}</p> */}
 								{dataUser.id === user.id ? (
 									<button
 										className="px-2 py-1 mx-auto mb-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-800"
