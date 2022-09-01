@@ -128,7 +128,7 @@ export default function FormForum() {
 					</button>
 				</form>
 				<Toaster
-					position="button-left"
+					position="button-right"
 					reverseOrder={false}
 					gutter={8}
 					containerClassName=""

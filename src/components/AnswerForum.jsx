@@ -63,7 +63,7 @@ const AnswerForum = ({ forumId, comments }) => {
 				</form>
 			</section>
 			<Toaster
-				position="button-left"
+				position="button-right"
 				reverseOrder={false}
 				gutter={8}
 				containerClassName=""
