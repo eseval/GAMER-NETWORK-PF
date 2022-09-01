@@ -23,8 +23,8 @@ export default function ModifyUserForm() {
 	return (
 		<div>
 			<NavBar />
-			<h3 className="m-5 text-5xl font-semibold text-center text-white">Edit Information</h3>
-			<div className="container max-w-md mt-10 overflow-hidden bg-white shadow sm:rounded-lg">
+			<h3 className="mt-10 mx-5 text-7xl opacity-85 font-totifont text-center text-white">Edit Information</h3>
+			<div className="container max-w-5x1 mt-10 overflow-hidden bg-white shadow sm:rounded-lg">
 				<Formik
 					initialValues={{
 						nickname: '',
@@ -132,9 +132,11 @@ export default function ModifyUserForm() {
 						<div className="px-4 py-3 text-right bg-gray-50 sm:px-6">
 							<button
 								type="submit"
-								className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+								class="relative inline-flex items-center justify-center p-0.5 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
 							>
-								Save changes
+								<span class="relative px-6 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-100 rounded-md group-hover:bg-opacity-0">
+									Edit
+								</span>
 							</button>
 						</div>
 					</Form>

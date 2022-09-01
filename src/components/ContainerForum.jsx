@@ -30,7 +30,7 @@ export default function ContainerForum() {
 	while (!themes) {
 		return (
 			<div className="container text-center">
-				<h1 className="text-5xl font-semibold text-white">Play Center</h1>
+				<h1 className="text-8xl font-totifont opacity-70 text-white my-20">Play Center</h1>
 				<div className="mt-10">
 					<Loader />
 				</div>
