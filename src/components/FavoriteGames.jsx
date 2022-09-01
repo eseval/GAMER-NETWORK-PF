@@ -59,7 +59,7 @@ export default function FavoriteGames({ user }) {
 
 	if (favoriteGames.length > 0) {
 		return (
-			<div className="container flex flex-row items-center mt-5">
+			<div className="container flex flex-row items-center">
 				<div className="ml-1">
 					<button
 						className="text-gray-800 transition duration-500 ease-in-out hover:text-white"
@@ -68,23 +68,27 @@ export default function FavoriteGames({ user }) {
 						<BsFillArrowLeftCircleFill size="30px" />
 					</button>
 				</div>
-				<div className="container flex flex-row flex-wrap">
+				<div className="container flex flex-row justify-center ">
 					{paginatedGames().map(e => {
 						return (
 							<div
 								key={e.name}
-								className="w-24 m-2 overflow-hidden text-center text-white align-middle bg-gray-800 border border-gray-700 rounded-md shadow-lg h-fit"
+								className=" flex flex-col justify-between w-64 h-64 m-2 overflow-hidden text-center align-middle bg-gray-800 border border-gray-700 rounded-md shadow-lg"
 							>
 								<Link to={`/games/${e.id}`}>
-									<img src={e.img} className="w-full" alt={e.name} />
+									<img src={e.img} className="object-cover w-full h-32 rounded-t-lg " alt={e.name} />
 								</Link>
-								{/* <p>{e.name}</p> */}
+								<p className="text-lg font-semibold text-white space-y-2.5">{e.name}</p>
 								{dataUser.id === user.id ? (
 									<button
-										className="px-2 py-1 mx-auto mb-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-800"
+										className="px-6 py-2 mt-3 mx-auto mb-3 text-sm text-white rounded-lg "
 										onClick={event => handleClick(event, e.id)}
 									>
-										Remove
+										<img
+											className="h-8 w-8"
+											src="https://cdn-icons-png.flaticon.com/512/458/458594.png"
+											alt="X"
+										/>
 									</button>
 								) : (
 									''
