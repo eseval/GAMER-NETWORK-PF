@@ -77,9 +77,14 @@ export default function ForumDetail() {
                 </p>
                 <p>Comments: {details?.answers?.length}</p>
               </div>
-              <div>
-                <ReportForumPost />
-              </div>
+              {details.deleteFlag === false &&
+              details.userId !== dataUser.id ? (
+                  <div>
+                    <ReportForumPost />
+                  </div>
+              ) : (
+                  ""
+              )}
               {details.deleteFlag === false &&
               details.userId === dataUser.id ? (
                 <Link to={`/post/${details.id}`}>
