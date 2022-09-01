@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import { Widget } from '@uploadcare/react-widget';
 import toast, { Toaster } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 export default function ModifyUserForm() {
 	const navigate = useNavigate();
@@ -25,6 +26,15 @@ export default function ModifyUserForm() {
 			<NavBar />
 			<h3 className="mt-10 mx-5 text-7xl opacity-85 font-totifont text-center text-white">Edit Information</h3>
 			<div className="container max-w-5x1 mt-10 overflow-hidden bg-white shadow sm:rounded-lg">
+				<div className="mx-5 mt-3">
+					<Link className="text-lg text-indigo-800" to="/profile">
+						<img
+							className="h-12 w-12"
+							src="https://cdn-icons-png.flaticon.com/512/5166/5166467.png"
+							alt="Return"
+						/>
+					</Link>
+				</div>
 				<Formik
 					initialValues={{
 						nickname: '',
@@ -142,7 +152,7 @@ export default function ModifyUserForm() {
 					</Form>
 				</Formik>
 				<Toaster
-					position="button-left"
+					position="button-right"
 					reverseOrder={false}
 					gutter={8}
 					containerClassName=""

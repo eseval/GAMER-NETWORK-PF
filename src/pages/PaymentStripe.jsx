@@ -116,7 +116,7 @@ export default function PaymentStripe() {
 				</div>
 			</div>
 			<Toaster
-				position="button-left"
+				position="button-right"
 				reverseOrder={false}
 				gutter={8}
 				containerClassName=""

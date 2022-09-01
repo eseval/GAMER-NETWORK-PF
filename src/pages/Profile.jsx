@@ -18,10 +18,12 @@ export default function Profile() {
 	useEffect(() => {
 		if (!dataUser || dataUser === '') {
 			navigate('/');
-		} else {
-			dispatch(getUserById(id));
 		}
-	}, [dataUser, navigate, dispatch, id]);
+	}, [dataUser, navigate]);
+
+	useEffect(() => {
+		dispatch(getUserById(id));
+	}, [dispatch, id]);
 
 	const userPlan = () => {
 		if (user.plan) {
