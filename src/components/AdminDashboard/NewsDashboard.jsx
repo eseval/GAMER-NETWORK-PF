@@ -16,7 +16,7 @@ export default function NewsDashboard() {
   }
 
   const columnsNews = [
-    { field: 'id', headerName: 'User ID', width: 150 },
+    { field: 'id', headerName: 'ID', width: 150 },
     { field: 'title', headerName: 'Title', width: 300 },
     { field: 'short_description', headerName: 'Description', width: 150 },
     { field: 'main_image', headerName: 'Image', width: 150 },

@@ -41,6 +41,7 @@ const initialState = {
   forumById: [],
   gamesDetails: [],
   genres: [],
+  posts: []
 };
 
 export default function rootReducer(state = initialState, action) {
