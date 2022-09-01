@@ -17,8 +17,11 @@ export default function Forum() {
 		if (!dataUser || dataUser === '') {
 			navigate('/');
 		}
-		dispatch(getAllPosts());
 	}, [dataUser, navigate]);
+
+	useEffect(() => {
+		dispatch(getAllPosts());
+	}, [dispatch, getAllPosts]);
 
 	while (!themes) {
 		return (
