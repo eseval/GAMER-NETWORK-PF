@@ -35,26 +35,28 @@ export default function GamesCard({ game }) {
 	return (
 		<div className="flex flex-col justify-between w-64 h-64 m-2 overflow-hidden text-center align-middle bg-gray-800 border border-gray-700 rounded-md shadow-lg">
 			<img className="object-cover w-full h-32 rounded-t-lg" src={game.img} alt={game.name} />
-			<p className="mb-2 text-lg font-semibold text-white">
-				<Link to={`/games/${game.id}`}>{game.name}</Link>
+			<p>
+				<Link to={`/games/${game.id}`}>
+					<h2 className="text-lg font-semibold text-white space-y-2.5">{game.name}</h2>
+				</Link>
 			</p>
 			{dataUser.favoriteGames.includes(game.id) ? (
 				<button
-					className="px-2 py-1 mx-auto mb-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-800"
+					className="px-6 py-2 mt-3 mx-auto mb-3 text-sm text-white bg-red-600 rounded-lg hover:bg-red-800"
 					onClick={removeFavorite}
 				>
 					Remove Favorite
 				</button>
 			) : (
 				<button
-					className="px-2 py-1 mx-auto mb-2 text-sm text-white bg-indigo-600 rounded-lg hover:bg-indigo-800"
+					className="px-6 py-2 mt-3 mx-auto mb-3 text-sm text-white bg-indigo-600 rounded-lg hover:bg-indigo-800"
 					onClick={addFavorite}
 				>
 					Add Favorite
 				</button>
 			)}
 			<Toaster
-				position="button-left"
+				position="button-right"
 				reverseOrder={false}
 				gutter={8}
 				containerClassName=""
