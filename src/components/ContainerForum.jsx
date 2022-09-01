@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAllPosts } from '../redux/actions';
-import Loader from '../components/Loader';
 import Paginate from './Paginate';
 import ForumFilterByMostComments from '../components/ForumFilterByMostComments';
 
 export default function ContainerForum() {
 	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
-	const dispatch = useDispatch();
 	const themes = useSelector(state => state.posts);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postPerPage] = useState(12);
@@ -19,23 +16,8 @@ export default function ContainerForum() {
 		setCurrentPage(pageNumber);
 	};
 
-	useEffect(() => {
-		dispatch(getAllPosts());
-	}, [dispatch]);
-
 	if (currentPage > Math.ceil(themes?.length / postPerPage) && currentPage !== 1) {
 		setCurrentPage(1);
-	}
-
-	while (!themes) {
-		return (
-			<div className="container text-center">
-				<h1 className="text-8xl font-totifont opacity-70 text-white my-20">Play Center</h1>
-				<div className="mt-10">
-					<Loader />
-				</div>
-			</div>
-		);
 	}
 
 	return (
@@ -101,9 +83,7 @@ export default function ContainerForum() {
 												<td className="px-6 py-3 text-center text-gray-500">
 													{post?.createdAt?.split('T')[0]}
 												</td>
-												<td className="px-6 py-3 text-center text-gray-500">
-													{post?.genre}
-												</td>
+												<td className="px-6 py-3 text-center text-gray-500">{post?.genre}</td>
 											</tr>
 										)}
 									</>
