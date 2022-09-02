@@ -16,13 +16,13 @@ export default function NewDetail() {
 			dispatch(cleanNewsState());
 		};
 	}, [dispatch, id]);
-
-	while (Number(!news) || Number(id) !== Number(news.id)) {
+  console.log(news)
+	while (!news || id.toString() !== news.id.toString()) {
 		return (
 			<div className="container text-center">
-				<h1 className="text-8xl font-totifont opacity-70 text-white my-20">Play Center</h1>
+				<h1 className="my-20 text-white text-8xl font-totifont opacity-70">Play Center</h1>
 				<div className="mt-10">
-					<Loader width={8} />
+					<Loader />
 				</div>
 			</div>
 		);
@@ -33,7 +33,7 @@ export default function NewDetail() {
 				<div className="mx-5 mt-3">
 					<Link className="text-lg text-indigo-800" to="/home">
 						<img
-							className="h-12 w-12"
+							className="w-12 h-12"
 							src="https://cdn-icons-png.flaticon.com/512/5166/5166467.png"
 							alt="Return"
 						/>
@@ -41,11 +41,11 @@ export default function NewDetail() {
 				</div>
 				<div className="flex flex-col justify-center px-6 py-4 align-middle">
 					<div className="text-5xl font-bold">{news.title}</div>
-					<p className="mt-6 text-2xl my-2 text-center text-gray-700 space-x-1 space-y-1">
+					<p className="my-2 mt-6 space-x-1 space-y-1 text-2xl text-center text-gray-700">
 						{news.short_description}
 					</p>
-					<img className="max-w-3x1 mx-auto mt-3 rounded-md" src={news.main_image} alt={news.title} />
-					<p className="mt-6 text-2xl text-justify indent-8 space-x-1 space-y-1">
+					<img className="mx-auto mt-3 rounded-md max-w-3x1" src={news.main_image} alt={news.title} />
+					<p className="mt-6 space-x-1 space-y-1 text-2xl text-justify indent-8">
 						{news.article_content.replace(/<[^>]+>/g, '')}
 					</p>
 				</div>

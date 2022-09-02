@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import NewsDashboard from "../components/AdminDashboard/NewsDashboard";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import UsersDashboard from "../components/AdminDashboard/UsersDashboard";
+import NewsDashboard from "../components/AdminDashboard/NewsDashboard";
 import ForumDashboard from "../components/AdminDashboard/ForumDashboard";
 
 export default function AdminDashboard() {

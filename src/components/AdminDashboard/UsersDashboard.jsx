@@ -76,7 +76,7 @@ export default function UsersDashboard() {
         height:600,
         width:'80%',
         margin:'auto',
-        bgcolor: grey[100]
+        bgcolor: grey[300]
       }}
       >
         <DataGrid
@@ -86,7 +86,7 @@ export default function UsersDashboard() {
           sx={{
             [`& .${gridClasses.row}`]: {
               bgcolor: (theme) => 
-                theme.palette.mode === 'light' ? grey[200] : grey[900],
+                theme.palette.mode === 'light' ? grey[400] : grey[900],
             },
           }}
           pageSize={8}
