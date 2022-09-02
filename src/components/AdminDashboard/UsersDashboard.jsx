@@ -25,19 +25,19 @@ export default function UsersDashboard() {
     { field: 'email', headerName: 'Email', width: 200 },
     { field: 'nickname', headerName: 'Nickname', width: 120, editable:true },
     { field: 'description', headerName: 'Description', width: 150, editable:true },
-    { field: 'plan', headerName: 'Plan', width: 150, type: 'boolean', editable: true },
-    { field: 'isAdmin', headerName: 'Admin', width: 150, type: 'boolean', editable: true },
-    { field: 'isSuperAdmin', headerName: 'SuperAdmin', width: 150, type: 'boolean', editable: true },
+    { field: 'plan', headerName: 'Plan', width: 60, type: 'boolean', editable: true },
+    { field: 'isAdmin', headerName: 'Admin', width: 60, type: 'boolean', editable: true },
+    { field: 'isSuperAdmin', headerName: 'SuperAdmin', width: 100, type: 'boolean', editable: true },
     { field: 'favoriteGames', headerName: 'Favorite Games', width: 150 },
     { field: 'friends', headerName: 'Matched Users', width: 150 },
-    { field: 'coins', headerName: 'Coins', width: 150, editable:true },
-    { field: 'rating', headerName: 'Rating', width: 150 },
-    { field: 'forums', headerName: 'Posts', width: 150 },
-    { field: 'answers', headerName: 'Answers', width: 150 },
-    { field: 'servers', headerName: 'Servers', width: 150, editable:true },
+    { field: 'coins', headerName: 'Coins', width: 60, editable:true },
+    { field: 'rating', headerName: 'Rating', width: 60 },
+    { field: 'forums', headerName: 'Posts', width: 60 },
+    { field: 'answers', headerName: 'Answers', width: 70 },
+    { field: 'servers', headerName: 'Servers', width: 70, editable:true },
     { field: 'missionsCompleted', headerName: 'Missions Completed', width: 150 },
-    { field: 'deleteFlag', headerName: 'Delete Flag', width: 150, type: 'boolean', editable: true },
-    { field: 'bannedFlag', headerName: 'Banned Flag', width: 150, type: 'boolean', editable: true },
+    { field: 'deleteFlag', headerName: 'Delete Flag', width: 100, type: 'boolean', editable: true },
+    { field: 'bannedFlag', headerName: 'Banned Flag', width: 100, type: 'boolean', editable: true },
     { field: 'createdAt', headerName: 'Created At', width: 150, renderCell:params=>moment(params.row.createdAt).format('DD-MM-YYYY HH:MM:SS') },
     { field: 'updatedAt', headerName: 'Updated At', width: 150, renderCell:params=>moment(params.row.createdAt).format('DD-MM-YYYY HH:MM:SS') },
     { field: 'actions', headerName: 'Actions', type: 'actions', renderCell:params=><UsersActions {...{params, rowId, setRowId}}/>}
@@ -95,7 +95,7 @@ export default function UsersDashboard() {
             top:params.isFirstVisible ? 0 : 3,
             bottom: params.isLastVisible ? 0 : 3,
           })}
-          onCellEditCommit={params=>setRowId(params.id)}
+          onCellEditStart={params=>setRowId(params.id)}
         />
       </Box>
     </div>
