@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import FavoriteGames from './FavoriteGames';
+// import FavoriteGames from './FavoriteGames';
 
 export default function UserCard({ user }) {
 	return (
@@ -9,9 +9,6 @@ export default function UserCard({ user }) {
 				<Link to={`/profile/${user.id}`}>{user.nickname}</Link>
 			</div>
 			<p className="text-sm text-gray-400 ">{user.description}</p>
-			{/* <div className="justify-center  px-4 py-2 max-w-xs"> */}
-			<FavoriteGames user={user} />
-			{/* </div> */}
 			<br></br>
 			<button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
 				Add!
