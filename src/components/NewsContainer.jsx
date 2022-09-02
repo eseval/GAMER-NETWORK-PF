@@ -30,12 +30,16 @@ export default function NewsContainer() {
 
 	return (
 		<div className="container">
-			<h1 className="mt-5 mx-5 text-7xl opacity-85 font-totifont text-center text-white">NEWS</h1>
+			<h1 className="mx-5 mt-5 text-center text-white text-7xl opacity-85 font-totifont">NEWS</h1>
 			<SearchBar className="mt-5" />
-			<div className="mt-3 container flex flex-wrap justify-center">
+			<div className="container flex flex-wrap justify-center mt-3">
 				{typeof allNews === 'object' ? (
 					currentNews.map(news => {
-						return <NewsCard news={news} key={news.id} />;
+            if(news.deleteFlag !== true) {
+              return <NewsCard news={news} key={news.id} />;
+            } else {
+              return ''
+            }
 					})
 				) : (
 					<p>News not found</p>

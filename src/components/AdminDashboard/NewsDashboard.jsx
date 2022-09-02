@@ -5,6 +5,8 @@ import { DataGrid, gridClasses } from "@mui/x-data-grid";
 import { getAllNews } from "../../redux/actions";
 import { useMemo } from "react";
 import { grey } from '@mui/material/colors';
+import NewsForm from "./NewsForm";
+import NewsActions from "./NewsActions";
 
 export default function NewsDashboard() {
   const dispatch = useDispatch();
@@ -19,17 +21,20 @@ export default function NewsDashboard() {
 
   const columnNews = useMemo(() => [
     { field: 'id', headerName: 'ID', width: 100 },
-    { field: 'title', headerName: 'Title', width: 400 },
-    { field: 'short_description', headerName: 'Description', width: 300 },
+    { field: 'title', headerName: 'Title', width: 400, editable: true },
+    { field: 'short_description', headerName: 'Description', width: 300, editable: true },
     { field: 'main_image', headerName: 'Image', width: 60, renderCell:params=><Avatar src={params.row.main_image} />, sortable:false, filterable:false },
-  ], []);
+    { field: 'deleteFlag', headerName: 'Delete Flag', width: 100, type: 'boolean', editable: true },
+    { field: 'actions', headerName: 'Actions', type: 'actions', renderCell:params=><NewsActions {...{params, rowId, setRowId}}/>}
+  ], [rowId]);
 
   const rowNewsData = allNews?.map(news => {
     return {
       id: news?.id,
       title: news?.title,
       short_description: news?.short_description,
-      main_image: news?.main_image
+      main_image: news?.main_image,
+      deleteFlag: news?.deleteFlag
     }
   })
 
@@ -41,7 +46,7 @@ export default function NewsDashboard() {
         height:600,
         width:'60%',
         margin:'auto',
-        bgcolor: grey[100]
+        bgcolor: grey[300]
       }}
       >
         <DataGrid
@@ -51,7 +56,7 @@ export default function NewsDashboard() {
           sx={{
             [`& .${gridClasses.row}`]: {
               bgcolor: (theme) => 
-                theme.palette.mode === 'light' ? grey[200] : grey[900],
+                theme.palette.mode === 'light' ? grey[400] : grey[900],
             },
           }}
           pageSize={8}
@@ -63,6 +68,7 @@ export default function NewsDashboard() {
           onCellEditStart={params=>setRowId(params.id)}
         />
       </Box>
+      <NewsForm />
     </div>
   )
 }

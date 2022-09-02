@@ -3,28 +3,28 @@ import { Box, CircularProgress, Fab } from "@mui/material";
 import { Check, Save } from "@mui/icons-material";
 import { green } from '@mui/material/colors';
 import axios from 'axios';
-import { getAllPosts } from "../../redux/actions";
+import { getAllNews } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
-export default function ForumActions({params, rowId, setRowId}) {
+export default function NewsActions({params, rowId, setRowId}) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const handleSubmit= async () => {
     setLoading(true);
-    const { id, title, text, deleteFlag } = params.row;
+    const { id, short_description, title, deleteFlag } = params.row;
 
-    const result = await axios.put(`https://pf-henry-gamesportal.herokuapp.com/forum/${id}`, {
+    const result = await axios.put(`https://pf-henry-gamesportal.herokuapp.com/news/${id}`, {
       title,
-      text,
+      short_description,
       deleteFlag
     })
 
     if(result){
       setSuccess(true);
       setRowId(null);
-      dispatch(getAllPosts());
+      dispatch(getAllNews());
     }
     setLoading(false)
   }
