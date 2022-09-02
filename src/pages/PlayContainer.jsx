@@ -12,6 +12,7 @@ export default function PlayContainer() {
 	const navigate = useNavigate();
 	const allUsers = useSelector(state => state.users);
 	const [currentPage, setCurrentPage] = useState(0);
+	const [search, setSearch] = useState('');
 
 	useEffect(() => {
 		dispatch(getUsers());
@@ -19,7 +20,7 @@ export default function PlayContainer() {
 
 	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
 	const otherUser = allUsers.filter(e => dataUser.id !== e.id);
-	console.log(otherUser);
+	// console.log(otherUser);
 
 	useEffect(() => {
 		if (!dataUser || dataUser === '') {
@@ -27,9 +28,14 @@ export default function PlayContainer() {
 		}
 	}, [dataUser, navigate]);
 
-	const usersByAdd = otherUser.filter(user => user.nickname.toLowerCase());
+	const usersByAdd = otherUser.filter(user => user.nickname.toLowerCase().includes(search.toLocaleLowerCase()));
 	const paginatedUsers = () => {
 		return usersByAdd.slice(currentPage, currentPage + 1);
+	};
+
+	const handleChange = e => {
+		setCurrentPage(0);
+		setSearch(e.target.value);
 	};
 
 	const nextPage = () => {
@@ -50,7 +56,38 @@ export default function PlayContainer() {
 			<div className="container">
 				<h1 className="m-5 text-5xl font-semibold text-center text-white">Community</h1>
 				<div className="container flex flex-col">
-					<div className="max-w-md mx-24"></div>
+					<div className="max-w-md mx-24">
+						<form>
+							<div className="relative">
+								<div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+									<svg
+										aria-hidden="true"
+										className="w-5 h-5 text-gray-500 dark:text-gray-400"
+										fill="none"
+										stroke="currentColor"
+										viewBox="0 0 24 24"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth="2"
+											d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+										></path>
+									</svg>
+								</div>
+								<input
+									type="text"
+									id="default-search"
+									className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+									placeholder="Search a friend!..."
+									required=""
+									onChange={handleChange}
+									value={search}
+								/>
+							</div>
+						</form>
+					</div>
 					<div className="container flex flex-row items-center mt-5">
 						<div className="ml-3">
 							<button
