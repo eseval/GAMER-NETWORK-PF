@@ -13,7 +13,7 @@ export default function Reward() {
 	const navigate = useNavigate();
 	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [rewardsPerPage] = useState(4);
+	const [rewardsPerPage] = useState(6);
 	const indexOfLastreward = currentPage * rewardsPerPage;
 	const indexOffirstreward = indexOfLastreward - rewardsPerPage;
 	const currentReward = rewards.slice(indexOffirstreward, indexOfLastreward);
@@ -43,8 +43,9 @@ export default function Reward() {
 	return (
 		<div>
 			<NavBar />
-			<div className="flex flex-row">
-				{[...currentReward].map(re =>
+			<h1 className="mt-10 mb-10 mx-5 text-7xl opacity-85 font-totifont text-center text-white">REWARDS</h1>
+			<div className="container flex flex-wrap justify-center">
+				{[...currentReward]?.map(re =>
 					re.deleteFlag === false && re.available === true ? (
 						<RewardCard
 							title={re.title}
