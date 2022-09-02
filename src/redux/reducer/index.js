@@ -26,6 +26,7 @@ import {
   POST_FORUM,
   POST_FORUM_ANSWERS,
   POST_USER,
+  REPORT_POST_FORUM,
   SEARCH_NEWS_BY_TITLE,
 } from "../actions/types";
 
@@ -207,6 +208,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         genres: action.payload,
+      };
+    case REPORT_POST_FORUM:
+      return {
+        ...state,
+        forumById: action.payload,
       };
     default:
       return { ...state };

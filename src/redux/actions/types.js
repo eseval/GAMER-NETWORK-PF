@@ -30,3 +30,4 @@ export const GET_GAMES_BY_ID = "GET_GAMES_BY_ID";
 export const CLEAN_GAMES_BY_ID_STATE = "CLEAN_GAMES_BY_ID_STATE";
 export const LOADING_USER = "LOADING_USER";
 export const GET_GENRES = "GET_GENRES";
+export const REPORT_POST_FORUM = "REPORT_POST_FORUM";

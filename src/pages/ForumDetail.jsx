@@ -1,10 +1,9 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
-import { cleanForum, getForum } from "../redux/actions";
+import { cleanForum, getForum, reportPostForum } from "../redux/actions";
 import AnswerForum from "../components/AnswerForum";
 import NavBar from "../components/NavBar";
-import ReportForumPost from "../components/ReportForumPost";
 
 export default function ForumDetail() {
   const { id } = useParams();
@@ -27,6 +26,16 @@ export default function ForumDetail() {
       dispatch(cleanForum());
     };
   }, [dispatch, id]);
+
+  console.log(details);
+
+  let buttonReport = false
+
+  function handleOnChange(e) {
+    const report = { report: dataUser.id };
+    let buttonReport = true
+    dispatch(reportPostForum(id, report));
+  }
 
   return (
     <div>
@@ -77,14 +86,22 @@ export default function ForumDetail() {
                 </p>
                 <p>Comments: {details?.answers?.length}</p>
               </div>
-              {details.deleteFlag === false &&
+              {buttonReport === true || details?.report?.includes(dataUser.id) ? (
+                  ""
+                ) : (
+                details.deleteFlag === false &&
               details.userId !== dataUser.id ? (
                   <div>
-                    <ReportForumPost />
+                    <button
+                        onClick={handleOnChange}
+                        className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                    >
+                      Report Post
+                    </button>
                   </div>
               ) : (
                   ""
-              )}
+              ) )}
               {details.deleteFlag === false &&
               details.userId === dataUser.id ? (
                 <Link to={`/post/${details.id}`}>

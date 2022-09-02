@@ -27,7 +27,7 @@ import {
 	POST_USER,
 	SEARCH_NEWS_BY_TITLE,
 	LOADING_USER,
-	GET_GENRES,
+	GET_GENRES, REPORT_POST_FORUM,
 } from './types';
 
 const USERS_URL = 'https://pf-henry-gamesportal.herokuapp.com/users';
@@ -312,6 +312,18 @@ export function getGenres() {
 		try {
 			let json = await axios.get(GENRES_URL);
 			return dispatch({ type: GET_GENRES, payload: json.data });
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export function reportPostForum(id, data) {
+	return async function (dispatch) {
+		try {
+			await axios.put(`${FORUM_URL}/${id}`, data);
+			let json = await axios.get(`${FORUM_URL}/${id}`);
+			return dispatch({ type: REPORT_POST_FORUM, payload: json.data });
 		} catch (error) {
 			console.log(error);
 		}
