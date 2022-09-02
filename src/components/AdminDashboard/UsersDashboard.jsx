@@ -12,7 +12,7 @@ export default function UsersDashboard() {
   const dispatch = useDispatch();
   const allUsers = useSelector(state => state.users);
   
-  const [rowId, setRowId] = useState(null)
+  const [rowId, setRowId] = useState(null);
 
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function UsersDashboard() {
     { field: 'isAdmin', headerName: 'Admin', width: 60, type: 'boolean', editable: true },
     { field: 'isSuperAdmin', headerName: 'SuperAdmin', width: 100, type: 'boolean', editable: true },
     { field: 'favoriteGames', headerName: 'Favorite Games', width: 150 },
-    { field: 'friends', headerName: 'Matched Users', width: 150 },
+    { field: 'friends', headerName: 'Friends', width: 150 },
     { field: 'coins', headerName: 'Coins', width: 60, editable:true },
     { field: 'rating', headerName: 'Rating', width: 60 },
     { field: 'forums', headerName: 'Posts', width: 60 },

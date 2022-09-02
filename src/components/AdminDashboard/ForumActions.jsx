@@ -3,43 +3,30 @@ import { Box, CircularProgress, Fab } from "@mui/material";
 import { Check, Save } from "@mui/icons-material";
 import { green } from '@mui/material/colors';
 import axios from 'axios';
-import { getUsers } from "../../redux/actions";
+import { getAllPosts } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
-export default function UsersActions({params, rowId, setRowId}) {
+export default function ForumActions({params, rowId, setRowId}) {
   const dispatch = useDispatch();
-  const [dataUser, setDataUser] = useState(JSON.parse(window.localStorage.userLogged))
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  useEffect(() => {
-		setDataUser(JSON.parse(window.localStorage.userLogged));
-  }, [setDataUser])
-
-  const handleSubmit = async () => {
+  const handleSubmit= async () => {
     setLoading(true);
-    const { id, nickname, description, plan, isAdmin, isSuperAdmin, coins, servers, deleteFlag, bannedFlag } = params.row;
+    const { id, title, text, deleteFlag } = params.row;
+    console.log(id)
 
-    const result = await axios.put(`https://pf-henry-gamesportal.herokuapp.com/users/${id}`, {
-      nickname,
-      description,
-      plan, 
-      isAdmin, 
-      isSuperAdmin, 
-      coins, 
-      servers, 
-      deleteFlag, 
-      bannedFlag
-    });
-
-    const newDataUser = await axios.get(`https://pf-henry-gamesportal.herokuapp.com/users/${dataUser.id}`);
-    window.localStorage.setItem('userLogged', JSON.stringify(newDataUser.data));
-    setDataUser(JSON.parse(window.localStorage.userLogged));
+    const result = await axios.put(`https://pf-henry-gamesportal.herokuapp.com/forum/${id}`, {
+      title,
+      text,
+      deleteFlag
+    })
+    console.log(result)
 
     if(result){
       setSuccess(true);
       setRowId(null);
-      dispatch(getUsers());
+      dispatch(getAllPosts());
     }
     setLoading(false)
   }
@@ -47,7 +34,6 @@ export default function UsersActions({params, rowId, setRowId}) {
   useEffect(() => {
     if(rowId === params.id && success) setSuccess(false)
   }, [rowId, params.id, success])
-
 
   return (
     <Box
