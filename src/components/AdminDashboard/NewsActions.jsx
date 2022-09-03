@@ -20,7 +20,7 @@ export default function NewsActions({params, rowId, setRowId}) {
       short_description,
       deleteFlag
     })
-
+    
     if(result){
       setSuccess(true);
       setRowId(null);

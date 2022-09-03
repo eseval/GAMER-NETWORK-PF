@@ -46,7 +46,7 @@ export default function NewsDashboard() {
         height:600,
         width:'60%',
         margin:'auto',
-        bgcolor: grey[300]
+        bgcolor: grey[200]
       }}
       >
         <DataGrid
@@ -55,8 +55,7 @@ export default function NewsDashboard() {
           loading={!allNews.length}
           sx={{
             [`& .${gridClasses.row}`]: {
-              bgcolor: (theme) => 
-                theme.palette.mode === 'light' ? grey[400] : grey[900],
+              bgcolor: grey[300]
             },
           }}
           pageSize={8}
