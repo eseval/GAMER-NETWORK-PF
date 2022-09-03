@@ -58,7 +58,7 @@ export default function ForumDashboard() {
         height:600,
         width:'80%',
         margin:'auto',
-        bgcolor: grey[300]
+        bgcolor: grey[200]
       }}
       >
         <DataGrid
@@ -67,8 +67,7 @@ export default function ForumDashboard() {
           loading={!allPosts.length}
           sx={{
             [`& .${gridClasses.row}`]: {
-              bgcolor: (theme) => 
-                theme.palette.mode === 'light' ? grey[400] : grey[900],
+              bgcolor: grey[300]
             },
           }}
           pageSize={8}
