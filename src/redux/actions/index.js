@@ -27,7 +27,9 @@ import {
 	POST_USER,
 	SEARCH_NEWS_BY_TITLE,
 	LOADING_USER,
-	GET_GENRES, REPORT_POST_FORUM,
+	GET_GENRES,
+	REPORT_POST_FORUM,
+	ADD_FRIEND,
 } from './types';
 
 const USERS_URL = 'https://pf-henry-gamesportal.herokuapp.com/users';
@@ -324,6 +326,19 @@ export function reportPostForum(id, data) {
 			await axios.put(`${FORUM_URL}/${id}`, data);
 			let json = await axios.get(`${FORUM_URL}/${id}`);
 			return dispatch({ type: REPORT_POST_FORUM, payload: json.data });
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export function addFriend(friendsId, id, deleteFriend) {
+	return async function (dispatch) {
+		try {
+			await axios.put(`${USERS_URL}/${id}?deleteFriend=${deleteFriend}`, { friends: friendsId });
+			const json = await axios.get(`${USERS_URL}/${id}`);
+			window.localStorage.setItem('userLogged', JSON.stringify(json.data));
+			return dispatch({ type: ADD_FRIEND, payload: json.data });
 		} catch (error) {
 			console.log(error);
 		}
