@@ -18,9 +18,8 @@ export default function PlayContainer() {
 		dispatch(getUsers());
 	}, [dispatch]);
 
-	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
-	const otherUser = allUsers.filter(e => dataUser.id !== e.id);
-	// console.log(otherUser);
+	let dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
+	const otherUser = allUsers?.filter(e => dataUser.id !== e.id);
 
 	useEffect(() => {
 		if (!dataUser || dataUser === '') {
