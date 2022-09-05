@@ -21,7 +21,7 @@ export default function PlayContainer() {
 	useEffect(() => {
 	}, []);
 
-	const [currentPage, seCurrentPage] = useState(0);
+	const [currentPage, setCurrentPage] = useState(0);
 	const [search, setSearch] = useState('');
 
 	useEffect(() => {
