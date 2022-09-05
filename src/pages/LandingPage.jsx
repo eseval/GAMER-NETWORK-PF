@@ -13,7 +13,7 @@ export default function LandingPage() {
 	const userDb = useSelector(state => state.user);
 
 	useEffect(() => {
-		if (userDb.length > 0) {
+		if (userDb?.length > 0) {
 		} else {
 			if (user) {
 				dispatch(postUser(user));
@@ -37,7 +37,7 @@ export default function LandingPage() {
 				</div>
 			);
 		}
-    if(userDb[0].bannedFlag === false && userDb[0].deleteFlag === false) {
+    if(userDb[0]?.bannedFlag === false && userDb[0]?.deleteFlag === false) {
       return (
         <div className="bg-[url('https://cdnb.artstation.com/p/assets/images/images/012/193/905/original/maria-hager-titlescreen-retro-glitch.gif?1533552570')] bg-cover bg-center bg-no-repeat fixed h-screen w-screen">
           <div className="container text-center align-middle">
@@ -45,7 +45,7 @@ export default function LandingPage() {
             <img className="absolute inset-0 w-32 h-32" src="https://i.imgur.com/9ESFHWn.png" alt="" />
             <div className="mt-10">
               <h3 className="text-5xl text-center text-white font-totifont opacity-70">
-                Welcome, {userDb.length > 0 ? userDb[0].nickname : ''}.
+                Welcome, {userDb?.length > 0 ? userDb[0]?.nickname : ''}.
               </h3>
               <div className="flex flex-row-reverse justify-center my-20 align-middle">
                 <LogoutButton />
@@ -97,3 +97,4 @@ export default function LandingPage() {
 		);
 	}
 }
+

@@ -1,49 +1,43 @@
-import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useState } from "react";
-import { editPost, getForum, getGenres, postForum, cleanForumEdit } from "../redux/actions";
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { editPost, getForum, getGenres, postForum, cleanForumEdit } from '../redux/actions';
 // import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+import { useNavigate, useParams } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 export default function FormForum() {
 	const navigate = useNavigate();
-	const dataUser = !window.localStorage.userLogged
-		? ""
-		: JSON.parse(window.localStorage.userLogged);
+	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (!dataUser || dataUser === "") {
-			navigate("/");
+		if (!dataUser || dataUser === '') {
+			navigate('/');
 		}
 	}, [dataUser, navigate]);
 
-
 	let id = useParams();
 
-	const allGenres = useSelector((state) => state.genres);
+	const allGenres = useSelector(state => state.genres);
 
 	useEffect(() => {
 		if (id) {
-			dispatch(getForum(id))
+			dispatch(getForum(id));
 		}
 		return () => {
-			dispatch(cleanForumEdit())
-		}
-
+			dispatch(cleanForumEdit());
+		};
 	}, [dispatch]);
 
-
-	let postById = useSelector((state) => state.forumById);
-
+	let postById = useSelector(state => state.forumById);
 
 	const [input, setInput] = useState({
 		userId: dataUser.id,
 		nickname: dataUser.nickname,
-		text: !id?.id ? "" : postById.text,
-		title: !id?.id ? "" : postById.title,
-		genre: !id?.id ? "" : postById.genre,
+		text: !id?.id ? '' : postById.text,
+		title: !id?.id ? '' : postById.title,
+		genre: !id?.id ? '' : postById.genre,
 	});
 
 	function handleOnChange(e) {
@@ -62,29 +56,28 @@ export default function FormForum() {
 			setInput({
 				userId: dataUser.id,
 				nickname: dataUser.nickname,
-				text: "",
-				title: "",
-				genre: "",
+				text: '',
+				title: '',
+				genre: '',
 			});
-			navigate(`/postDetails/${id.id}`)
-
+			navigate(`/postDetails/${id.id}`);
 		}
-		setNewPost(false)
+		setNewPost(false);
 	}
 
 	function handleCancel(e) {
-		e.preventDefault()
+		e.preventDefault();
 		setInput({
 			userId: dataUser.id,
 			nickname: dataUser.nickname,
-			text: "",
-			title: "",
-			genre: "",
+			text: '',
+			title: '',
+			genre: '',
 		});
 		if (!id.id) {
-			setNewPost(false)
+			setNewPost(false);
 		} else {
-			navigate(`/postDetails/${id.id}`)
+			navigate(`/postDetails/${id.id}`);
 		}
 	}
 
@@ -101,23 +94,25 @@ export default function FormForum() {
 		});
 	}
 
-
 	return (
 		<div>
-			{newPost === false && !id.id ?
-				<button
-					type="button"
-					onClick={e => setNewPost(true)}
-					className="relative inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
-				>
-					<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-						NEW POST
-					</span>
-				</button> :
-				<div className="p-8 ">
+			{newPost === false && !id.id ? (
+				<div className="my-5 mx-3 ">
+					<button
+						type="button"
+						onClick={e => setNewPost(true)}
+						className="relative inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+					>
+						<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+							New Post
+						</span>
+					</button>
+				</div>
+			) : (
+				<div className="p-8">
 					<form onSubmit={e => handleOnSubmit(e)}>
 						<div className=" flex w-1/2 ">
-							<div className="mr-6">
+							<div className="mr-6 ml-30">
 								<label
 									htmlFor="message"
 									className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
@@ -134,7 +129,7 @@ export default function FormForum() {
 								/>
 							</div>
 
-							<div className="w-fit">
+							<div className="w-fit ml-48">
 								<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
 									Choose a genre:
 								</label>
@@ -171,16 +166,25 @@ export default function FormForum() {
 								placeholder="Leave a comment..."
 							></textarea>
 						</div>
-						<button
-							type="submit"
-							className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-							disabled={!input.text || !input.title || !input.genre}
-						>
-							Submit
-						</button>
-						<button onClick={e => handleCancel(e)} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-							{!id.id ? "Cancel new post" : "Cancel edit post"}
-						</button>
+						<div className="ml-40">
+							<button
+								type="submit"
+								disabled={!input.text || !input.title || !input.genre}
+								className="relative inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+							>
+								<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+									Submit
+								</span>
+							</button>
+							<button
+								onClick={e => handleCancel(e)}
+								className="relative inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+							>
+								<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+									{!id.id ? 'Cancel new post' : 'Cancel edit post'}
+								</span>
+							</button>
+						</div>
 					</form>
 					<Toaster
 						position="button-right"
@@ -205,7 +209,7 @@ export default function FormForum() {
 						}}
 					/>
 				</div>
-			}
+			)}
 		</div>
 	);
 }

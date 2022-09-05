@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getRewards, cleanRewardState } from '../redux/actions';
+import { getRewards, cleanState } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import RewardCard from '../components/RewardCard';
 import NavBar from '../components/NavBar';
 import { useNavigate } from 'react-router-dom';
 import Paginate from '../components/Paginate';
 import Footer from '../components/Footer';
+import Loader from '../components/Loader';
 
 export default function Reward() {
 	const dispatch = useDispatch();
@@ -21,12 +22,12 @@ export default function Reward() {
 		setCurrentPage(pageNumber);
 	};
 
-	rewards = rewards.filter(e => !e.deleted === true && !e.available === false);
+	rewards = rewards?.filter(e => !e.deleted === true && !e.available === false);
 
 	useEffect(() => {
 		dispatch(getRewards());
 		return () => {
-			dispatch(cleanRewardState());
+			dispatch(cleanState());
 		};
 	}, [dispatch]);
 
@@ -36,8 +37,20 @@ export default function Reward() {
 		}
 	}, [dataUser, navigate]);
 
-	if (currentPage > Math.ceil(rewards.length / rewardsPerPage) && currentPage !== 1) {
+	if (currentPage > Math.ceil(rewards?.length / rewardsPerPage) && currentPage !== 1) {
 		setCurrentPage(1);
+	}
+
+
+	while (rewards?.length < 1) {
+		return (
+			<div className="container text-center">
+				<h1 className="text-8xl font-totifont opacity-70 text-white my-20">Play Center</h1>
+				<div className="mt-10">
+					<Loader />
+				</div>
+			</div>
+		);
 	}
 
 	return (
