@@ -22,7 +22,6 @@ export default function Profile() {
 	const user = useSelector(state => state.user);
 	const isLoading = useSelector(state => state.userLoading);
 
-
 	useEffect(() => {
 		dispatch(getUserById(id));
 	}, [dispatch, id]);
@@ -34,7 +33,6 @@ export default function Profile() {
 			return 'Free';
 		}
 	};
-
 
 	if (!isLoading) {
 		return (
@@ -93,15 +91,15 @@ export default function Profile() {
 								<div className="px-4 py-5 bg-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 									<dt className="text-4x1 font-semibold text-gray-900">Server</dt>
 									<dd className="mt-1 text-3X1 ml-20 text-gray-900 sm:mt-0 sm:col-span-2">
-										{user?.servers && user?.servers?.length > 0 ? user?.servers : 'No servers found'}
+										{user?.servers && user?.servers?.length > 0
+											? user?.servers
+											: 'No servers found'}
 									</dd>
 								</div>
-								<div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-									<dt className="text-4x1 font-semibold text-gray-900">Matched users</dt>
-									<dd className="mt-1 text-3X1 ml-20 text-gray-900 sm:mt-0 sm:col-span-2">
-										{user?.matched_users && user?.matched_users?.length > 0
-											? user?.matched_users?.join(', ')
-											: 'No users found'}
+								<div className="flex flex-row items-center px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+									<dt className="text-4x1 font-semibold text-gray-900">Friends</dt>
+									<dd className="mt-1 text-3X1 ml-20 text-gray-900 sm:mt-0 sm:col-span-2 ">
+										<FriendsForProfile friendsIds={dataUser?.friends} id={id} user={user} />
 									</dd>
 								</div>
 								<div className="px-4 py-5 bg-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -122,8 +120,6 @@ export default function Profile() {
 								)}
 							</dl>
 						</div>
-						<FriendsForProfile friendsIds={dataUser?.friends} id={id} />
-
 					</div>
 				</div>
 				<div>

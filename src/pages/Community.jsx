@@ -9,32 +9,26 @@ import Footer from '../components/Footer';
 
 export default function PlayContainer() {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const allUsers = useSelector(state => state.users);
 	let dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
 
-	const navigate = useNavigate();
 	useEffect(() => {
 		if (!dataUser || dataUser === '') {
 			navigate('/');
 		}
 	}, [dataUser, navigate]);
-	dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged)
-	useEffect(() => {
-	}, []);
-
-	const [currentPage, setCurrentPage] = useState(0);
-	const [search, setSearch] = useState('');
 
 	useEffect(() => {
 		dispatch(getUsers());
 	}, [dispatch]);
 
-	const allUsers = useSelector(state => state.users);
-
+	const [currentPage, setCurrentPage] = useState(0);
+	const [search, setSearch] = useState('');
 	const otherUser = allUsers?.filter(e => dataUser.id !== e.id);
-
 	const usersByAdd = otherUser.filter(user => user.nickname.toLowerCase().includes(search.toLocaleLowerCase()));
 	const paginatedUsers = () => {
-		return usersByAdd.slice(currentPage, currentPage + 1);
+		return usersByAdd.slice(currentPage, currentPage + 3);
 	};
 
 	const handleChange = e => {
@@ -43,13 +37,13 @@ export default function PlayContainer() {
 	};
 
 	const nextPage = () => {
-		if (usersByAdd.length > currentPage + 1) {
-			setCurrentPage(currentPage + 1);
+		if (usersByAdd.length > currentPage + 3) {
+			setCurrentPage(currentPage + 3);
 		}
 	};
 
 	const prevPage = () => {
-		if (currentPage > 0) setCurrentPage(currentPage - 1);
+		if (currentPage > 0) setCurrentPage(currentPage - 3);
 	};
 
 	let usersToShow = paginatedUsers();
@@ -58,7 +52,7 @@ export default function PlayContainer() {
 		<div>
 			<NavBar />
 			<div className="container">
-				<h1 className="m-5 text-5xl font-semibold text-center text-white">Community</h1>
+				<h1 className="mt-10 mb-10 mx-5 text-7xl opacity-85 font-totifont text-center text-white">Community</h1>
 				<div className="container flex flex-col">
 					<div className="max-w-md mx-24">
 						<form>
@@ -88,8 +82,14 @@ export default function PlayContainer() {
 									required=""
 									onChange={handleChange}
 									value={search}
+									list="data"
 								/>
 							</div>
+							<datalist id="data">
+								{typeof otherUser === 'object'
+									? otherUser.map(e => <option key={e.id} value={e.nickname}></option>)
+									: ''}
+							</datalist>
 						</form>
 					</div>
 					<div className="container flex flex-row items-center mt-5">
