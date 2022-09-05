@@ -69,7 +69,7 @@ export default function FavoriteGames({ user }) {
 					</button>
 				</div>
 				<div className="container flex flex-row justify-center ">
-					{paginatedGames()?.map(e => {
+					{paginatedGames().map(e => {
 						return (
 							<div
 								key={e.name}

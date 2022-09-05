@@ -56,7 +56,7 @@ export default function FriendsForProfile({ friendsIds, id, user }) {
 					</button>
 				</div>
 				<div className="container flex flex-row justify-center ">
-					{paginatedGames()?.map(e => {
+					{paginatedGames().map(e => {
 						return (
 							<div
 								key={e.nickname}
