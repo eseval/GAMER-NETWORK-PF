@@ -28,7 +28,7 @@ export default function PlayContainer() {
 	const otherUser = allUsers?.filter(e => dataUser.id !== e.id);
 	const usersByAdd = otherUser.filter(user => user.nickname.toLowerCase().includes(search.toLocaleLowerCase()));
 	const paginatedUsers = () => {
-		return usersByAdd.slice(currentPage, currentPage + 3);
+		return usersByAdd?.slice(currentPage, currentPage + 3);
 	};
 
 	const handleChange = e => {
@@ -37,7 +37,7 @@ export default function PlayContainer() {
 	};
 
 	const nextPage = () => {
-		if (usersByAdd.length > currentPage + 3) {
+		if (usersByAdd?.length > currentPage + 3) {
 			setCurrentPage(currentPage + 3);
 		}
 	};

@@ -22,19 +22,19 @@ export default function FavoriteGames({ user }) {
 
 	let favoriteGames = [];
 	if (dataUser.id !== user.id) {
-		favoriteGames = user.favoriteGames.map(g => allGames.filter(e => e.id === g));
+		favoriteGames = user?.favoriteGames?.map(g => allGames?.filter(e => e.id === g));
 	} else {
-		favoriteGames = dataUser.favoriteGames.map(g => allGames.filter(e => e.id === g));
+		favoriteGames = dataUser?.favoriteGames?.map(g => allGames?.filter(e => e.id === g));
 	}
 
-	favoriteGames = favoriteGames.flat(Infinity);
+	favoriteGames = favoriteGames?.flat(Infinity);
 
 	const paginatedGames = () => {
-		return favoriteGames.slice(currentPage, currentPage + 1);
+		return favoriteGames?.slice(currentPage, currentPage + 1);
 	};
 
 	const nextPage = () => {
-		if (favoriteGames.length > currentPage + 1) {
+		if (favoriteGames?.length > currentPage + 1) {
 			setCurrentPage(currentPage + 1);
 		}
 	};
@@ -57,7 +57,7 @@ export default function FavoriteGames({ user }) {
 		removeFavorite(id);
 	}
 
-	if (favoriteGames.length > 0) {
+	if (favoriteGames?.length > 0) {
 		return (
 			<div className="container flex flex-row items-center">
 				<div className="ml-1">
@@ -69,7 +69,7 @@ export default function FavoriteGames({ user }) {
 					</button>
 				</div>
 				<div className="container flex flex-row justify-center ">
-					{paginatedGames().map(e => {
+					{paginatedGames()?.map(e => {
 						return (
 							<div
 								key={e.name}

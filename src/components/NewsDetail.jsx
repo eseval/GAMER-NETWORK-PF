@@ -40,13 +40,13 @@ export default function NewDetail() {
 					</Link>
 				</div>
 				<div className="flex flex-col justify-center px-6 py-4 align-middle">
-					<div className="text-5xl font-bold">{news.title}</div>
+					<div className="text-5xl font-bold">{news?.title}</div>
 					<p className="my-2 mt-6 space-x-1 space-y-1 text-2xl text-center text-gray-700">
-						{news.short_description}
+						{news?.short_description}
 					</p>
-					<img className="mx-auto mt-3 rounded-md max-w-3x1" src={news.main_image} alt={news.title} />
+					<img className="mx-auto mt-3 rounded-md max-w-3x1" src={news?.main_image} alt={news.title} />
 					<p className="mt-6 space-x-1 space-y-1 text-2xl text-justify indent-8">
-						{news.article_content.replace(/<[^>]+>/g, '')}
+						{news?.article_content.replace(/<[^>]+>/g, '')}
 					</p>
 				</div>
 			</div>

@@ -44,11 +44,11 @@ export default function Profile() {
 						<div className="flex flex-row items-center justify-end px-4 py-5 sm:px-6">
 							<div className="flex flex-col items-end">
 								<h3 className="max-w-2xl mx-5 text-4xl font-semibold text-white">
-									{user.nickname ? user.nickname : 'User not found'}
+									{user?.nickname ? user?.nickname : 'User not found'}
 								</h3>
 								{dataUser?.id === user?.id ? (
 									<Link
-										to={`/profile/${dataUser.id}/edit`}
+										to={`/profile/${dataUser?.id}/edit`}
 										state={dataUser}
 										className="max-w-2xl mt-3 mx-5 text-sm text-slate-200 hover:text-gray-500"
 									>

@@ -29,7 +29,7 @@ export default function Search() {
 					id="inputSearch"
 				/>
 				<datalist id="data">
-					{typeof allNews === 'object' ? allNews.map(e => <option key={e.id} value={e.title}></option>) : ''}
+					{typeof allNews === 'object' ? allNews?.map(e => <option key={e.id} value={e.title}></option>) : ''}
 				</datalist>
 			</div>
 		</div>

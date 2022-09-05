@@ -16,8 +16,8 @@ export default function RewardCard({ title, image, price, recompenseType }) {
 			icon: 'warning',
 		}).then(res => {
 			if (res) {
-				const newTotal = dataUser.coins - price;
-				dataUser.coins = newTotal;
+				const newTotal = dataUser?.coins - price;
+				dataUser?.coins = newTotal;
 				if (newTotal >= 0) {
 					dispatch(claimRewards(dataUser, dataUser.id, price));
 					swal({

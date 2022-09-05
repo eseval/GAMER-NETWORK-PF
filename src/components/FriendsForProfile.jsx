@@ -24,15 +24,15 @@ export default function FriendsForProfile({ friendsIds, id, user }) {
 	let favoriteGames = [];
 
 	if (dataUser.id !== id) {
-		favoriteGames = user.friends.map(g => friends.filter(e => e.id === g));
+		favoriteGames = user?.friends?.map(g => friends?.filter(e => e.id === g));
 	} else {
-		favoriteGames = dataUser.friends.map(g => friends.filter(e => e.id === g));
+		favoriteGames = dataUser?.friends?.map(g => friends?.filter(e => e.id === g));
 	}
 
-	favoriteGames = favoriteGames.flat(Infinity);
+	favoriteGames = favoriteGames?.flat(Infinity);
 
 	const paginatedGames = () => {
-		return favoriteGames.slice(currentPage, currentPage + 1);
+		return favoriteGames?.slice(currentPage, currentPage + 1);
 	};
 
 	const nextPage = () => {
@@ -44,7 +44,7 @@ export default function FriendsForProfile({ friendsIds, id, user }) {
 		if (currentPage > 0) setCurrentPage(currentPage - 1);
 	};
 
-	if (favoriteGames.length > 0) {
+	if (favoriteGames?.length > 0) {
 		return (
 			<div className="container flex flex-row items-center">
 				<div className="ml-1">
@@ -56,7 +56,7 @@ export default function FriendsForProfile({ friendsIds, id, user }) {
 					</button>
 				</div>
 				<div className="container flex flex-row justify-center ">
-					{paginatedGames().map(e => {
+					{paginatedGames()?.map(e => {
 						return (
 							<div
 								key={e.nickname}
