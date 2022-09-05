@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { cleanGamesState, getGames } from '../redux/actions';
+import { cleanState, getGames } from '../redux/actions';
 import GamesCard from '../components/GamesCard';
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import Loader from '../components/Loader';
+
 
 export default function GamesContainer() {
 	const dispatch = useDispatch();
@@ -26,7 +28,7 @@ export default function GamesContainer() {
 	useEffect(() => {
 		dispatch(getGames());
 		return () => {
-			dispatch(cleanGamesState());
+			dispatch(cleanState());
 		};
 	}, [dispatch]);
 
@@ -53,6 +55,17 @@ export default function GamesContainer() {
 
 	let gamesToShow = paginatedGames();
 
+
+	while (allGames.length < 1) {
+		return (
+			<div className="container text-center">
+				<h1 className="text-8xl font-totifont opacity-70 text-white my-20">Play Center</h1>
+				<div className="mt-10">
+					<Loader />
+				</div>
+			</div>
+		);
+	}
 	return (
 		<div>
 			<NavBar />
