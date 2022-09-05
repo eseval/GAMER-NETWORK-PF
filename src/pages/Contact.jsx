@@ -1,83 +1,90 @@
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from 'yup';
 
 export default function Contact() {
   return (
       <div>
         <NavBar/>
-        <div className="bg-gray-300">
-          <section className="relative text-gray-600 body-font">
-            <div className="container px-5 py-24 mx-auto">
-              <div className="flex flex-col mb-12 text-center">
-                <h1 className="mb-4 text-2xl font-medium text-gray-900 sm:text-3xl title-font">
-                  Contact Us
-                </h1>
+        <div className="container mb-10">
+          <h1 className="mx-5 mt-10 text-center text-white text-7xl opacity-85 font-totifont">Contact</h1>
+        </div>
+        <div className="container max-w-3xl p-5 mb-10 bg-gray-300 rounded-md">
+          <Formik
+            initialValues={{
+              name: '',
+              email: '',
+              subject: '',
+              message: ''
+            }}
+            validationSchema={Yup.object({
+              name: Yup.string().required('Please enter a name'),
+              email: Yup.string()
+              .email('Invalid email format')
+              .required('Please enter an email'),
+              subject: Yup.string().required('Please enter a subject'),
+              message: Yup.string().required('Please enter a message')
+            })}
+            onSubmit={async (values, formikHelpers) => {
+              console.log(values)
+              formikHelpers.resetForm();
+            }}
+          >
+            <Form>
+              <div className="mb-3">
+                <label for="name" className="block text-lg font-medium text-gray-700">Name</label>
+                <Field 
+                  type="text"
+                  name="name"
+                  id="name"
+                  className="px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm w-80 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                <ErrorMessage component="div" className="text-xs italic text-red-500" name="name" />
               </div>
-              <div className="mx-auto lg:w-1/2 md:w-2/3">
-                <div className="flex flex-wrap -m-2">
-                  <div className="w-1/2 p-2">
-                    <div className="relative">
-                      <label
-                          htmlFor="name"
-                          className="text-sm leading-7 text-gray-600"
-                      >
-                        Name
-                      </label>
-                      <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-gray-100 bg-opacity-50 border border-gray-300 rounded outline-none focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-1/2 p-2">
-                    <div className="relative">
-                      <label
-                          htmlFor="email"
-                          className="text-sm leading-7 text-gray-600"
-                      >
-                        Email
-                      </label>
-                      <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-gray-100 bg-opacity-50 border border-gray-300 rounded outline-none focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full p-2">
-                    <div className="relative">
-                      <label
-                          htmlFor="message"
-                          className="text-sm leading-7 text-gray-600"
-                      >
-                        Message
-                      </label>
-                      <textarea
-                          id="message"
-                          name="message"
-                          className="w-full h-32 px-3 py-1 text-base leading-6 text-gray-700 transition-colors duration-200 ease-in-out bg-gray-100 bg-opacity-50 border border-gray-300 rounded outline-none resize-none focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200"
-                      ></textarea>
-                    </div>
-                  </div>
-                  <div className="w-full p-2">
-                    <button
-                        className="flex px-8 py-2 mx-auto text-lg text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600">
-                      Send Message
-                    </button>
-                  </div>
-                  <div className="w-full p-2 pt-8 mt-8 text-center border-t border-gray-200">
-                    <a className="text-indigo-500">
-                      proyectohenryfinal@gmail.com
-                    </a>
-                    <br/> <br/> <br/>
-                  </div>
-                </div>
+              <div className="mb-3">
+                <label for="email" className="block text-lg font-medium text-gray-700">Email</label>
+                <Field 
+                  type="text"
+                  name="email"
+                  id="email"
+                  className="px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm w-80 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                <ErrorMessage component="div" className="text-xs italic text-red-500" name="email" />
               </div>
-            </div>
-          </section>
+              <div className="mb-3">
+                <label for="subject" className="block text-lg font-medium text-gray-700">Subject</label>
+                <Field 
+                  type="text"
+                  name="subject"
+                  id="subject"
+                  className="px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm w-96 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                <ErrorMessage component="div" className="text-xs italic text-red-500" name="subject" />
+              </div>
+              <div className="mb-3">
+                <label for="message" className="block text-lg font-medium text-gray-700">Message</label>
+                <Field 
+                  type="text"
+                  as="textarea"
+                  name="message"
+                  id="message"
+                  className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                <ErrorMessage component="p" className="text-xs italic text-red-500" name="message" />
+              </div>
+              <div className="mt-3 text-center sm:px-6">
+                <button
+                  type="submit"
+                  className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+                >
+                  <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                    Send
+                  </span>
+                </button>
+              </div>
+            </Form>
+          </Formik>
         </div>
         <div>
           <Footer/>
