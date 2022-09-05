@@ -1,6 +1,6 @@
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -47,12 +47,30 @@ export default function PaymentStripe() {
 	const handleSubmit = async e => {
 		e.preventDefault();
 
-		const { error, paymentMethod } = await stripe.createPaymentMethod({
+    await Swal.fire({
+      title: 'Are you sure?',
+      showCancelButton: true,
+      confirmButtonColor: '#28a745',
+      cancelButtonColor: '#dc3545',
+      confirmButtonText: 'Yes, do it!',
+      imageUrl: 'https://i.pinimg.com/originals/ee/4d/b5/ee4db5b0318bc313e4a3f9fd26e4a9e1.gif',
+      imageHeight: '200px',
+      imageWidth: '200px',
+      background: '#fdf9fc'
+    }).then(result => {
+      if(result.isConfirmed) {
+        paymentSubmit();
+      }
+    })
+	};
+
+  const paymentSubmit = async () => {
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
 			type: 'card',
 			card: elements.getElement(CardElement),
 		});
 
-		if (!error) {
+    if (!error) {
 			const { id } = paymentMethod;
 			try {
 				const { data } = await axios.post('https://pf-henry-gamesportal.herokuapp.com/api/checkout', {
@@ -62,7 +80,7 @@ export default function PaymentStripe() {
 				});
 
 				if (data.code) {
-					swal({
+					Swal.fire({
 						title: 'Error!',
 						text: `${data.code.toString().replace('_', ' ').toUpperCase()} - ${data.decline_code
 							.toString()
@@ -70,27 +88,38 @@ export default function PaymentStripe() {
 							.toUpperCase()}`,
 						icon: 'error',
 						button: 'Ok',
+            imageUrl: 'https://i.pinimg.com/originals/f3/78/4d/f3784dc54de78b85eac662dc55ba64aa.gif',
+            imageHeight: '200px',
+            imageWidth: '200px',
+            background: '#fdf9fc',
+            confirmButtonColor: '#dc3545'
 					});
 					toast.error('Try again!');
 				} else {
-					swal({
+					Swal.fire({
 						title: 'Success!',
-						text: 'Payment confirmed',
+						text: 'Thanks for joining Play Center!',
 						icon: 'success',
 						button: 'Ok',
+            imageUrl: 'https://i.pinimg.com/originals/42/0e/55/420e553ac05ef62e4b114123e73865a0.gif',
+            imageHeight: '200px',
+            imageWidth: '200px',
+            background: '#fdf9fc',
+            confirmButtonColor: '#28a745'
 					});
 					const newDataUser = await axios.get(
 						`https://pf-henry-gamesportal.herokuapp.com/users/${dataUser.id}`
 					);
 					window.localStorage.setItem('userLogged', JSON.stringify(newDataUser.data));
 					toast.success('Thanks for joining play center');
+          navigate('/home');
 				}
 				elements.getElement(CardElement).clear();
 			} catch (error) {
 				console.log(error);
 			}
 		}
-	};
+  }
 
 	return (
 		<div>
@@ -98,11 +127,6 @@ export default function PaymentStripe() {
 			<div className="container">
 				<h1 className="my-5 text-5xl font-semibold text-center text-white">Payment</h1>
 				<div className="container max-w-2xl p-8 mt-10 bg-gray-800 border-2 border-gray-700 rounded-md">
-					<div className="mb-5">
-						<Link className="text-blue-400 text-md" to="/home">
-							Return to Home
-						</Link>
-					</div>
 					<form onSubmit={handleSubmit} className="flex flex-col">
 						<CardElement options={cardElementOptions} />
 						<button
