@@ -97,14 +97,14 @@ export default function FormForum() {
 	return (
 		<div>
 			{newPost === false && !id.id ? (
-				<div className="my-5 mx-3">
+				<div className="my-5 mx-3 ">
 					<button
 						type="button"
 						onClick={e => setNewPost(true)}
 						className="relative inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
 					>
 						<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-							NEW POST
+							New Post
 						</span>
 					</button>
 				</div>
@@ -112,7 +112,7 @@ export default function FormForum() {
 				<div className="p-8">
 					<form onSubmit={e => handleOnSubmit(e)}>
 						<div className=" flex w-1/2 ">
-							<div className="mr-6">
+							<div className="mr-6 ml-30">
 								<label
 									htmlFor="message"
 									className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
@@ -129,7 +129,7 @@ export default function FormForum() {
 								/>
 							</div>
 
-							<div className="w-fit">
+							<div className="w-fit ml-48">
 								<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
 									Choose a genre:
 								</label>
@@ -166,23 +166,25 @@ export default function FormForum() {
 								placeholder="Leave a comment..."
 							></textarea>
 						</div>
-						<button
-							type="submit"
-							disabled={!input.text || !input.title || !input.genre}
-							className="relative inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
-						>
-							<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-								Submit
-							</span>
-						</button>
-						<button
-							onClick={e => handleCancel(e)}
-							className="relative inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
-						>
-							<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-								{!id.id ? 'Cancel new post' : 'Cancel edit post'}
-							</span>
-						</button>
+						<div className="ml-40">
+							<button
+								type="submit"
+								disabled={!input.text || !input.title || !input.genre}
+								className="relative inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+							>
+								<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+									Submit
+								</span>
+							</button>
+							<button
+								onClick={e => handleCancel(e)}
+								className="relative inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+							>
+								<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+									{!id.id ? 'Cancel new post' : 'Cancel edit post'}
+								</span>
+							</button>
+						</div>
 					</form>
 					<Toaster
 						position="button-right"

@@ -33,8 +33,10 @@ const AnswerForum = ({ forumId, comments }) => {
 	}
 
 	return (
-		<div className="mx-4">
-			<h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Answer this post</h3>
+		<div className="mx-4 justify-center p-0">
+			<h3 className="mb-2 ml-14 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+				Answer this post
+			</h3>
 			<section>
 				<form onSubmit={e => handleSubmit(e)}>
 					<div className="my-4">
@@ -54,11 +56,20 @@ const AnswerForum = ({ forumId, comments }) => {
 						></textarea>
 						<button
 							type="submit"
+							disabled={!value.comment}
+							className="my-3 ml-32 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+						>
+							<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+								Submit
+							</span>
+						</button>{' '}
+						{/* <button
+							type="submit"
 							className="my-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
 							disabled={!value.comment}
 						>
 							Submit
-						</button>{' '}
+						</button>{' '} */}
 					</div>
 				</form>
 			</section>
