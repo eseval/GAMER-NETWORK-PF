@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers } from '../redux/actions';
+import { cleanState, getUsers } from '../redux/actions';
 import UserCard from '../components/UserCards';
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import Loader from '../components/Loader';
 
 export default function PlayContainer() {
 	const dispatch = useDispatch();
@@ -21,6 +22,9 @@ export default function PlayContainer() {
 
 	useEffect(() => {
 		dispatch(getUsers());
+		return () => {
+			dispatch(cleanState())
+		}
 	}, [dispatch]);
 
 	const [currentPage, setCurrentPage] = useState(0);
@@ -48,6 +52,16 @@ export default function PlayContainer() {
 
 	let usersToShow = paginatedUsers();
 
+	while (allUsers?.length < 1) {
+		return (
+			<div className="container text-center">
+				<h1 className="text-8xl font-totifont opacity-70 text-white my-20">Play Center</h1>
+				<div className="mt-10">
+					<Loader />
+				</div>
+			</div>
+		);
+	}
 	return (
 		<div>
 			<NavBar />
