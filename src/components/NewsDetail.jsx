@@ -16,7 +16,7 @@ export default function NewDetail() {
 			dispatch(cleanNewsState());
 		};
 	}, [dispatch, id]);
-  console.log(news)
+
 	while (!news || id.toString() !== news.id.toString()) {
 		return (
 			<div className="container text-center">

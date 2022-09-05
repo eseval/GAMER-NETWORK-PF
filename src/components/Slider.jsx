@@ -57,7 +57,6 @@ export default function Slider() {
 	const [game, setGame] = useState(Math.floor(Math.random() * 5));
 	const [ad, setAd] = useState(Math.floor(Math.random() * 10));
 	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
-	console.log(dataUser);
 
 	if (dataUser.plan === true) {
 		return (

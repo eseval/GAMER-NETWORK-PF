@@ -14,7 +14,7 @@ import Forum from "./pages/Forum";
 import FormForum from "./pages/FormForum";
 import ForumDetail from "./pages/ForumDetail";
 import GamesDetails from "./pages/GamesDetails";
-import Chat from "./components/Chat";
+import Chat from "./pages/Chat";
 import PlayContainer from './pages/PlayContainer';
 import AdminDashboard from "./pages/AdminDashboard";
 
