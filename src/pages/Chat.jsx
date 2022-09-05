@@ -12,6 +12,7 @@ import {
 } from '../redux/actions';
 import Swal from 'sweetalert2';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 export default function Chat() {
 	let dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
@@ -231,7 +232,7 @@ export default function Chat() {
 				</div>
 
 				{/* aqui estan las pestañas de chats , friends y mensajes pendientes,
- cuando haces click el onclick setea el estado local "tab" en 1, 2 o 3 para ir cambiando */}
+        cuando haces click el onclick setea el estado local "tab" en 1, 2 o 3 para ir cambiando */}
 
 				<div class="flex flex-row justify-between bg-gray-200">
 					<div class="flex flex-col w-2/5 border-r-2 overflow-y-auto">
@@ -466,6 +467,7 @@ export default function Chat() {
 					</div>
 				</div>
 			</div>
+			<Footer />
 		</div>
 	);
 }
