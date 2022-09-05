@@ -2,6 +2,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from 'yup';
+import axios from "axios";
 
 export default function Contact() {
   return (
@@ -27,8 +28,12 @@ export default function Contact() {
               message: Yup.string().required('Please enter a message')
             })}
             onSubmit={async (values, formikHelpers) => {
-              console.log(values)
-              formikHelpers.resetForm();
+              try {
+                await axios.post('', values)
+                formikHelpers.resetForm();
+              } catch(error) {
+                console.log(error)
+              }
             }}
           >
             <Form>
