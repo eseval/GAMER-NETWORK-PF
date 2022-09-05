@@ -9,8 +9,18 @@ import Footer from '../components/Footer';
 
 export default function PlayContainer() {
 	const dispatch = useDispatch();
+	let dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
+
 	const navigate = useNavigate();
-	const allUsers = useSelector(state => state.users);
+	useEffect(() => {
+		if (!dataUser || dataUser === '') {
+			navigate('/');
+		}
+	}, [dataUser, navigate]);
+	dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged)
+	useEffect(() => {
+	}, []);
+
 	const [currentPage, setCurrentPage] = useState(0);
 	const [search, setSearch] = useState('');
 
@@ -18,14 +28,9 @@ export default function PlayContainer() {
 		dispatch(getUsers());
 	}, [dispatch]);
 
-	let dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
-	const otherUser = allUsers?.filter(e => dataUser.id !== e.id);
+	const allUsers = useSelector(state => state.users);
 
-	useEffect(() => {
-		if (!dataUser || dataUser === '') {
-			navigate('/');
-		}
-	}, [dataUser, navigate]);
+	const otherUser = allUsers?.filter(e => dataUser.id !== e.id);
 
 	const usersByAdd = otherUser.filter(user => user.nickname.toLowerCase().includes(search.toLocaleLowerCase()));
 	const paginatedUsers = () => {
@@ -98,8 +103,8 @@ export default function PlayContainer() {
 						</div>
 						<div className="container flex flex-wrap justify-center">
 							{allUsers &&
-								usersToShow.map(filterUsers => {
-									return <UserCard user={filterUsers} key={filterUsers.id} />;
+								usersToShow?.map(filterUsers => {
+									return <UserCard user={filterUsers} key={filterUsers.id} dataUser={dataUser} />;
 								})}
 						</div>
 						<div className="mr-3">

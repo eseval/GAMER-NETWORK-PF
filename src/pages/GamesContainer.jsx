@@ -9,11 +9,19 @@ import Footer from '../components/Footer';
 
 export default function GamesContainer() {
 	const dispatch = useDispatch();
+	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!dataUser || dataUser === '') {
+			navigate('/');
+		}
+	}, [dataUser, navigate]);
+
+
 	const allGames = useSelector(state => state.games);
 	const [currentPage, setCurrentPage] = useState(0);
 	const [search, setSearch] = useState('');
-	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
 
 	useEffect(() => {
 		dispatch(getGames());
@@ -22,11 +30,6 @@ export default function GamesContainer() {
 		};
 	}, [dispatch]);
 
-	useEffect(() => {
-		if (!dataUser || dataUser === '') {
-			navigate('/');
-		}
-	}, [dataUser, navigate]);
 
 	const handleChange = e => {
 		setCurrentPage(0);

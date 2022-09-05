@@ -6,6 +6,7 @@ import { getAllPosts } from '../redux/actions';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
+import FormForum from './FormForum';
 
 export default function Forum() {
 	const navigate = useNavigate();
@@ -40,6 +41,7 @@ export default function Forum() {
 			<div className="container max-w-7xl p-4">
 				<h1 className="mt-10 mx-5 text-7xl opacity-85 font-totifont text-center text-white">Forum</h1>
 				<div className="my-10 mb-10 overflow-hidden rounded shadow-lg bg-slate-400">
+					<FormForum />
 					<ContainerForum />
 				</div>
 			</div>

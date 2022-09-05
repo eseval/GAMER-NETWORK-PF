@@ -39,6 +39,18 @@ export default function NavBar() {
 								Games
 							</Link>
 							<Link
+								to='/chat'
+								className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-200 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+							>
+								Chat
+							</Link>
+							<Link
+								to='/play'
+								className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-200 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+							>
+								Community
+							</Link>
+							<Link
 								to={'/forum'}
 								className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-200 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
 							>
@@ -62,21 +74,15 @@ export default function NavBar() {
 							>
 								Contact
 							</Link>
-							<Link
-								to='/play'
-								className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-200 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
-							>
-								Community
-							</Link>
-              {dataUser.isAdmin ? (
-                <Link 
-                  to='/admin'
-								  className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-200 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
-                >
-                  Admin
-                </Link>
-              ) 
-              : "" }
+							{dataUser.isAdmin ? (
+								<Link
+									to='/admin'
+									className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-200 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+								>
+									Admin
+								</Link>
+							)
+								: ""}
 						</div>
 						<div className="flex items-center mt-4 md:mt-0">
 							<div className="flex flex-col items-end mx-3">

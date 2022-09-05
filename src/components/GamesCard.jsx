@@ -34,12 +34,12 @@ export default function GamesCard({ game }) {
 
 	return (
 		<div className="flex flex-col justify-between w-64 h-64 m-2 overflow-hidden text-center align-middle bg-gray-800 border border-gray-700 rounded-md shadow-lg">
-			<img className="object-cover w-full h-32 rounded-t-lg" src={game.img} alt={game.name} />
-			<p>
-				<Link to={`/games/${game.id}`}>
-					<h2 className="text-lg font-semibold text-white space-y-2.5">{game.name}</h2>
-				</Link>
-			</p>
+			<Link to={`/games/${game.id}`}>
+				<img className="object-cover w-full h-32 rounded-t-lg" src={game.img} alt={game.name} />
+				<br />
+				<h2 className="text-lg font-semibold text-white space-y-2.5">{game.name}</h2>
+
+			</Link>
 			{dataUser.favoriteGames.includes(game.id) ? (
 				<button
 					className="px-6 py-2 mt-3 mx-auto mb-3 text-sm text-white bg-red-600 rounded-lg hover:bg-red-800"

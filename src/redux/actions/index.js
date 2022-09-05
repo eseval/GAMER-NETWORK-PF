@@ -29,7 +29,15 @@ import {
 	LOADING_USER,
 	GET_GENRES,
 	REPORT_POST_FORUM,
-	ADD_FRIEND,
+	GET_FRIENDS,
+	GET_ALL_CHATS,
+	POST_CHAT,
+	PUT_MESSAGE,
+	GET_NON_FRIENDS,
+	ADD_FRIENDS,
+	CLEAN_FORUM_EDIT,
+	CLEAN_ALL_POST,
+	CLEAN_ALL,
 } from './types';
 
 const USERS_URL = 'https://pf-henry-gamesportal.herokuapp.com/users';
@@ -39,6 +47,8 @@ const REWARDS_URL = 'https://pf-henry-gamesportal.herokuapp.com/reward';
 const GAMES_URL = 'https://pf-henry-gamesportal.herokuapp.com/games';
 const ANSWER_URL = 'https://pf-henry-gamesportal.herokuapp.com/answers';
 const GENRES_URL = 'https://pf-henry-gamesportal.herokuapp.com/genre';
+const CHAT_URL = "https://pf-henry-gamesportal.herokuapp.com/chat";
+
 
 export function postUser(data) {
 	return async function (dispatch) {
@@ -144,14 +154,15 @@ export function orderNewsByTitle(payload) {
 
 export function postForum(payload) {
 	return async function (dispatch) {
-		try {
-			await axios.post(FORUM_URL, payload);
-			return dispatch({ type: POST_FORUM });
-		} catch (error) {
-			console.log(error);
-		}
+	  try {
+		await axios.post(FORUM_URL, payload);
+		let json = await axios.get(FORUM_URL)
+		return dispatch({ type: POST_FORUM , payload: json.data});
+	  } catch (error) {
+		console.log(error);
+	  }
 	};
-}
+  }
 
 export function claimRewards(data, id, price) {
 	return async function (dispatch) {
@@ -222,14 +233,16 @@ export function getAllPosts() {
 
 export function editPost(id, data) {
 	return async function (dispatch) {
-		try {
-			await axios.put(`${FORUM_URL}/${id}`, data);
-			return dispatch({
-				type: EDIT_POST,
-			});
-		} catch (error) {}
+	  try {
+		await axios.put(`${FORUM_URL}/${id}`, data);
+		let json = await axios.get(`${FORUM_URL}/${id}`);
+		return dispatch({
+		  type: EDIT_POST, payload:json.data
+		});
+	  } catch (error) {}
 	};
-}
+  }
+  
 
 export function postForumAnswers(payload) {
 	return async function (dispatch) {
@@ -332,15 +345,108 @@ export function reportPostForum(id, data) {
 	};
 }
 
-export function addFriend(friendsId, id, deleteFriend) {
+
+export function getAllFriends(friends) {
 	return async function (dispatch) {
-		try {
-			await axios.put(`${USERS_URL}/${id}?deleteFriend=${deleteFriend}`, { friends: friendsId });
-			const json = await axios.get(`${USERS_URL}/${id}`);
-			window.localStorage.setItem('userLogged', JSON.stringify(json.data));
-			return dispatch({ type: ADD_FRIEND, payload: json.data });
-		} catch (error) {
-			console.log(error);
-		}
+	  try {
+		let json = await axios.get(USERS_URL);
+		json=json.data.filter(e=>friends.some(f=>e.id===f))
+		return dispatch({ type: GET_FRIENDS, payload: json });
+	  } catch (error) {
+		console.log(error);
+	  }
 	};
-}
+  }
+  
+  export function getAllNonFriends(nonFriendsId) {
+	return async function (dispatch) {
+	  try {
+		let json = await axios.get(USERS_URL);
+		json=json.data.filter(e=>nonFriendsId.some(nf=>e.id===nf))
+		return dispatch({ type: GET_NON_FRIENDS, payload: json });
+	  } catch (error) {
+		console.log(error);
+	  }
+	};
+  }
+  
+  export function getAllChats(userId){
+	return async function (dispatch) {
+	  try {
+		let json = await axios.get(`${USERS_URL}/${userId}?chatShow=true`);
+		return dispatch({ type: GET_ALL_CHATS, payload: json.data });
+	  } catch (error) {
+		console.log(error);
+	  }
+	};
+  }
+  
+  export function createChatWhitFriend(user1Id,user2Id){
+	return async function (dispatch) {
+	  try {
+		await axios.post(`${CHAT_URL}`,{user1Id,user2Id});
+		let json = await axios.get(`${USERS_URL}/${user1Id}?chatShow=true`);
+		return dispatch({ type: POST_CHAT, payload:json.data});
+	  } catch (error) {
+		console.log(error);
+	  }
+	};
+  }
+  
+  export function saveMessageInDb(userId, messages, roomId){
+	return async function (dispatch) {
+	  try {
+		await axios.put(`${CHAT_URL}/${roomId}`,{userId,messages});
+		// let json = await axios.get(`${USERS_URL}/${userId}?chatShow=true`);
+		return dispatch({ type: PUT_MESSAGE});
+	  } catch (error) {
+		console.log(error);
+	  }
+	};
+  }
+  export function addFriendForChat(userId, newFriendId , deleteFriend, nonFriendsIds){
+	return async function (dispatch) {
+		let roomId=[userId,newFriendId].sort().join("_")
+		try {
+			await axios.put(`${USERS_URL}/${userId}?deleteFriend=${deleteFriend}`,{friends:newFriendId});
+			
+		let json = await axios.get(`${USERS_URL}/${userId}`);
+		let chats = await axios.get(`${USERS_URL}/${userId}?chatShow=true`);
+		let flag = chats.data.chats.filter(e=>e.id==roomId)
+
+		if(deleteFriend=="yes" && flag.length>0 && flag.deleteFlag != true){
+			await axios.put(`${CHAT_URL}/${roomId}`,{deleteFlag:true});
+		}else if (deleteFriend=="no" && flag.length>0 && flag.deleteFlag != false){
+			await axios.put(`${CHAT_URL}/${roomId}`,{deleteFlag:false});
+		}
+		
+		let friensids= json.data.friends
+		let nonFriends
+		let allUsers = await axios.get(USERS_URL);
+		let friends = await axios.get(`${USERS_URL}`);
+		friends=friends.data.filter(e=>friensids.some(f=>e.id===f))
+		
+		if(nonFriendsIds){
+			nonFriends = await axios.get(USERS_URL);
+			nonFriends=nonFriends.data.filter(e=>nonFriendsIds.some(nf=>e.id===nf))
+		}
+		window.localStorage.setItem("userLogged", JSON.stringify(json.data));
+		return dispatch({ type: ADD_FRIENDS, payload:json.data, payload2:chats.data, payload3:friends, payload4: nonFriends, payload5:allUsers.data});
+	  } catch (error) {
+		console.log(error);
+	  }
+	};
+  }
+  
+  
+  export function cleanForumEdit(){
+	return {type:CLEAN_FORUM_EDIT}
+  }
+  
+  export function clearAllPost(){
+	return {type:CLEAN_ALL_POST}
+  }
+
+  export function cleanState(){
+	return {type:CLEAN_ALL}
+  }

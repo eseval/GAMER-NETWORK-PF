@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { cleanGamesByIdState, getGamesById } from '../redux/actions';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import Loader from '../components/Loader';
 
 export default function GamesDetails() {
 	const id = useParams();
@@ -18,6 +19,21 @@ export default function GamesDetails() {
 		};
 	}, [dispatch, id]);
 
+	function handleOnClick(e) {
+		e.preventDefault()
+		window.history.back()
+	}
+
+	while (id.id != details.id) {
+		return (
+			<div className="container text-center">
+				<h1 className="text-8xl font-totifont opacity-70 text-white my-20">Play Center</h1>
+				<div className="mt-10">
+					<Loader />
+				</div>
+			</div>
+		)
+	}
 	return (
 		<div>
 			<NavBar />
@@ -26,8 +42,8 @@ export default function GamesDetails() {
 					<div className="container px-6 py-10 mx-auto">
 						<div>
 							<div className="grid grid-cols-1 place-items-end mx-6">
-								<a href="/games">
-									<button className="relative inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg  group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+								<a>
+									<button onClick={e => handleOnClick(e)} className="relative inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg  group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
 										<span className="relative px-4 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
 											<img
 												className="h-8 w-8"

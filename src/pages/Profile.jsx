@@ -4,22 +4,24 @@ import FavoriteGames from '../components/FavoriteGames';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserById } from '../redux/actions';
+import { getUserById, getAllFriends } from '../redux/actions';
 import Loader from '../components/Loader.jsx';
+import FriendsForProfile from '../components/FriendsForProfile';
 
 export default function Profile() {
-	const { id } = useParams();
-	const dispatch = useDispatch();
-	const user = useSelector(state => state.user);
-	const isLoading = useSelector(state => state.userLoading);
-	const navigate = useNavigate();
 	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
-
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	useEffect(() => {
 		if (!dataUser || dataUser === '') {
 			navigate('/');
 		}
 	}, [dataUser, navigate]);
+
+	const { id } = useParams();
+	const user = useSelector(state => state.user);
+	const isLoading = useSelector(state => state.userLoading);
+
 
 	useEffect(() => {
 		dispatch(getUserById(id));
@@ -33,6 +35,7 @@ export default function Profile() {
 		}
 	};
 
+
 	if (!isLoading) {
 		return (
 			<div>
@@ -45,7 +48,7 @@ export default function Profile() {
 								<h3 className="max-w-2xl mx-5 text-4xl font-semibold text-white">
 									{user.nickname ? user.nickname : 'User not found'}
 								</h3>
-								{dataUser.id === user.id ? (
+								{dataUser?.id === user?.id ? (
 									<Link
 										to={`/profile/${dataUser.id}/edit`}
 										state={dataUser}
@@ -58,7 +61,7 @@ export default function Profile() {
 								)}
 							</div>
 							<div className="w-24 h-24 overflow-hidden border-2 border-gray-400 rounded-full">
-								<img src={user.img} className="object-cover w-full h-full" alt={user.nickname} />
+								<img src={user?.img} className="object-cover w-full h-full" alt={user?.nickname} />
 							</div>
 						</div>
 						<div className="border-t border-gray-200">
@@ -66,13 +69,13 @@ export default function Profile() {
 								<div className="px-4 py-5 bg-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 									<dt className="text-4x1 font-semibold text-gray-900">Description</dt>
 									<dd className="mt-1 text-3X1 ml-20 text-gray-900 sm:mt-0 sm:col-span-2">
-										{user.description}
+										{user?.description}
 									</dd>
 								</div>
 								<div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 									<dt className="text-4x1 font-semibold text-gray-900">Email</dt>
 									<dd className="mt-1 text-3X1 ml-20 text-gray-900 sm:mt-0 sm:col-span-2">
-										{user.email}
+										{user?.email}
 									</dd>
 								</div>
 								<div className="px-4 py-5 bg-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -90,28 +93,28 @@ export default function Profile() {
 								<div className="px-4 py-5 bg-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 									<dt className="text-4x1 font-semibold text-gray-900">Server</dt>
 									<dd className="mt-1 text-3X1 ml-20 text-gray-900 sm:mt-0 sm:col-span-2">
-										{user.servers && user.servers.length > 0 ? user.servers : 'No servers found'}
+										{user?.servers && user?.servers?.length > 0 ? user?.servers : 'No servers found'}
 									</dd>
 								</div>
 								<div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 									<dt className="text-4x1 font-semibold text-gray-900">Matched users</dt>
 									<dd className="mt-1 text-3X1 ml-20 text-gray-900 sm:mt-0 sm:col-span-2">
-										{user.matched_users && user.matched_users.length > 0
-											? user.matched_users.join(', ')
+										{user?.matched_users && user?.matched_users?.length > 0
+											? user?.matched_users?.join(', ')
 											: 'No users found'}
 									</dd>
 								</div>
 								<div className="px-4 py-5 bg-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 									<dt className="text-4x1 font-semibold text-gray-900">Missions Completed</dt>
 									<dd className="mt-1 text-3X1 ml-20 text-gray-900 sm:mt-0 sm:col-span-2">
-										{user.missionCompleted ? user.missionCompleted.length : ''}
+										{user?.missionCompleted ? user?.missionCompleted?.length : ''}
 									</dd>
 								</div>
-								{dataUser.id === user.id ? (
+								{dataUser?.id === user?.id ? (
 									<div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 										<dt className="text-4x1 font-semibold text-gray-900">Coins</dt>
 										<dd className="mt-1 text-3x1 ml-20 text-gray-900 sm:mt-0 sm:col-span-2">
-											💎 {user.coins}
+											💎 {user?.coins}
 										</dd>
 									</div>
 								) : (
@@ -119,6 +122,8 @@ export default function Profile() {
 								)}
 							</dl>
 						</div>
+						<FriendsForProfile friendsIds={dataUser?.friends} id={id} />
+
 					</div>
 				</div>
 				<div>
