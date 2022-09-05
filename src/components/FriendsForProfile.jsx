@@ -1,54 +1,100 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFriendForChat, getAllFriends } from '../redux/actions/index';
+import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs';
 
-export default function FriendsForProfile({ friendsIds, id }) {
-	let dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
+export default function FriendsForProfile({ friendsIds, id, user }) {
+	let friends = useSelector(state => state.friends);
+	const [dataUser, setDataUser] = useState(
+		!window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged)
+	);
 	const dispatch = useDispatch();
 
-	function handleOnClick(event, newFriendId, deleteFriend) {
-		dispatch(addFriendForChat(dataUser.id, newFriendId, deleteFriend))
-	}
 	useEffect(() => {
-		dispatch(getAllFriends(dataUser.friends))
-	}, [getAllFriends, dispatch])
+		dispatch(getAllFriends(dataUser.friends));
+	}, [getAllFriends, dispatch]);
 
-	let friends = useSelector((state) => state.friends);
+	const handleOnClick = (t, id, deleteFriend) => {
+		console.log(t);
+		t.preventDefault();
+		dispatch(addFriendForChat(dataUser.id, id, deleteFriend));
+	};
 
-	return (
-		friends?.length > 0 ?
+	const [currentPage, setCurrentPage] = useState(0);
+	let favoriteGames = [];
 
-			<div>
-				<p className="text-lg font-semibold text-white space-y-2.5 container flex flex-row">Friends: </p>
-				{friends?.map(e =>
-					<div
-						key={e.id}
-						className=" flex flex-row justify-between w-64 h-64 m-2 overflow-hidden text-center align-middle bg-gray-900 border border-gray-700 rounded-md shadow-lg items-center"
+	if (dataUser.id !== id) {
+		favoriteGames = user.friends.map(g => friends.filter(e => e.id === g));
+	} else {
+		favoriteGames = dataUser.friends.map(g => friends.filter(e => e.id === g));
+	}
+
+	favoriteGames = favoriteGames.flat(Infinity);
+
+	const paginatedGames = () => {
+		return favoriteGames.slice(currentPage, currentPage + 1);
+	};
+
+	const nextPage = () => {
+		if (favoriteGames.length > currentPage + 1) {
+			setCurrentPage(currentPage + 1);
+		}
+	};
+	const prevPage = () => {
+		if (currentPage > 0) setCurrentPage(currentPage - 1);
+	};
+
+	if (favoriteGames.length > 0) {
+		return (
+			<div className="container flex flex-row items-center">
+				<div className="ml-1">
+					<button
+						className="text-gray-800 transition duration-500 ease-in-out hover:text-white"
+						onClick={prevPage}
 					>
-						<div className="container flex flex-row items-center">
-							<div className="ml-1">
-								<img src={e.img} className="h-20 rounded-full" />
-								<h2 className="text-lg font-semibold text-white space-y-2.5">Nickname:  {e.nickname}</h2>
-								{
-									dataUser.id === id ?
-										<button className="px-6 py-2 mt-3 mx-auto mb-3 text-sm text-white rounded-lg " onClick={event => handleOnClick(event, e.id, "yes")}>
-
-
+						<BsFillArrowLeftCircleFill size="30px" />
+					</button>
+				</div>
+				<div className="container flex flex-row justify-center ">
+					{paginatedGames().map(e => {
+						return (
+							<div
+								key={e.nickname}
+								className=" flex flex-col justify-between w-64 h-64 m-2 overflow-hidden text-center align-middle bg-gray-800 border border-gray-700 rounded-md shadow-lg"
+							>
+								<img src={e.img} className="object-cover w-full h-32 rounded-t-lg " alt={e.nickname} />
+								<h1 className="text-lg font-semibold text-white space-y-2.5">{e.nickname}</h1>
+								{dataUser?.friends?.some(d => d === e?.id) ? (
+									<a>
+										<button
+											className="px-6 py-2 mt-3 mx-auto mb-3 text-sm text-white rounded-lg "
+											onClick={t => handleOnClick(t, e.id, 'yes')}
+										>
 											<img
 												className="h-8 w-8"
 												src="https://cdn-icons-png.flaticon.com/512/458/458594.png"
 												alt="X"
-											/></button> :
-										""
-								}
+											/>
+										</button>
+									</a>
+								) : (
+									''
+								)}
 							</div>
-						</div>
-					</div>
-				)}
+						);
+					})}
+				</div>
+				<div className="mr-1">
+					<button
+						className="text-gray-800 transition duration-500 ease-in-out hover:text-white"
+						onClick={nextPage}
+					>
+						<BsFillArrowRightCircleFill size="30px" />
+					</button>
+				</div>
 			</div>
-
-			: <div>No friends found</div>
-
-
-	)
+		);
+	} else {
+		return <div>No friends found!</div>;
+	}
 }

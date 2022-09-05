@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getRewards, cleanRewardState } from '../redux/actions';
+import { getRewards, cleanState } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import RewardCard from '../components/RewardCard';
 import NavBar from '../components/NavBar';
@@ -26,7 +26,7 @@ export default function Reward() {
 	useEffect(() => {
 		dispatch(getRewards());
 		return () => {
-			dispatch(cleanRewardState());
+			dispatch(cleanState());
 		};
 	}, [dispatch]);
 
