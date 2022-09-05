@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Contact() {
   return (
@@ -29,9 +30,11 @@ export default function Contact() {
             })}
             onSubmit={async (values, formikHelpers) => {
               try {
-                await axios.post('', values)
+                await axios.post('https://pf-henry-gamesportal.herokuapp.com/contact', values);
+                toast.success(`Message sended!`);
                 formikHelpers.resetForm();
               } catch(error) {
+                toast.error(`Message not sended.`);
                 console.log(error)
               }
             }}
@@ -91,6 +94,28 @@ export default function Contact() {
             </Form>
           </Formik>
         </div>
+        <Toaster
+				position="button-right"
+				reverseOrder={false}
+				gutter={8}
+				containerClassName=""
+				containerStyle={{}}
+				toastOptions={{
+					className: '',
+					duration: 5000,
+					style: {
+						background: '#363636',
+						color: '#fff',
+					},
+					success: {
+						duration: 3000,
+						theme: {
+							primary: 'green',
+							secondary: 'black',
+						},
+					},
+				}}
+			/>
         <div>
           <Footer/>
         </div>
