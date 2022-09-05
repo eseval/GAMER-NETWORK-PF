@@ -34,12 +34,12 @@ export default function NewsContainer() {
 			<SearchBar className="mt-5" />
 			<div className="container flex flex-wrap justify-center mt-3">
 				{typeof allNews === 'object' ? (
-					currentNews.map(news => {
-            if(news.deleteFlag !== true) {
-              return <NewsCard news={news} key={news.id} />;
-            } else {
-              return ''
-            }
+					currentNews?.map(news => {
+						if (news.deleteFlag !== true) {
+							return <NewsCard news={news} key={news.id} />;
+						} else {
+							return ''
+						}
 					})
 				) : (
 					<p>News not found</p>

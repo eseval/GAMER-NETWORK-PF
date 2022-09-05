@@ -13,7 +13,7 @@ export default function LandingPage() {
 	const userDb = useSelector(state => state.user);
 
 	useEffect(() => {
-		if (userDb.length > 0) {
+		if (userDb?.length > 0) {
 		} else {
 			if (user) {
 				dispatch(postUser(user));
@@ -44,7 +44,7 @@ export default function LandingPage() {
 					<img className="absolute inset-0 h-32 w-32" src="https://i.imgur.com/9ESFHWn.png" alt="" />
 					<div className="mt-10">
 						<h3 className="text-5xl font-totifont text-center opacity-70 text-white">
-							Welcome, {userDb.length > 0 ? userDb[0].nickname : ''}.
+							Welcome, {userDb?.length > 0 ? userDb[0]?.nickname : ''}.
 						</h3>
 						<div className="flex flex-row-reverse justify-center my-20 align-middle">
 							<LogoutButton />
