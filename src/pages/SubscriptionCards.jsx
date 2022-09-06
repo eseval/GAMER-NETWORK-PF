@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 export default function SubscriptionCards() {
 	const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function SubscriptionCards() {
 		<div>
 			<NavBar />
 			<div className="container">
-				<h1 className="my-5 text-5xl font-semibold text-center text-white">Subscription</h1>
+				<h1 className="my-10 mx-5 text-7xl opacity-85 font-totifont text-center text-white">Subscription</h1>
 				<div className="container px-6 py-8 mx-auto">
 					<div className="flex flex-col items-center justify-center space-y-8 lg:-mx-4 lg:flex-row lg:items-stretch lg:space-y-0">
 						<div className="flex flex-col w-full max-w-sm p-8 space-y-8 text-center bg-white border-2 border-gray-200 rounded-lg lg:mx-4 dark:bg-gray-800 dark:border-gray-700">
@@ -72,6 +73,9 @@ export default function SubscriptionCards() {
 						</div>
 					</div>
 				</div>
+			</div>
+			<div className="mt-20">
+				<Footer />
 			</div>
 		</div>
 	);

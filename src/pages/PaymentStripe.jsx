@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 const cardElementOptions = {
 	style: {
@@ -161,6 +162,9 @@ export default function PaymentStripe() {
 					},
 				}}
 			/>
+			<div className="mt-96">
+				<Footer />
+			</div>
 		</div>
 	);
 }
