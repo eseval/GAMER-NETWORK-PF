@@ -17,6 +17,7 @@ import GamesDetails from './pages/GamesDetails';
 import Chat from './pages/Chat';
 import Community from './pages/Community';
 import AdminDashboard from './pages/AdminDashboard';
+import Quests from './pages/Quests';
 
 function App() {
 	return (
@@ -41,6 +42,7 @@ function App() {
 				<Route path="/chat" element={<Chat />} />
 				<Route path="/play" element={<Community />} />
 				<Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/quests" element={<Quests />} />
 			</Routes>
 		</div>
 	);
