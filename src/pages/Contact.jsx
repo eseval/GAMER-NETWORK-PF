@@ -28,7 +28,7 @@ export default function Contact() {
 					})}
 					onSubmit={async (values, formikHelpers) => {
 						try {
-							await axios.post('https://pf-henry-gamesportal.herokuapp.com/contact', values);
+							await axios.post('https://pf-henry-gamesportal.herokuapp.com/email/contact', values);
 							toast.success(`Message sended!`);
 							formikHelpers.resetForm();
 						} catch (error) {

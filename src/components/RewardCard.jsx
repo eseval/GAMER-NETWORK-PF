@@ -2,6 +2,7 @@ import React from 'react';
 import { claimRewards } from '../redux/actions';
 import { useDispatch } from 'react-redux';
 import swal from 'sweetalert';
+import axios from 'axios';
 
 export default function RewardCard({ title, image, price, recompenseType }) {
 	const dispatch = useDispatch();
@@ -14,11 +15,14 @@ export default function RewardCard({ title, image, price, recompenseType }) {
 			text: 'Are you sure to claim this reward?',
 			buttons: ['Cancel', 'Confirm'],
 			icon: 'warning',
-		}).then(res => {
+		}).then(async res => {
 			if (res) {
 				const newTotal = dataUser?.coins - price;
 				dataUser.coins = newTotal;
 				if (newTotal >= 0) {
+          await axios.post('https://pf-henry-gamesportal.herokuapp.com/email/reward', {
+            email: dataUser.email
+          });
 					dispatch(claimRewards(dataUser, dataUser.id, price));
 					swal({
 						text: 'The claim has been completed!',
