@@ -25,6 +25,7 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
         missionsCompleted.push(mission.id)
     }
 
+
     const handleOnClick = () => {
         navigate(`/${mission.route}`)
 
@@ -52,7 +53,9 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
                         </h3>
                         <span>💎 {mission.coinsRewards}</span>
                     </div>
+                    {
 
+                    }
                     <button
                         onClick={(e) => handleClick(e, mission.id)}
                         value={mission.id}
@@ -79,9 +82,10 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
                             : !missionsCompletedByUser.filter(e => e.id === mission.id).length > 0
                                 ? <button onClick={e => handleOnClick(e)} className="float-right px-4 py-2 font-bold text-white uppercase bg-blue-500 rounded-full hover:bg-blue-700">
                                     Go to the mission
-                                </button>
-                                : ""
-
+                                  </button>
+                                : <button disabled className="float-right px-4 py-2 font-bold text-white uppercase bg-blue-700 rounded-full">
+                                    Claimed
+                                  </button>
                         }
                     </div>
                 ) : (
