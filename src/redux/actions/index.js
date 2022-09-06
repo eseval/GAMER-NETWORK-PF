@@ -38,6 +38,8 @@ import {
 	CLEAN_FORUM_EDIT,
 	CLEAN_ALL_POST,
 	CLEAN_ALL,
+  SET_ADMIN,
+  UNSET_ADMIN
 } from './types';
 
 const USERS_URL = 'https://pf-henry-gamesportal.herokuapp.com/users';
@@ -438,6 +440,33 @@ export function getAllFriends(friends) {
 	};
   }
   
+  export function setAdmin(id) {
+    return async function (dispatch) {
+      try {
+        await axios.put(`${USERS_URL}/${id}`, {
+          isAdmin: true
+        });
+        const json = await axios.get(`${USERS_URL}/${id}`);
+        return dispatch({ type: SET_ADMIN, payload: json.data });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }
+
+  export function unsetAdmin(id) {
+    return async function (dispatch) {
+      try {
+        await axios.put(`${USERS_URL}/${id}`, {
+          isAdmin: false
+        });
+        const json = await axios.get(`${USERS_URL}/${id}`);
+        return dispatch({ type: UNSET_ADMIN, payload: json.data });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }
   
   export function cleanForumEdit(){
 	return {type:CLEAN_FORUM_EDIT}

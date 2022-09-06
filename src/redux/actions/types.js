@@ -40,3 +40,5 @@ export const ADD_FRIENDS = "ADD_FRIENDS";
 export const CLEAN_FORUM_EDIT = "CLEAN_FORUM_EDIT";
 export const CLEAN_ALL_POST = "CLEAN_ALL_POST";
 export const CLEAN_ALL = "CLEAN_ALL";
+export const SET_ADMIN = "SET_ADMIN";
+export const UNSET_ADMIN = "UNSET_ADMIN";

@@ -33,8 +33,8 @@ export default function UsersDashboard() {
 			{ field: 'nickname', headerName: 'Nickname', width: 120, editable: true },
 			{ field: 'description', headerName: 'Description', width: 150, editable: true },
 			{ field: 'plan', headerName: 'Plan', width: 60, type: 'boolean', editable: true },
-			{ field: 'isAdmin', headerName: 'Admin', width: 60, type: 'boolean', editable: true },
-			{ field: 'isSuperAdmin', headerName: 'SuperAdmin', width: 100, type: 'boolean', editable: true },
+			{ field: 'isAdmin', headerName: 'Admin', width: 60, type: 'boolean' },
+			{ field: 'isSuperAdmin', headerName: 'SuperAdmin', width: 100, type: 'boolean' },
 			{ field: 'favoriteGames', headerName: 'Favorite Games', width: 150 },
 			{ field: 'friends', headerName: 'Friends', width: 150 },
 			{ field: 'coins', headerName: 'Coins', width: 60, editable: true },
@@ -94,7 +94,7 @@ export default function UsersDashboard() {
 
 	return (
 		<div>
-			<h3 className="mt-10 mb-10 mx-5 text-7xl opacity-85 font-totifont text-center text-white">Users</h3>
+			<h3 className="mx-5 mt-10 mb-10 text-center text-white text-7xl opacity-85 font-totifont">Users</h3>
 			<Box
 				sx={{
 					height: 600,
