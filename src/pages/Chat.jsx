@@ -56,12 +56,14 @@ export default function Chat() {
 	let nonFriendsIds =
 		dataUser?.friends?.length == 0 ? chatsIds : chatsIds?.filter(e => !dataUser?.friends?.includes(e)); // array de id con los que no tengo agregados como amigos
 
+	window.onload = event => {
+		dispatch(getAllNonFriends(nonFriendsIds));
+	};
 	useEffect(() => {
 		// traigo todos los no amigos con el array de IDs que obtengo arriba
-		if (nonFriendsIds?.length != 0 && nonFriends?.length === 0) {
-			dispatch(getAllNonFriends(nonFriendsIds));
-		}
-	}, [nonFriendsIds]);
+
+		dispatch(getAllNonFriends(nonFriendsIds));
+	}, [dispatch, getAllNonFriends]);
 
 	let nonFriends = useSelector(state => state.nonFriends);
 
@@ -176,6 +178,9 @@ export default function Chat() {
 		setMesseges([]);
 		setRoom('');
 		setHighlight('Z');
+		dispatch(getAllFriends(dataUser.friends));
+		dispatch(getAllChats(dataUser.id));
+		dispatch(getAllNonFriends(nonFriendsIds));
 	} // setear los mensajes en vacio para que no se muestren en la pestaña de friends
 	//y setear tab en 2 para mostrar la pestaña de friends
 
@@ -187,6 +192,9 @@ export default function Chat() {
 		setMesseges([]);
 		setRoom('');
 		setHighlight('Z');
+		dispatch(getAllFriends(dataUser.friends));
+		dispatch(getAllChats(dataUser.id));
+		dispatch(getAllNonFriends(nonFriendsIds));
 	} // setear los mensajes en vacio para que no se muestren en la pestaña de mensajes pendientes
 	//y setear tab en 3 para mostrar la pestaña de mensajes pendientes
 
@@ -197,6 +205,9 @@ export default function Chat() {
 		setMesseges([]);
 		setHighlight('Z');
 		setRoom('');
+		dispatch(getAllFriends(dataUser.friends));
+		dispatch(getAllChats(dataUser.id));
+		dispatch(getAllNonFriends(nonFriendsIds));
 	} // setear los mensajes en vacio para que no se muestren mensajes de otros chats mientras cambiamos de chat
 	//y setear tab en 1 para mostrar la pestaña de chats
 
