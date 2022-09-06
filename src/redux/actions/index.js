@@ -39,7 +39,8 @@ import {
 	CLEAN_ALL_POST,
 	CLEAN_ALL,
   SET_ADMIN,
-  UNSET_ADMIN
+  UNSET_ADMIN,
+  CLAIM_MISSION
 } from './types';
 
 const USERS_URL = 'https://pf-henry-gamesportal.herokuapp.com/users';
@@ -50,6 +51,8 @@ const GAMES_URL = 'https://pf-henry-gamesportal.herokuapp.com/games';
 const ANSWER_URL = 'https://pf-henry-gamesportal.herokuapp.com/answers';
 const GENRES_URL = 'https://pf-henry-gamesportal.herokuapp.com/genre';
 const CHAT_URL = "https://pf-henry-gamesportal.herokuapp.com/chat";
+const ADD_MISSION_URL = "https://pf-henry-gamesportal.herokuapp.com/addMission";
+const MISSION_URL = "https://pf-henry-gamesportal.herokuapp.com/missions";
 
 
 export function postUser(data) {
@@ -478,4 +481,20 @@ export function getAllFriends(friends) {
 
   export function cleanState(){
 	return {type:CLEAN_ALL}
+  }
+
+  export function claimMission(missionId , coinsRewards , userId ){
+	return async function (dispatch) {
+		try {
+		  await axios.put(`${ADD_MISSION_URL}/${userId}`,{missionId:missionId});
+		  await axios.put(`${USERS_URL}/${userId}`,{coins:coinsRewards})
+		  let json= await axios.get(`${USERS_URL}/${userId}`)
+
+		  window.localStorage.setItem("userLogged", JSON.stringify(json.data));
+
+		  return dispatch({ type: CLAIM_MISSION , payload:json.data});
+		} catch (error) {
+		  console.log(error);
+		}
+	  };
   }

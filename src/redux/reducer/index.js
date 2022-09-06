@@ -38,7 +38,8 @@ import {
   CLEAN_ALL_POST,
   CLEAN_ALL,
   SET_ADMIN,
-  UNSET_ADMIN
+  UNSET_ADMIN,
+  CLAIM_MISSION
 } from "../actions/types";
 
 const initialState = {
@@ -282,6 +283,11 @@ export default function rootReducer(state = initialState, action) {
         return{
           ...state,
           posts:[]
+        }
+      case CLAIM_MISSION:
+        return{
+          ...state,
+          user:action.payload
         }
       case CLEAN_ALL:
         return{
