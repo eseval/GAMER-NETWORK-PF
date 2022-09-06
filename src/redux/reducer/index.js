@@ -37,6 +37,8 @@ import {
   CLEAN_FORUM_EDIT,
   CLEAN_ALL_POST,
   CLEAN_ALL,
+  SET_ADMIN,
+  UNSET_ADMIN
 } from "../actions/types";
 
 const initialState = {
@@ -261,17 +263,27 @@ export default function rootReducer(state = initialState, action) {
           nonFriends: action.payload4,
           users:action.payload5,
         }
-        case CLEAN_FORUM_EDIT:
+      case SET_ADMIN: 
+        return {
+          ...state,
+          user: action.payload
+        }
+      case UNSET_ADMIN:
+        return {
+          ...state,
+          user: action.payload
+        }
+      case CLEAN_FORUM_EDIT:
         return{
           ...state,
           forumById:[]
         }
-        case CLEAN_ALL_POST:
+      case CLEAN_ALL_POST:
         return{
           ...state,
           posts:[]
         }
-        case CLEAN_ALL:
+      case CLEAN_ALL:
         return{
           ...state,
             users: [],

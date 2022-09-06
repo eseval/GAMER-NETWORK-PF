@@ -18,14 +18,12 @@ export default function UsersActions({params, rowId, setRowId}) {
 
   const handleSubmit = async () => {
     setLoading(true);
-    const { id, nickname, description, plan, isAdmin, isSuperAdmin, coins, servers, deleteFlag, bannedFlag } = params.row;
+    const { id, nickname, description, plan, coins, servers, deleteFlag, bannedFlag } = params.row;
 
     const result = await axios.put(`https://pf-henry-gamesportal.herokuapp.com/users/${id}`, {
       nickname,
       description,
       plan, 
-      isAdmin, 
-      isSuperAdmin, 
       coins, 
       servers, 
       deleteFlag, 
