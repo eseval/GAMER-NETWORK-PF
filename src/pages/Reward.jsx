@@ -14,7 +14,7 @@ export default function Reward() {
 	const navigate = useNavigate();
 	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [rewardsPerPage] = useState(6);
+	const [rewardsPerPage] = useState(4);
 	const indexOfLastreward = currentPage * rewardsPerPage;
 	const indexOffirstreward = indexOfLastreward - rewardsPerPage;
 	const currentReward = rewards.slice(indexOffirstreward, indexOfLastreward);
@@ -40,7 +40,6 @@ export default function Reward() {
 	if (currentPage > Math.ceil(rewards?.length / rewardsPerPage) && currentPage !== 1) {
 		setCurrentPage(1);
 	}
-
 
 	while (rewards?.length < 1) {
 		return (
