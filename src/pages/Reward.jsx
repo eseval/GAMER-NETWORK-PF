@@ -14,7 +14,7 @@ export default function Reward() {
 	const navigate = useNavigate();
 	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [rewardsPerPage] = useState(6);
+	const [rewardsPerPage] = useState(4);
 	const indexOfLastreward = currentPage * rewardsPerPage;
 	const indexOffirstreward = indexOfLastreward - rewardsPerPage;
 	const currentReward = rewards.slice(indexOffirstreward, indexOfLastreward);
@@ -41,7 +41,6 @@ export default function Reward() {
 		setCurrentPage(1);
 	}
 
-
 	while (rewards?.length < 1) {
 		return (
 			<div className="container text-center">
@@ -56,7 +55,7 @@ export default function Reward() {
 	return (
 		<div>
 			<NavBar />
-			<h1 className="mt-10 mb-10 mx-5 text-7xl opacity-85 font-totifont text-center text-white">REWARDS</h1>
+			<h1 className="mt-10 mb-5 mx-5 text-7xl opacity-85 font-totifont text-center text-white">REWARDS</h1>
 			<div className="container flex flex-wrap justify-center">
 				{[...currentReward]?.map(re =>
 					re.deleteFlag === false && re.available === true ? (
@@ -71,8 +70,9 @@ export default function Reward() {
 					)
 				)}
 			</div>
-			<Paginate array={rewards} thingPerPage={rewardsPerPage} paginate={paginate} />
-			<div></div>
+			<div className="mb-5">
+				<Paginate array={rewards} thingPerPage={rewardsPerPage} paginate={paginate} />
+			</div>
 			<Footer />
 		</div>
 	);
