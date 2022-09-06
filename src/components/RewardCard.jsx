@@ -20,8 +20,10 @@ export default function RewardCard({ title, image, price, recompenseType }) {
 				const newTotal = dataUser?.coins - price;
 				dataUser.coins = newTotal;
 				if (newTotal >= 0) {
+          await axios.post('https://pf-henry-gamesportal.herokuapp.com/email/reward', {
+            email: dataUser.email
+          });
 					dispatch(claimRewards(dataUser, dataUser.id, price));
-          await axios.post('https://pf-henry-gamesportal.herokuapp.com/email/reward', dataUser.email);
 					swal({
 						text: 'The claim has been completed!',
 						icon: 'success',
