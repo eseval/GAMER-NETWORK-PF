@@ -97,7 +97,7 @@ export default function FormForum() {
 	return (
 		<div>
 			{newPost === false && !id.id ? (
-				<div className="my-5 mx-3 ">
+				<div className="my-5 mx-3 items-center">
 					<button
 						type="button"
 						onClick={e => setNewPost(true)}

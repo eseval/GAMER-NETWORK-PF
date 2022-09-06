@@ -58,19 +58,12 @@ export default function Chat() {
 
 	useEffect(() => {
 		// traigo todos los no amigos con el array de IDs que obtengo arriba
-		if (nonFriendsIds?.length > 0 && nonFriends?.length === 0) {
+		if (nonFriendsIds?.length != 0 && nonFriends?.length === 0) {
 			dispatch(getAllNonFriends(nonFriendsIds));
 		}
 	}, [nonFriendsIds]);
 
 	let nonFriends = useSelector(state => state.nonFriends);
-
-	const setRef = useCallback(e => {
-		// esto es para que siempre el ultimo mensaje es el que este en pantalla
-		if (e) {
-			e.scrollIntoView({ smooth: true }, []);
-		}
-	});
 
 	const [room, setRoom] = useState(''); //esta es para setear la sala de chat (el id se forma como : [userId 1, userId 2].sort().join("_"))
 
@@ -236,7 +229,7 @@ export default function Chat() {
 
 				<div class="flex flex-row justify-between bg-gray-200">
 					<div class="flex flex-col w-2/5 border-r-2 overflow-y-auto">
-						<div class="flex flex-row overflow-x-auto items-center justify-center py-2 px-2 border-2 border-gray-200 rounded-2xl w-full">
+						<div class="flex flex-row overflow-x-auto items-center justify-center py-2 px-2 border-2 border-gray-200 rounded-2xl">
 							<button
 								onClick={e => handleTabChats(e)}
 								class={`rounded-2xl mx-5 mt-5 w-full ${tab == 1 ? 'bg-blue-600' : 'bg-gray-800'}`}
@@ -264,30 +257,70 @@ export default function Chat() {
 						</div>
 
 						{/* aqui los amigos con los que ya se tiene chat*/}
-
-						{tab === 1 ? (
-							<div>
-								<div class="border-b-2 py-4 px-2">
-									<input
-										type="text"
-										placeholder="search chat"
-										class="py-2 px-2 border-2 border-gray-300 rounded-2xl w-full"
-									/>
+						<div className="overflow-auto max-h-96">
+							{tab === 1 ? (
+								<div>
+									<div class="border-b-2 py-4 px-2">
+										<input
+											type="text"
+											placeholder="search chat"
+											class="py-2 px-2 border-2 border-gray-300 rounded-2xl w-full"
+										/>
+									</div>
+									{friends?.map((e, index) => {
+										let room = [dataUser.id, e.id].sort().join('_');
+										return (
+											//aqui mapeo los amigos y filtro los que ya tienen un chat iniciado conmigo por eso filtro los chats que son
+											// iguales en id a la sala de chat (room) porque en la base de datos se guarda con la mimsma id
+											chats?.chats?.some(e => e.id === room) ? (
+												<button
+													key={index}
+													onClick={b => handleChatShow(e.id)}
+													class={
+														highlight == e.id
+															? 'flex py-4 px-2 justify-center items-center border-b-2 w-full bg-blue-600'
+															: 'flex py-4 px-2 justify-center items-center border-b-2 w-full'
+													}
+												>
+													<div class="flex flex-row py-4 px-2 justify-center items-center border-b-2 w-full">
+														<div class="w-1/4">
+															<img
+																src={e.img}
+																class="object-cover h-12 w-12 rounded-full"
+																alt=""
+															/>
+														</div>
+														<div class="w-full">
+															<div class="text-lg font-semibold">{e.nickname}</div>
+														</div>
+													</div>
+												</button>
+											) : (
+												''
+											)
+										);
+									})}
 								</div>
-								{friends?.map((e, index) => {
-									let room = [dataUser.id, e.id].sort().join('_');
-									return (
-										//aqui mapeo los amigos y filtro los que ya tienen un chat iniciado conmigo por eso filtro los chats que son
-										// iguales en id a la sala de chat (room) porque en la base de datos se guarda con la mimsma id
-										chats?.chats?.some(e => e.id === room) ? (
+							) : //aqui los amigos que tienes agregados, pero no tienes un chat iniciado
+							tab === 2 ? (
+								<div>
+									<div>
+										<div class="border-b-2 py-4 px-2">
+											<input
+												type="text"
+												placeholder="search friend"
+												class="py-2 px-2 border-2 border-gray-300 rounded-2xl w-full"
+											/>
+										</div>
+									</div>
+									{friends?.map((e, index) => {
+										//aqui mapeo los amigos y filtro los que no tienen un chat iniciado conmigo
+										let room = [dataUser.id, e.id].sort().join('_');
+										return !chats?.chats?.some(e => e.id === room) ? (
 											<button
 												key={index}
-												onClick={b => handleChatShow(e.id)}
-												class={
-													highlight == e.id
-														? 'flex py-4 px-2 justify-center items-center border-b-2 w-full bg-blue-600'
-														: 'flex py-4 px-2 justify-center items-center border-b-2 w-full'
-												}
+												onClick={c => handleChatCreate(c, e)}
+												class="flex py-4 px-2 justify-center items-center border-b-2 w-full"
 											>
 												<div class="flex flex-row py-4 px-2 justify-center items-center border-b-2 w-full">
 													<div class="w-1/4">
@@ -304,142 +337,102 @@ export default function Chat() {
 											</button>
 										) : (
 											''
-										)
-									);
-								})}
-							</div>
-						) : //aqui los amigos que tienes agregados, pero no tienes un chat iniciado
-						tab === 2 ? (
-							<div>
+										);
+									})}
+								</div>
+							) : (
+								//aqui los chats de las personas que no tienes como amigo y no tienes un chat iniciado...
 								<div>
-									<div class="border-b-2 py-4 px-2">
-										<input
-											type="text"
-											placeholder="search friend"
-											class="py-2 px-2 border-2 border-gray-300 rounded-2xl w-full"
-										/>
+									<div>
+										<div class="border-b-2 py-4 px-2"></div>
 									</div>
+									{nonFriends?.map((e, index) => {
+										let room = [dataUser.id, e.id].sort().join('_');
+										return (
+											<button
+												key={index}
+												onClick={c => handleChatNonFriends(c, e.id)}
+												class="flex py-4 px-2 justify-center items-center border-b-2 w-full"
+											>
+												<div class="flex flex-row py-4 px-2 justify-center items-center border-b-2 w-full">
+													<div class="w-1/4">
+														<img
+															src={e.img}
+															class="object-cover h-12 w-12 rounded-full"
+															alt=""
+														/>
+													</div>
+													<div class="w-full">
+														<div class="text-lg font-semibold">{e.nickname}</div>
+													</div>
+												</div>
+											</button>
+										);
+									})}
 								</div>
-								{friends?.map((e, index) => {
-									//aqui mapeo los amigos y filtro los que no tienen un chat iniciado conmigo
-									let room = [dataUser.id, e.id].sort().join('_');
-									return !chats?.chats?.some(e => e.id === room) ? (
-										<button
-											key={index}
-											onClick={c => handleChatCreate(c, e)}
-											class="flex py-4 px-2 justify-center items-center border-b-2 w-full"
-										>
-											<div class="flex flex-row py-4 px-2 justify-center items-center border-b-2 w-full">
-												<div class="w-1/4">
-													<img
-														src={e.img}
-														class="object-cover h-12 w-12 rounded-full"
-														alt=""
-													/>
-												</div>
-												<div class="w-full">
-													<div class="text-lg font-semibold">{e.nickname}</div>
-												</div>
-											</div>
-										</button>
-									) : (
-										''
-									);
-								})}
-							</div>
-						) : (
-							//aqui los chats de las personas que no tienes como amigo y no tienes un chat iniciado...
-							<div>
-								<div>
-									<div class="border-b-2 py-4 px-2"></div>
-								</div>
-								{nonFriends?.map((e, index) => {
-									let room = [dataUser.id, e.id].sort().join('_');
-									return (
-										<button
-											key={index}
-											onClick={c => handleChatNonFriends(c, e.id)}
-											class="flex py-4 px-2 justify-center items-center border-b-2 w-full"
-										>
-											<div class="flex flex-row py-4 px-2 justify-center items-center border-b-2 w-full">
-												<div class="w-1/4">
-													<img
-														src={e.img}
-														class="object-cover h-12 w-12 rounded-full"
-														alt=""
-													/>
-												</div>
-												<div class="w-full">
-													<div class="text-lg font-semibold">{e.nickname}</div>
-												</div>
-											</div>
-										</button>
-									);
-								})}
-							</div>
-						)}
-						{/* aqui poner los que quieren hablar pero no estan en tu lista de amigos osea los pendientes */}
+							)}
+							{/* aqui poner los que quieren hablar pero no estan en tu lista de amigos osea los pendientes */}
+						</div>
 					</div>
 					{/* aqui termina */}
-
 					<div class="w-full px-5 flex flex-col justify-between">
-						<div class="flex flex-col mt-5 h-max">
-							{/* aqui el map de messeges para los chats */}
+						<div class="w-full flex flex-col justify-center overflow-auto max-h-full">
+							<div class="flex flex-col mt-5 overflow-auto max-h-96">
+								{/* aqui el map de messeges para los chats */}
 
-							{chatsLogs?.map((e, index) => {
-								let messagesFiltereds = e.messages.filter(
-									m => m[0].userId && m[0].messages != '' && m[0].messages
-								);
-								return messagesFiltereds?.map((b, index) => {
+								{chatsLogs?.map((e, index) => {
+									let messagesFiltereds = e.messages.filter(
+										m => m[0].userId && m[0].messages != '' && m[0].messages
+									);
+									return messagesFiltereds?.map((b, index) => {
+										return (
+											<div
+												key={index}
+												class={
+													dataUser.id === b[0].userId
+														? 'flex justify-end mb-4'
+														: 'flex justify-start mb-4'
+												}
+											>
+												<div
+													class={
+														dataUser.id === b[0].userId
+															? 'mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-black'
+															: 'ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-black'
+													}
+												>
+													<p>{b[0].messages}</p>
+												</div>
+											</div>
+										);
+									});
+								})}
+								{messeges?.map((e, index) => {
 									return (
 										<div
 											key={index}
 											class={
-												dataUser.id === b[0].userId
+												e.user === dataUser.nickname
 													? 'flex justify-end mb-4'
 													: 'flex justify-start mb-4'
 											}
 										>
 											<div
 												class={
-													dataUser.id === b[0].userId
+													e.user === dataUser.nickname
 														? 'mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-black'
 														: 'ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-black'
 												}
 											>
-												<p>{b[0].messages}</p>
+												{/* aqui el mensaje */}
+
+												<p>{e.body}</p>
 											</div>
+											<img src={e.img} class="object-cover h-8 w-8 rounded-full" alt="" />
 										</div>
 									);
-								});
-							})}
-							{messeges?.map((e, index) => {
-								const lastMessege = messeges.length - 1 === index;
-								return (
-									<div
-										key={index}
-										ref={lastMessege ? setRef : null}
-										class={
-											e.user === dataUser.nickname
-												? 'flex justify-end mb-4'
-												: 'flex justify-start mb-4'
-										}
-									>
-										<div
-											class={
-												e.user === dataUser.nickname
-													? 'mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-black'
-													: 'ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-black'
-											}
-										>
-											{/* aqui el mensaje */}
-
-											<p>{e.body}</p>
-										</div>
-										<img src={e.img} class="object-cover h-8 w-8 rounded-full" alt="" />
-									</div>
-								);
-							})}
+								})}
+							</div>
 							{chatsLogs.length === 0 && room == '' ? (
 								''
 							) : (
