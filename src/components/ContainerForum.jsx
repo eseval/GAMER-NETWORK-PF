@@ -15,14 +15,13 @@ export default function ContainerForum() {
 	const paginate = pageNumber => {
 		setCurrentPage(pageNumber);
 	};
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	if (currentPage > Math.ceil(themes?.length / postPerPage) && currentPage !== 1) {
 		setCurrentPage(1);
 	}
 	function handleOnClick(e, postId) {
-		e.preventDefault()
-		navigate(`/postDetails/${postId}`)
-
+		e.preventDefault();
+		navigate(`/postDetails/${postId}`);
 	}
 	return (
 		<div>
@@ -52,37 +51,37 @@ export default function ContainerForum() {
 
 				{currentPost?.length > 0
 					? currentPost?.map((post, index) => {
-						return (
-							<thead key={post.id}>
-								{post?.deleteFlag === true ? (
-									<tr></tr>
-								) : (
-									<tr className="bg-gray-800 border-b border-gray-700">
-										<th
-											scope="row"
-											className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-										>
-											<button onClick={e => handleOnClick(e, post.id)} >
-												{post.title.length <= 16
-													? post.title
-													: post.title.slice(0, 16) + '...'}
-											</button>
-										</th>
-										<td className="px-6 py-3 text-center text-gray-500">
-											{post.user !== null ? post.user.nickname : 'Unknown user'}
-										</td>
-										<td className="px-6 py-3 text-center text-gray-500">
-											{post.answers.length > 0 ? post.answers.length : 0}
-										</td>
-										<td className="px-6 py-3 text-center text-gray-500">
-											{post?.createdAt?.split('T')[0]}
-										</td>
-										<td className="px-6 py-3 text-center text-gray-500">{post?.genre}</td>
-									</tr>
-								)}
-							</thead>
-						);
-					})
+							return (
+								<thead key={post.id}>
+									{post?.deleteFlag === true ? (
+										<tr></tr>
+									) : (
+										<tr className="bg-gray-800 border-b border-gray-700">
+											<th
+												scope="row"
+												className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+											>
+												<button onClick={e => handleOnClick(e, post.id)}>
+													{post.title.length <= 16
+														? post.title
+														: post.title.slice(0, 16) + '...'}
+												</button>
+											</th>
+											<td className="px-6 py-3 text-center text-gray-500">
+												{post.user !== null ? post.user.nickname : 'Unknown user'}
+											</td>
+											<td className="px-6 py-3 text-center text-gray-500">
+												{post.answers.length > 0 ? post.answers.length : 0}
+											</td>
+											<td className="px-6 py-3 text-center text-gray-500">
+												{post?.createdAt?.split('T')[0]}
+											</td>
+											<td className="px-6 py-3 text-center text-gray-500">{post?.genre}</td>
+										</tr>
+									)}
+								</thead>
+							);
+					  })
 					: ''}
 			</table>
 			<div className="mt-5">
