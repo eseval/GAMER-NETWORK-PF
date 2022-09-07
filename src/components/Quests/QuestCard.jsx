@@ -58,6 +58,7 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
     }
     if (chats?.chats?.length >= 20 && mission.name === 'Chattie III') {
         missionsCompleted.push(mission.id);
+
     }
 
     const handleOnClick = () => {
