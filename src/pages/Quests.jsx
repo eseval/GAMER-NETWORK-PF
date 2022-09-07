@@ -57,7 +57,8 @@ const Quests = () => {
 				) : (
 					<div className="container">
 						{allMissions?.map(mission => {
-							return <QuestCard mission={mission} missionsCompletedByUser={dataUser.missions} />;
+
+							return <QuestCard mission={mission} missionsCompletedByUser={dataUser.missions} key={mission.id} />;
 						})}
 					</div>
 				)}
