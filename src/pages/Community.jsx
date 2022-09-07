@@ -66,7 +66,7 @@ export default function PlayContainer() {
 		<div>
 			<NavBar />
 			<div className="container">
-				<h1 className="mt-10 mb-10 mx-5 text-7xl opacity-85 font-totifont text-center text-white">Community</h1>
+				<h1 className="mt-10 mb-10 mx-5 text-5xl opacity-85 font-totifont text-center text-white">Community</h1>
 				<div className="container flex flex-col">
 					<div className="max-w-md mx-24">
 						<form>
