@@ -42,6 +42,7 @@ import {
   CLAIM_MISSION,
   POST_MISSON,
   POST_REWARD,
+  GET_ALL_MISSIONS,
 } from "../actions/types";
 
 const initialState = {
@@ -60,6 +61,7 @@ const initialState = {
   friends: [],
   nonFriends: [],
   chats:[],
+  missions:[]
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -289,7 +291,12 @@ export default function rootReducer(state = initialState, action) {
       case CLAIM_MISSION:
         return{
           ...state,
-          user:action.payload
+          user:action.payload,
+          missions:action.payload2.sort(function (a, b) {
+           			if (a.name < b.name) return -1;
+            			else if (a.name > b.name) return 1;
+            		else return 0;
+             		}),
         }
       case CLEAN_ALL:
         return{
@@ -316,6 +323,15 @@ export default function rootReducer(state = initialState, action) {
       case POST_REWARD:
         return{
           ...state,
+        }
+      case GET_ALL_MISSIONS:
+        return{
+          ...state,
+          missions:action.payload.sort(function (a, b) {
+            if (a.name < b.name) return -1;
+            else if (a.name > b.name) return 1;
+           else return 0;
+            }),
         }
       default:
         return { ...state };

@@ -43,6 +43,7 @@ import {
   CLAIM_MISSION,
   POST_MISSON,
   POST_REWARD,
+  GET_ALL_MISSIONS,
 } from './types';
 
 const USERS_URL = 'https://pf-henry-gamesportal.herokuapp.com/users';
@@ -489,12 +490,11 @@ export function getAllFriends(friends) {
 	return async function (dispatch) {
 		try {
 		  await axios.put(`${ADD_MISSION_URL}/${userId}`,{missionId:missionId});
-		  await axios.put(`${USERS_URL}/${userId}`,{coins:coinsRewards})
+		await axios.put(`${USERS_URL}/${userId}`,{coins:coinsRewards})
 		  let json= await axios.get(`${USERS_URL}/${userId}`)
-
 		  window.localStorage.setItem("userLogged", JSON.stringify(json.data));
-
-		  return dispatch({ type: CLAIM_MISSION , payload:json.data});
+		  let json2= await axios.get(`${MISSION_URL}`);
+		  return dispatch({ type: CLAIM_MISSION , payload:json.data,payload2:json2.data});
 		} catch (error) {
 		  console.log(error);
 		}
@@ -521,6 +521,18 @@ export function getAllFriends(friends) {
 		  await axios.post(`${REWARDS_URL}`,{title,price,image,recompenseType});
 		  
 		  return dispatch({ type: POST_REWARD });
+		} catch (error) {
+		  console.log(error);
+		}
+	  };
+  }
+
+  export function getAllMissions(){
+	return async function (dispatch) {
+		try {
+		let json= await axios.get(`${MISSION_URL}`);
+		  
+		  return dispatch({ type: GET_ALL_MISSIONS, payload : json.data });
 		} catch (error) {
 		  console.log(error);
 		}
