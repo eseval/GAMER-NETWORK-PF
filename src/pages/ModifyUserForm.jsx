@@ -131,6 +131,9 @@ export default function ModifyUserForm() {
 								name="servers"
 								className="px-3 py-2 mx-3 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
 							>
+								<option default value="">
+									Server
+								</option>
 								<option value="LAS">LAS</option>
 								<option value="LAN">LAN</option>
 								<option value="BR">BR</option>
