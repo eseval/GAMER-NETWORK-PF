@@ -32,16 +32,16 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
 	if (dataUser?.friends?.length > 44 && mission.name === 'Add friends III') {
 		missionsCompleted.push(mission.id);
 	}
-	if (dataUser?.plan == 'true' && mission.name === 'Suscribe to premium') {
+	if (dataUser?.plan === true && mission.name === 'Suscribe to premium') {
 		missionsCompleted.push(mission.id);
 	}
-	if (dataUser?.formus.length >= 5 && mission.name === 'Participate in the forum I') {
+	if (dataUser?.formus?.length >= 5 && mission.name === 'Participate in the forum I') {
 		missionsCompleted.push(mission.id);
 	}
-	if (dataUser?.formus.length >= 25 && mission.name === 'Participate in the forum II') {
+	if (dataUser?.formus?.length >= 25 && mission.name === 'Participate in the forum II') {
 		missionsCompleted.push(mission.id);
 	}
-	if (dataUser?.formus.length >= 50 && mission.name === 'Participate in the forum III') {
+	if (dataUser?.formus?.length >= 50 && mission.name === 'Participate in the forum III') {
 		missionsCompleted.push(mission.id);
 	}
 
