@@ -24,13 +24,13 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
     if (dataUser?.favoriteGames?.length > 49 && mission.name === "Games III") {
         missionsCompleted.push(mission.id)
     }
-    if (dataUser?.friends?.length > 4 && mission.name === "Add Friends I") {
+    if (dataUser?.friends?.length > 4 && mission.name === "Add friends I") {
         missionsCompleted.push(mission.id)
     }
-    if (dataUser?.friends?.length > 14 && mission.name === "Add Friends II") {
+    if (dataUser?.friends?.length > 14 && mission.name === "Add friends II") {
         missionsCompleted.push(mission.id)
     }
-    if (dataUser?.friends?.length > 44 && mission.name === "Add Friends III") {
+    if (dataUser?.friends?.length > 44 && mission.name === "Add friends III") {
         missionsCompleted.push(mission.id)
     }
 
