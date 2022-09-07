@@ -2,7 +2,6 @@ import React from 'react';
 import { claimRewards } from '../redux/actions';
 import { useDispatch } from 'react-redux';
 import swal from 'sweetalert';
-import axios from 'axios';
 
 export default function RewardCard({ title, image, price, recompenseType }) {
 	const dispatch = useDispatch();
