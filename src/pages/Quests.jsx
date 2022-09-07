@@ -36,7 +36,6 @@ const Quests = () => {
 
   }, [setAllMissions]);
 
-  let a = allMissions
   return (
     <div>
       <NavBar />
@@ -44,13 +43,20 @@ const Quests = () => {
         <div className="container mb-10">
           <h1 className="mx-5 mt-10 text-center text-white text-7xl opacity-85 font-totifont">Quests</h1>
         </div>
-        <div className="container">
-          {allMissions?.map((mission) => {
-            return (
-              <QuestCard mission={mission} missionsCompletedByUser={dataUser.missions} />
-            );
-          })}
-        </div>
+        {allMissions?.length === 0 ? (
+          <div className="container mb-10">
+            <h3 className="mx-5 mt-20 text-3xl text-center text-white opacity-85 font-totifont">No quests left</h3>
+          </div>
+        ) : 
+        (
+          <div className="container">
+            {allMissions?.map((mission) => {
+              return (
+                <QuestCard mission={mission} missionsCompletedByUser={dataUser.missions} />
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
