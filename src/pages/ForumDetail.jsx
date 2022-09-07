@@ -5,6 +5,7 @@ import { cleanForum, getForum, reportPostForum } from '../redux/actions';
 import AnswerForum from '../components/AnswerForum';
 import NavBar from '../components/NavBar';
 import toast, { Toaster } from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
 export default function ForumDetail() {
 	const { id } = useParams();
@@ -29,10 +30,22 @@ export default function ForumDetail() {
 	let buttonReport = false;
 
 	function handleOnChange(e) {
-		const report = { report: dataUser.id };
-		let buttonReport = true;
-		dispatch(reportPostForum(id, report));
-		toast.success(`Report successful!`);
+		Swal.fire({
+			imageUrl: `https://c.tenor.com/2XJN2YEYbIAAAAAC/peach-and.gif`,
+			imageWidth: 200,
+			title: `Do you want to report this post?`,
+			showDenyButton: true,
+			confirmButtonText: 'Yes',
+			denyButtonText: `No`,
+		}).then(result => {
+			if (result.isConfirmed === true) {
+				const report = { report: dataUser.id };
+				dispatch(reportPostForum(id, report));
+				let buttonReport = true;
+				toast.success(`Report successful!`);
+			}
+		});
+
 	}
 
 	return (
