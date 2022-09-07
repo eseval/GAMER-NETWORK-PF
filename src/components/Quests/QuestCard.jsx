@@ -12,7 +12,7 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
     let missionsCompleted = []
 
     const handleClick = (e) => {
-      e.target.value !== active ? setActive(e.target.value) : setActive("z");
+        e.target.value !== active ? setActive(e.target.value) : setActive("z");
     };
 
     if (dataUser?.favoriteGames?.length > 4 && mission.name === "Games I") {
@@ -22,6 +22,15 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
         missionsCompleted.push(mission.id)
     }
     if (dataUser?.favoriteGames?.length > 49 && mission.name === "Games III") {
+        missionsCompleted.push(mission.id)
+    }
+    if (dataUser?.friends?.length > 4 && mission.name === "Add Friends I") {
+        missionsCompleted.push(mission.id)
+    }
+    if (dataUser?.friends?.length > 14 && mission.name === "Add Friends II") {
+        missionsCompleted.push(mission.id)
+    }
+    if (dataUser?.friends?.length > 44 && mission.name === "Add Friends III") {
         missionsCompleted.push(mission.id)
     }
 
@@ -48,11 +57,10 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
                     />
                     <div className="flex flex-col w-full">
                         <h3 className="text-sm font-bold text-left">
-                          {mission.name}
+                            {mission.name}
                         </h3>
                         <span>💎 {mission.coinsRewards}</span>
                     </div>
-
                     <button
                         onClick={(e) => handleClick(e, mission.id)}
                         value={mission.id}
@@ -81,7 +89,6 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
                                     Go to the mission
                                 </button>
                                 : ""
-
                         }
                     </div>
                 ) : (
