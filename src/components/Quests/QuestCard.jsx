@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { claimMission } from '../../redux/actions';
+import { claimMission, getAllChats } from '../../redux/actions';
 
 export default function QuestCard({ mission, missionsCompletedByUser }) {
     let dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
@@ -9,6 +9,12 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     let missionsCompleted = [];
+
+    useEffect(() => {
+        dispatch(getAllChats(dataUser.id))
+    })
+
+    let chats = useSelector(state => state.chats)
 
     const handleClick = e => {
         e.target.value !== active ? setActive(e.target.value) : setActive('z');
@@ -43,6 +49,16 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
     }
     if (dataUser?.forums?.length >= 50 && mission.name === 'Participate in the forum III') {
         missionsCompleted.push(mission.id);
+    }
+    if (chats?.chats?.length >= 1 && mission.name === 'Chattie I') {
+        missionsCompleted.push(mission.id);
+    }
+    if (chats?.chats?.length >= 10 && mission.name === 'Chattie II') {
+        missionsCompleted.push(mission.id);
+    }
+    if (chats?.chats?.length >= 20 && mission.name === 'Chattie III') {
+        missionsCompleted.push(mission.id);
+
     }
 
     const handleOnClick = () => {
