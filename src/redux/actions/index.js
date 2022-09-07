@@ -179,6 +179,9 @@ export function claimRewards(data, id, price) {
 			let newDataUser = await axios.get(`https://pf-henry-gamesportal.herokuapp.com/users/${id}`);
 			if (newDataUser.data.coins >= price) {
 				await axios.put(`${USERS_URL}/${id}`, data);
+        await axios.post(`https://pf-henry-gamesportal.herokuapp.com/email/reward`, {
+          email: data.email
+        });
 				newDataUser = await axios.get(`https://pf-henry-gamesportal.herokuapp.com/users/${id}`);
 				window.localStorage.setItem('userLogged', JSON.stringify(newDataUser.data));
 			} else {
