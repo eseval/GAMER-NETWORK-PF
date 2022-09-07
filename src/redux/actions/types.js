@@ -45,3 +45,4 @@ export const UNSET_ADMIN = "UNSET_ADMIN";
 export const CLAIM_MISSION = "CLAIM_MISSION";
 export const POST_MISSON = "POST_MISSON";
 export const POST_REWARD = "POST_REWARD";
+export const GET_ALL_MISSIONS = "GET_ALL_MISSIONS";

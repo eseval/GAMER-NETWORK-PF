@@ -6,6 +6,7 @@ import NavBar from '../components/NavBar';
 import QuestCard from '../components/Quests/QuestCard';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
+import { getAllMissions } from '../redux/actions';
 
 const Quests = () => {
 	// const dispatch = useDispatch();
@@ -20,18 +21,14 @@ const Quests = () => {
 		}
 	}, [dataUser, navigate]);
 
-	const [allMissions, setAllMissions] = useState([]);
+
+
 	useEffect(() => {
-		axios.get('https://pf-henry-gamesportal.herokuapp.com/missions').then(res => {
-			setAllMissions(
-				res.data.sort(function (a, b) {
-					if (a.name < b.name) return -1;
-					else if (a.name > b.name) return 1;
-					else return 0;
-				})
-			);
-		});
-	}, [setAllMissions]);
+		dispatch(getAllMissions())
+
+	}, [getAllMissions]);
+
+	let allMissions = useSelector(state => state.missions)
 
 	while (allMissions.length < 1) {
 		return (
