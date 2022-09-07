@@ -39,7 +39,9 @@ import {
   CLEAN_ALL,
   SET_ADMIN,
   UNSET_ADMIN,
-  CLAIM_MISSION
+  CLAIM_MISSION,
+  POST_MISSON,
+  POST_REWARD,
 } from "../actions/types";
 
 const initialState = {
@@ -306,6 +308,14 @@ export default function rootReducer(state = initialState, action) {
             friends: [],
             nonFriends: [],
             chats:[],
+        }
+      case POST_MISSON:
+        return{
+          ...state,
+        }
+      case POST_REWARD:
+        return{
+          ...state,
         }
       default:
         return { ...state };

@@ -43,3 +43,5 @@ export const CLEAN_ALL = "CLEAN_ALL";
 export const SET_ADMIN = "SET_ADMIN";
 export const UNSET_ADMIN = "UNSET_ADMIN";
 export const CLAIM_MISSION = "CLAIM_MISSION";
+export const POST_MISSON = "POST_MISSON";
+export const POST_REWARD = "POST_REWARD";

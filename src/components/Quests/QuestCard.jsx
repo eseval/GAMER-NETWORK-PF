@@ -12,7 +12,7 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
     let missionsCompleted = []
 
     const handleClick = (e) => {
-      e.target.value !== active ? setActive(e.target.value) : setActive("z");
+        e.target.value !== active ? setActive(e.target.value) : setActive("z");
     };
 
     if (dataUser?.favoriteGames?.length > 4 && mission.name === "Games I") {
@@ -24,7 +24,15 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
     if (dataUser?.favoriteGames?.length > 49 && mission.name === "Games III") {
         missionsCompleted.push(mission.id)
     }
-
+    if (dataUser?.friends?.length > 4 && mission.name === "Add Friends I") {
+        missionsCompleted.push(mission.id)
+    }
+    if (dataUser?.friends?.length > 14 && mission.name === "Add Friends II") {
+        missionsCompleted.push(mission.id)
+    }
+    if (dataUser?.friends?.length > 44 && mission.name === "Add Friends III") {
+        missionsCompleted.push(mission.id)
+    }
 
     const handleOnClick = () => {
         navigate(`/${mission.route}`)
@@ -32,6 +40,7 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
     }
 
     const handleSubmit = () => {
+        mission.coinsRewards = mission.coinsRewards + dataUser.coins
         dispatch(claimMission(mission.id, mission.coinsRewards, dataUser.id))
     };
 
@@ -49,7 +58,7 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
                     />
                     <div className="flex flex-col w-full">
                         <h3 className="text-sm font-bold text-left">
-                          {mission.name}
+                            {mission.name}
                         </h3>
                         <span>💎 {mission.coinsRewards}</span>
                     </div>
@@ -82,10 +91,10 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
                             : !missionsCompletedByUser.filter(e => e.id === mission.id).length > 0
                                 ? <button onClick={e => handleOnClick(e)} className="float-right px-4 py-2 font-bold text-white uppercase bg-blue-500 rounded-full hover:bg-blue-700">
                                     Go to the mission
-                                  </button>
+                                </button>
                                 : <button disabled className="float-right px-4 py-2 font-bold text-white uppercase bg-blue-700 rounded-full">
                                     Claimed
-                                  </button>
+                                </button>
                         }
                     </div>
                 ) : (

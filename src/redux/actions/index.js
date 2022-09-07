@@ -40,7 +40,9 @@ import {
 	CLEAN_ALL,
   SET_ADMIN,
   UNSET_ADMIN,
-  CLAIM_MISSION
+  CLAIM_MISSION,
+  POST_MISSON,
+  POST_REWARD,
 } from './types';
 
 const USERS_URL = 'https://pf-henry-gamesportal.herokuapp.com/users';
@@ -493,6 +495,32 @@ export function getAllFriends(friends) {
 		  window.localStorage.setItem("userLogged", JSON.stringify(json.data));
 
 		  return dispatch({ type: CLAIM_MISSION , payload:json.data});
+		} catch (error) {
+		  console.log(error);
+		}
+	  };
+  }
+  
+  export function createMission({name,description,coinsRewards,icon,route}){
+	console.log(name,description,coinsRewards,icon,route)
+	return async function (dispatch) {
+		try {
+		  await axios.post(`${MISSION_URL}`,{name,description,coinsRewards,icon,route});
+		  
+		  return dispatch({ type: POST_MISSON });
+		} catch (error) {
+		  console.log(error);
+		}
+	  };
+  }
+  
+  
+  export function createReward({title,price,image,recompenseType}){
+	return async function (dispatch) {
+		try {
+		  await axios.post(`${REWARDS_URL}`,{title,price,image,recompenseType});
+		  
+		  return dispatch({ type: POST_REWARD });
 		} catch (error) {
 		  console.log(error);
 		}

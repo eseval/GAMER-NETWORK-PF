@@ -8,6 +8,7 @@ import ForumDashboard from '../components/AdminDashboard/ForumDashboard';
 import UsersStats from '../components/AdminDashboard/UsersStats';
 import NewsStats from '../components/AdminDashboard/NewsStats';
 import ForumStats from '../components/AdminDashboard/ForumStats';
+import ForumNewMissionOrReward from '../components/AdminDashboard/ForumNewMissionOrReward';
 
 export default function AdminDashboard() {
 	const navigate = useNavigate();
@@ -75,6 +76,7 @@ export default function AdminDashboard() {
 				</button>
 			</div>
 			{component}
+			<ForumNewMissionOrReward />
 
 			<div className="mt-80">
 				<Footer />
