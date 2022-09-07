@@ -338,7 +338,7 @@ export default function rootReducer(state = initialState, action) {
             }),
           }
           case SEARCH_FRIENDS:
-            let friendsFiltered = action.payload==="" || !action.payload ? state.friendsBackUp : state.friends.filter(e=>e.nickname.includes(action.payload))
+            let friendsFiltered = action.payload==="" || !action.payload ? state.friendsBackUp : state.friendsBackUp.filter(e=>e.nickname.toLowerCase().includes(action.payload.toLowerCase()))
             return{
               ...state,
               friends : friendsFiltered
