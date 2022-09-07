@@ -9,6 +9,7 @@ import {
 	saveMessageInDb,
 	getAllNonFriends,
 	addFriendForChat,
+	searchFriends,
 } from '../redux/actions';
 import Swal from 'sweetalert2';
 import NavBar from '../components/NavBar';
@@ -213,6 +214,16 @@ export default function Chat() {
 
 	//acordarte de poner el idRoom=[userId1,userId2].sort().join(_) y el chatShow= true en la ruta
 
+	function handleSearchFriends(e) {
+		e.preventDefault()
+		dispatch(searchFriends(e.target.value))
+	}
+
+	// function handleSearchFriends(e) {
+	// 	e.preventDefault()
+	// 	dispatch(searchFriends(e.target.value))
+	// }
+
 	return (
 		<div>
 			<NavBar />
@@ -221,13 +232,7 @@ export default function Chat() {
 				<div class="px-5 py-5 flex justify-between items-center bg-gray-800 border-b-2">
 					<div class="font-semibold text-2xl text-white">Play Center Chat</div>
 					<div class="w-1/2">
-						<input
-							type="text"
-							name=""
-							id=""
-							placeholder="Search in your chats"
-							class="rounded-2xl bg-gray-300 py-3 px-5 w-full"
-						/>
+
 					</div>
 					<img
 						src="https://i.imgur.com/9ESFHWn.png"
@@ -255,13 +260,12 @@ export default function Chat() {
 							</button>
 							<button
 								onClick={e => handleTabPendingMesseges(e)}
-								class={`rounded-2xl mx-5 mt-5 w-full ${
-									tab == 3 && nonFriends?.length === 0
-										? 'bg-blue-600'
-										: tab != 3 && nonFriends?.length === 0
+								class={`rounded-2xl mx-5 mt-5 w-full ${tab == 3 && nonFriends?.length === 0
+									? 'bg-blue-600'
+									: tab != 3 && nonFriends?.length === 0
 										? 'bg-gray-800'
 										: 'bg-green-500'
-								}`}
+									}`}
 							>
 								<div class="border-b-2 py-4 px-2 text-white">Pending</div>
 							</button>
@@ -273,6 +277,7 @@ export default function Chat() {
 								<div>
 									<div class="border-b-2 py-4 px-2">
 										<input
+											onChange={e => handleSearchFriends(e)}
 											type="text"
 											placeholder="search chat"
 											class="py-2 px-2 border-2 border-gray-300 rounded-2xl w-full"
@@ -313,75 +318,76 @@ export default function Chat() {
 									})}
 								</div>
 							) : //aqui los amigos que tienes agregados, pero no tienes un chat iniciado
-							tab === 2 ? (
-								<div>
+								tab === 2 ? (
 									<div>
-										<div class="border-b-2 py-4 px-2">
-											<input
-												type="text"
-												placeholder="search friend"
-												class="py-2 px-2 border-2 border-gray-300 rounded-2xl w-full"
-											/>
+										<div>
+											<div class="border-b-2 py-4 px-2">
+												<input
+													onChange={e => handleSearchFriends(e)}
+													type="text"
+													placeholder="search friend"
+													class="py-2 px-2 border-2 border-gray-300 rounded-2xl w-full"
+												/>
+											</div>
 										</div>
+										{friends?.map((e, index) => {
+											//aqui mapeo los amigos y filtro los que no tienen un chat iniciado conmigo
+											let room = [dataUser.id, e.id].sort().join('_');
+											return !chats?.chats?.some(e => e.id === room) ? (
+												<button
+													key={index}
+													onClick={c => handleChatCreate(c, e)}
+													class="flex py-4 px-2 justify-center items-center border-b-2 w-full"
+												>
+													<div class="flex flex-row py-4 px-2 justify-center items-center border-b-2 w-full">
+														<div class="w-1/4">
+															<img
+																src={e.img}
+																class="object-cover h-12 w-12 rounded-full"
+																alt=""
+															/>
+														</div>
+														<div class="w-full">
+															<div class="text-lg font-semibold">{e.nickname}</div>
+														</div>
+													</div>
+												</button>
+											) : (
+												''
+											);
+										})}
 									</div>
-									{friends?.map((e, index) => {
-										//aqui mapeo los amigos y filtro los que no tienen un chat iniciado conmigo
-										let room = [dataUser.id, e.id].sort().join('_');
-										return !chats?.chats?.some(e => e.id === room) ? (
-											<button
-												key={index}
-												onClick={c => handleChatCreate(c, e)}
-												class="flex py-4 px-2 justify-center items-center border-b-2 w-full"
-											>
-												<div class="flex flex-row py-4 px-2 justify-center items-center border-b-2 w-full">
-													<div class="w-1/4">
-														<img
-															src={e.img}
-															class="object-cover h-12 w-12 rounded-full"
-															alt=""
-														/>
-													</div>
-													<div class="w-full">
-														<div class="text-lg font-semibold">{e.nickname}</div>
-													</div>
-												</div>
-											</button>
-										) : (
-											''
-										);
-									})}
-								</div>
-							) : (
-								//aqui los chats de las personas que no tienes como amigo y no tienes un chat iniciado...
-								<div>
+								) : (
+									//aqui los chats de las personas que no tienes como amigo y no tienes un chat iniciado...
 									<div>
-										<div class="border-b-2 py-4 px-2"></div>
+										<div>
+											<div class="border-b-2 py-4 px-2"></div>
+										</div>
+										{nonFriends?.map((e, index) => {
+											let room = [dataUser.id, e.id].sort().join('_');
+											return (
+												<button
+													key={index}
+													onClick={c => handleChatNonFriends(c, e.id)}
+													class="flex py-4 px-2 justify-center items-center border-b-2 w-full"
+												>
+													<div class="flex flex-row py-4 px-2 justify-center items-center border-b-2 w-full">
+														<div class="w-1/4">
+															<img
+																src={e.img}
+																class="object-cover h-12 w-12 rounded-full"
+																alt=""
+															/>
+														</div>
+														<div class="w-full">
+															<div class="text-lg font-semibold">{e.nickname}</div>
+														</div>
+													</div>
+												</button>
+											);
+										})}
 									</div>
-									{nonFriends?.map((e, index) => {
-										let room = [dataUser.id, e.id].sort().join('_');
-										return (
-											<button
-												key={index}
-												onClick={c => handleChatNonFriends(c, e.id)}
-												class="flex py-4 px-2 justify-center items-center border-b-2 w-full"
-											>
-												<div class="flex flex-row py-4 px-2 justify-center items-center border-b-2 w-full">
-													<div class="w-1/4">
-														<img
-															src={e.img}
-															class="object-cover h-12 w-12 rounded-full"
-															alt=""
-														/>
-													</div>
-													<div class="w-full">
-														<div class="text-lg font-semibold">{e.nickname}</div>
-													</div>
-												</div>
-											</button>
-										);
-									})}
-								</div>
-							)}
+								)}
 							{/* aqui poner los que quieren hablar pero no estan en tu lista de amigos osea los pendientes */}
 						</div>
 					</div>

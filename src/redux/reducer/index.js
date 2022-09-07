@@ -43,6 +43,7 @@ import {
   POST_MISSON,
   POST_REWARD,
   GET_ALL_MISSIONS,
+  SEARCH_FRIENDS,
 } from "../actions/types";
 
 const initialState = {
@@ -59,6 +60,7 @@ const initialState = {
 	genres: [],
 	posts: [],
   friends: [],
+  friendsBackUp: [],
   nonFriends: [],
   chats:[],
   missions:[]
@@ -239,6 +241,8 @@ export default function rootReducer(state = initialState, action) {
         return {
           ...state,
           friends: action.payload,
+          friendsBackUp: action.payload,
+
         };
       case GET_ALL_CHATS:
         return {
@@ -324,15 +328,21 @@ export default function rootReducer(state = initialState, action) {
         return{
           ...state,
         }
-      case GET_ALL_MISSIONS:
-        return{
-          ...state,
-          missions:action.payload.sort(function (a, b) {
-            if (a.name < b.name) return -1;
-            else if (a.name > b.name) return 1;
-           else return 0;
+        case GET_ALL_MISSIONS:
+          return{
+            ...state,
+            missions:action.payload.sort(function (a, b) {
+              if (a.name < b.name) return -1;
+              else if (a.name > b.name) return 1;
+              else return 0;
             }),
-        }
+          }
+          case SEARCH_FRIENDS:
+            let friendsFiltered = action.payload==="" || !action.payload ? state.friendsBackUp : state.friends.filter(e=>e.nickname.includes(action.payload))
+            return{
+              ...state,
+              friends : friendsFiltered
+            }
       default:
         return { ...state };
     }

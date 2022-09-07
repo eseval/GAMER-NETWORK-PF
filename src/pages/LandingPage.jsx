@@ -23,7 +23,7 @@ export default function LandingPage() {
   }, [dispatch, user, userDb]);
 
   if (isAuthenticated) {
-    while (window.localStorage.userLogged === '' || window.localStorage.userLogged === undefined || userDb[0].length < 1) {
+    while (window.localStorage.userLogged === '' || window.localStorage.userLogged === undefined || userDb[0]?.length < 1) {
       return (
         <div>
           <div className="bg-[url('https://cdnb.artstation.com/p/assets/images/images/012/193/905/original/maria-hager-titlescreen-retro-glitch.gif?1533552570')] bg-cover bg-center bg-no-repeat fixed h-screen w-screen"></div>

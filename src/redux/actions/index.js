@@ -44,6 +44,7 @@ import {
   POST_MISSON,
   POST_REWARD,
   GET_ALL_MISSIONS,
+  SEARCH_FRIENDS,
 } from './types';
 
 const USERS_URL = 'https://pf-henry-gamesportal.herokuapp.com/users';
@@ -502,7 +503,6 @@ export function getAllFriends(friends) {
   }
   
   export function createMission({name,description,coinsRewards,icon,route}){
-	console.log(name,description,coinsRewards,icon,route)
 	return async function (dispatch) {
 		try {
 		  await axios.post(`${MISSION_URL}`,{name,description,coinsRewards,icon,route});
@@ -537,4 +537,10 @@ export function getAllFriends(friends) {
 		  console.log(error);
 		}
 	  };
+  }
+
+
+
+  export function searchFriends(payload){
+		  return ({ type:SEARCH_FRIENDS, payload :payload });
   }
