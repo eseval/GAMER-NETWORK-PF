@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserByEmail, postUser } from '../redux/actions';
 import LoginButton from '../components/Login';
@@ -11,6 +11,7 @@ export default function LandingPage() {
   const { isAuthenticated, user } = useAuth0();
   const dispatch = useDispatch();
   const userDb = useSelector(state => state.user);
+  const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
 
   useEffect(() => {
     if (userDb?.length > 0) {

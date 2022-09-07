@@ -15,7 +15,7 @@ export default function GamesContainer() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (!dataUser || dataUser === '') {
+		if (!dataUser || dataUser === '' || dataUser?.deleteFlag === true || dataUser.bannedFlag === true) {
 			navigate('/');
 		}
 	}, [dataUser, navigate]);

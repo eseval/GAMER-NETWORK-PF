@@ -22,6 +22,13 @@ export default function Reward() {
 		setCurrentPage(pageNumber);
 	};
 
+
+	useEffect(() => {
+		if (!dataUser || dataUser === '' || dataUser?.deleteFlag === true || dataUser.bannedFlag === true) {
+			navigate('/');
+		}
+	}, [dataUser, navigate]);
+
 	rewards = rewards?.filter(e => !e.deleted === true && !e.available === false);
 
 	useEffect(() => {

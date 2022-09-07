@@ -16,7 +16,7 @@ const Quests = () => {
 	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
 
 	useEffect(() => {
-		if (!dataUser || dataUser === '') {
+		if (!dataUser || dataUser === '' || dataUser?.deleteFlag === true || dataUser.bannedFlag === true) {
 			navigate('/');
 		}
 	}, [dataUser, navigate]);

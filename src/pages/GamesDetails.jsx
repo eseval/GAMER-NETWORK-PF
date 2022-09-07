@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { cleanGamesByIdState, getGamesById } from '../redux/actions';
 import NavBar from '../components/NavBar';
@@ -11,6 +11,15 @@ export default function GamesDetails() {
 	const dispatch = useDispatch();
 	const details = useSelector(state => state.gamesDetails);
 	const { name, image, description } = details;
+
+	const navigate = useNavigate()
+
+	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
+	useEffect(() => {
+		if (!dataUser || dataUser === '' || dataUser?.deleteFlag === true || dataUser.bannedFlag === true) {
+			navigate('/');
+		}
+	}, [dataUser, navigate]);
 
 	useEffect(() => {
 		dispatch(getGamesById(id.id));

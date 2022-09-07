@@ -12,7 +12,7 @@ export default function FormForum() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (!dataUser || dataUser === '') {
+		if (!dataUser || dataUser === '' || dataUser?.deleteFlag === true || dataUser.bannedFlag === true) {
 			navigate('/');
 		}
 	}, [dataUser, navigate]);

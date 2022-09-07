@@ -21,11 +21,10 @@ export default function Chat() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (!dataUser || dataUser === '') {
+		if (!dataUser || dataUser === '' || dataUser?.deleteFlag === true || dataUser.bannedFlag === true) {
 			navigate('/');
 		}
 	}, [dataUser, navigate]);
-
 	//codigo empieza aqui
 
 	const dispatch = useDispatch();
