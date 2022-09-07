@@ -57,8 +57,7 @@ export default function SubscriptionCards() {
 							</div>
 							<ul className="flex-1 space-y-4">
 								<li className="text-gray-500 dark:text-gray-400">No publicity</li>
-								<li className="text-gray-500 dark:text-gray-400">More rewards on missions</li>
-								<li className="text-gray-500 dark:text-gray-400">Roulette with gifts</li>
+								<li className="text-gray-500 dark:text-gray-400">x3 coins rewards</li>
 								<li className="text-gray-500 dark:text-gray-400">
 									And all the included on casual plan
 								</li>

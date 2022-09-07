@@ -4,16 +4,14 @@ import Footer from '../components/Footer';
 
 export default function About() {
 	return (
-		<div className="bg-white">
+		<div>
 			<NavBar />
-			<div className="bg-white">
+			<div>
 				<div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 -mb-6">
-					<div className="mx-auto mb-10 lg:max-w-xl sm:text-center -mt-16">
-						<p className="inline-block px-3 py-px mb-4 text-4xl font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400 ">
-							Dream Team
-						</p>
+					<div className="mx-auto mb-16 lg:max-w-xl sm:text-center -mt-16">
+						<h1 className="my-10 mx-5 text-7xl opacity-85 font-totifont text-center text-white">Dream team</h1>
 					</div>
-					<div className="gap-10 mx-auto lg:max-w-screen-lg sm:grid-cols-2 lg:grid-cols-4">
+					<div className="gap-10 mx-auto lg:max-w-screen-lg sm:grid-cols-2 lg:grid-cols-4 text-white">
 						<div className="flex flex-row items-center justify-center my-8">
 							<div className="flex flex-col items-center mx-6">
 								<img
@@ -26,9 +24,6 @@ export default function About() {
 									<div className="flex">
 										<a href="https://github.com/sdin2" className="px-2 py-1" target="_blank">
 											<BsGithub />
-										</a>
-										<a href="#" className="px-2 py-1" target="_blank">
-											<BsLinkedin />
 										</a>
 									</div>
 								</div>
@@ -45,9 +40,6 @@ export default function About() {
 										<a href="https://github.com/facuf18" className="px-2 py-1" target="_blank">
 											<BsGithub />
 										</a>
-										<a href="#" className="px-2 py-1" target="_blank">
-											<BsLinkedin />
-										</a>
 									</div>
 								</div>
 							</div>
@@ -63,9 +55,6 @@ export default function About() {
 										<a href="https://github.com/fvaldezz96" className="px-2 py-1" target="_blank">
 											<BsGithub />
 										</a>
-										<a href="#" className="px-2 py-1" target="_blank">
-											<BsLinkedin />
-										</a>
 									</div>
 								</div>
 							</div>
@@ -80,9 +69,6 @@ export default function About() {
 									<div className="flex">
 										<a href="https://github.com/TotiFz" className="px-2 py-1" target="_blank">
 											<BsGithub />
-										</a>
-										<a href="#" className="px-2 py-1" target="_blank">
-											<BsLinkedin />
 										</a>
 									</div>
 								</div>
@@ -101,9 +87,6 @@ export default function About() {
 										<a href="https://github.com/Matusola01" className="px-2 py-1" target="_blank">
 											<BsGithub />
 										</a>
-										<a href="#" className="px-2 py-1" target="_blank">
-											<BsLinkedin />
-										</a>
 									</div>
 								</div>
 							</div>
@@ -119,9 +102,6 @@ export default function About() {
 										<a href="https://github.com/Patoad" className="px-2 py-1" target="_blank">
 											<BsGithub />
 										</a>
-										<a href="#" className="px-2 py-1" target="_blank">
-											<BsLinkedin />
-										</a>
 									</div>
 								</div>
 							</div>
@@ -136,9 +116,6 @@ export default function About() {
 									<div className="flex">
 										<a href="https://github.com/eseval" className="px-2 py-1" target="_blank">
 											<BsGithub />
-										</a>
-										<a href="#" className="px-2 py-1" target="_blank">
-											<BsLinkedin />
 										</a>
 									</div>
 								</div>

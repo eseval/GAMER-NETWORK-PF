@@ -84,15 +84,18 @@ export default function QuestCard({ mission, missionsCompletedByUser }) {
             >
                 <div className="flex items-center w-full p-4 text-sm leading-7">
                     <img
-                        className="mr-1.5 items-center w-16"
+                        className="mr-5 items-center w-16"
                         src={mission.icon}
                         alt="img not found"
                     />
-                    <div className="flex flex-col w-full">
-                        <h3 className="text-sm font-bold text-left">
+                    <div className="flex flex-col w-full space-y-3">
+                        <h3 className="text-lg font-bold text-left">
                             {mission.name}
                         </h3>
-                        <span>💎 {mission.coinsRewards}</span>
+                        <div className='flex flex-col space-y-0'>
+                          <span>Free: 💎 {mission.coinsRewards}</span>
+                          <span>Premium: 💎 {mission.coinsRewards*3}</span>
+                        </div>
                     </div>
                     {
 
