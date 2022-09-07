@@ -15,7 +15,6 @@ export default function FriendsForProfile({ friendsIds, id, user }) {
 	}, [getAllFriends, dispatch]);
 
 	const handleOnClick = (t, id, deleteFriend) => {
-		console.log(t);
 		t.preventDefault();
 		dispatch(addFriendForChat(dataUser.id, id, deleteFriend));
 	};

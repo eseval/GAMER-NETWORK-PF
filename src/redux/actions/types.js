@@ -46,3 +46,4 @@ export const CLAIM_MISSION = "CLAIM_MISSION";
 export const POST_MISSON = "POST_MISSON";
 export const POST_REWARD = "POST_REWARD";
 export const GET_ALL_MISSIONS = "GET_ALL_MISSIONS";
+export const SEARCH_FRIENDS = "SEARCH_FRIENDS";
