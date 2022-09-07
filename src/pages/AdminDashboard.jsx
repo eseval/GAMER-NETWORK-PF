@@ -17,7 +17,7 @@ export default function AdminDashboard() {
 	let component = null;
 
 	useEffect(() => {
-		if (!dataUser || dataUser === '') {
+		if (!dataUser || dataUser === '' || dataUser?.deleteFlag === true || dataUser.bannedFlag === true) {
 			navigate('/');
 		}
 	}, [dataUser, navigate]);
@@ -37,13 +37,14 @@ export default function AdminDashboard() {
 			</div>
 		);
 	} else if (dash === 'FormMissionsRewards') {
-    component = (
-      <FormNewMissionOrReward />
-    )
-  }
+		component = (
+			<FormNewMissionOrReward />
+		)
+	}
 
 	return (
 		<div>
+
 			<NavBar />
 			<div className="container flex flex-row justify-center my-12">
 				<button

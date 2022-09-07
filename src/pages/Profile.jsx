@@ -13,8 +13,9 @@ export default function Profile() {
 	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+
 	useEffect(() => {
-		if (!dataUser || dataUser === '') {
+		if (!dataUser || dataUser === '' || dataUser?.deleteFlag === true || dataUser.bannedFlag === true) {
 			navigate('/');
 		}
 	}, [dataUser, navigate]);
