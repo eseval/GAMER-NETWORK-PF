@@ -226,8 +226,8 @@ export default function Chat() {
 	return (
 		<div>
 			<NavBar />
-			<h1 className="mt-10 mb-10 mx-5 text-7xl opacity-85 font-totifont text-center text-white">Chat</h1>
-			<div class="container mx-auto shadow-lg rounded-lg h-screen">
+			<h1 className="my-4 mx-5 text-7xl opacity-85 font-totifont text-center text-white">Chat</h1>
+			<div class="container mx-auto shadow-lg rounded-lg">
 				<div class="px-5 py-5 flex justify-between items-center bg-gray-800 border-b-2">
 					<div class="font-semibold text-2xl text-white">Play Center Chat</div>
 					<div class="w-1/2">
@@ -235,7 +235,7 @@ export default function Chat() {
 					</div>
 					<img
 						src="https://i.imgur.com/9ESFHWn.png"
-						class="h-32 w-32  rounded-full text-white font-semibold flex items-center justify-center"
+						class="h-24 w-24  rounded-full text-white font-semibold flex items-center justify-center"
 					/>
 				</div>
 
@@ -391,7 +391,7 @@ export default function Chat() {
 						</div>
 					</div>
 					{/* aqui termina */}
-					<div class="w-full px-5 flex flex-col justify-between">
+					<div class="w-auto px-5 flex flex-col justify-between">
 						<div class="w-full flex flex-col justify-center overflow-auto max-h-full">
 							<div class="flex flex-col mt-5 overflow-auto max-h-96">
 								{/* aqui el map de messeges para los chats */}
@@ -457,7 +457,7 @@ export default function Chat() {
 										onChange={e => handleOnChangeForm(e)}
 										class="w-full bg-gray-300 py-5 px-3 rounded-xl"
 										type="text"
-										placeholder="type your message here..."
+										placeholder="Type your message here..."
 									/>
 									<button
 										id="buttonSubmit"
