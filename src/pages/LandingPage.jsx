@@ -23,23 +23,37 @@ export default function LandingPage() {
   }, [dispatch, user, userDb]);
 
   if (isAuthenticated) {
-    while (window.localStorage.userLogged === '' || window.localStorage.userLogged === undefined) {
+    while (window.localStorage.userLogged === '' || window.localStorage.userLogged === undefined || userDb[0]?.length < 1 || !userDb[0]?.nickname) {
       return (
-        <div>
-          <div className="bg-[url('https://cdnb.artstation.com/p/assets/images/images/012/193/905/original/maria-hager-titlescreen-retro-glitch.gif?1533552570')] bg-cover bg-center bg-no-repeat fixed h-screen w-screen"></div>
-          <div className="container my-10 text-center align-middle">
-            <h1 className="text-5xl text-white font-totifont ">Play Center</h1>
-            <img className="absolute inset-0 w-32 h-32" src="https://i.imgur.com/9ESFHWn.png" alt="" />
-            <div className="mt-10">
-              <Loader width={8} />
-            </div>
+        <div className="container text-center">
+          <h1 className="text-8xl font-totifont opacity-70 text-white my-20">Play Center</h1>
+          <div className="mt-10">
+            <Loader />
           </div>
         </div>
       );
     }
     return (
-      userDb[0]?.bannedFlag === false && userDb[0]?.deleteFlag === false ?
-        <div className="bg-[url('https://cdnb.artstation.com/p/assets/images/images/012/193/905/original/maria-hager-titlescreen-retro-glitch.gif?1533552570')] bg-cover bg-center bg-no-repeat fixed h-screen w-screen">
+      userDb[0]?.bannedFlag === true || userDb[0]?.deleteFlag === true
+
+        ? <div className="bg-[url('https://cdnb.artstation.com/p/assets/images/images/012/193/905/original/maria-hager-titlescreen-retro-glitch.gif?1533552570')] bg-cover bg-center bg-no-repeat fixed h-screen w-screen">
+          <div className="container text-center align-middle">
+            <h1 className="my-20 text-white text-8xl font-totifont opacity-70">Play Center</h1>
+            <img className="absolute inset-0 w-32 h-32" src="https://i.imgur.com/9ESFHWn.png" alt="" />
+            <div className="mt-10">
+              <h3 className="text-5xl text-center text-red-600 font-totifont opacity-80">
+                This account has been banned or deleted.
+              </h3>
+              <p className="text-3xl text-center text-red-600 font-totifont opacity-80">
+                Please, logout and try again with other account.
+              </p>
+              <div className="flex flex-row-reverse justify-center my-20 align-middle">
+                <LogoutButton />
+              </div>
+            </div>
+          </div>
+        </div>
+        : <div className="bg-[url('https://cdnb.artstation.com/p/assets/images/images/012/193/905/original/maria-hager-titlescreen-retro-glitch.gif?1533552570')] bg-cover bg-center bg-no-repeat fixed h-screen w-screen">
           <div className="container text-center align-middle">
             <h1 className="my-20 text-white text-8xl font-totifont opacity-70">Play Center</h1>
             <img className="absolute inset-0 w-32 h-32" src="https://i.imgur.com/9ESFHWn.png" alt="" />
@@ -60,24 +74,8 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-        : <div className="bg-[url('https://cdnb.artstation.com/p/assets/images/images/012/193/905/original/maria-hager-titlescreen-retro-glitch.gif?1533552570')] bg-cover bg-center bg-no-repeat fixed h-screen w-screen">
-          <div className="container text-center align-middle">
-            <h1 className="my-20 text-white text-8xl font-totifont opacity-70">Play Center</h1>
-            <img className="absolute inset-0 w-32 h-32" src="https://i.imgur.com/9ESFHWn.png" alt="" />
-            <div className="mt-10">
-              <h3 className="text-5xl text-center text-red-600 font-totifont opacity-80">
-                This account has been banned or deleted.
-              </h3>
-              <p className="text-3xl text-center text-red-600 font-totifont opacity-80">
-                Please, logout and try again with other account.
-              </p>
-              <div className="flex flex-row-reverse justify-center my-20 align-middle">
-                <LogoutButton />
-              </div>
-            </div>
-          </div>
-        </div>
     )
+
   }
   else {
     window.localStorage.setItem('userLogged', '');
@@ -91,7 +89,6 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
-    );
-
+    )
   }
 }
