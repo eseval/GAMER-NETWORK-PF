@@ -51,7 +51,7 @@ export default function Reward() {
 	while (rewards?.length < 1) {
 		return (
 			<div className="container text-center">
-				<h1 className="text-8xl font-totifont opacity-70 text-white my-20">Play Center</h1>
+				<h1 className="text-6xl font-totifont opacity-70 text-white my-20">Play Center</h1>
 				<div className="mt-10">
 					<Loader />
 				</div>
@@ -62,7 +62,7 @@ export default function Reward() {
 	return (
 		<div>
 			<NavBar />
-			<h1 className="mt-10 mb-5 mx-5 text-7xl opacity-85 font-totifont text-center text-white">REWARDS</h1>
+			<h1 className="mt-10 mb-5 mx-5 text-6xl opacity-85 font-totifont text-center text-white">REWARDS</h1>
 			<div className="container flex flex-wrap justify-center">
 				{[...currentReward]?.map(re =>
 					re.deleteFlag === false && re.available === true ? (
