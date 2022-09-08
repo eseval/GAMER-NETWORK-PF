@@ -65,7 +65,8 @@ const initialState = {
   friendsBackUp: [],
   nonFriends: [],
   chats:[],
-  missions:[]
+  missions:[],
+  input:"",
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -356,7 +357,8 @@ export default function rootReducer(state = initialState, action) {
             let searchPosts = action.payload==="" ? state.postsBackUp : state.postsBackUp.filter(e=>e.title.toLowerCase().includes(action.payload.toLowerCase()))
             return{
               ...state,
-              posts : searchPosts
+              posts : searchPosts,
+              input: action.payload
             }
       default:
         return { ...state };

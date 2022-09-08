@@ -25,12 +25,13 @@ export default function ContainerForum() {
 		e.preventDefault();
 		navigate(`/postDetails/${postId}`);
 	}
+
 	return (
 		<div>
 			<div className="flex flex-row mx-5 my-3">
 				<div className="flex flex-row justify-between"><ForumFilterByMostComments /></div>
 				<div className="flex flex-row justify-between mx-5"><ForumFilterByGenre /></div>
-				<div className="flex flex-row justify-between mx-5"><SearchBarForum /></div>
+				<div className="flex flex-row justify-between mx-5"><SearchBarForum allPosts={themes} /></div>
 			</div>
 			<table className="w-full text-left table-auto text-md">
 				<thead className="text-gray-400 uppercase bg-gray-700">
