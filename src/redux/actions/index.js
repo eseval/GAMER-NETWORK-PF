@@ -45,6 +45,8 @@ import {
   POST_REWARD,
   GET_ALL_MISSIONS,
   SEARCH_FRIENDS,
+  FILTER_BY_GENRES,
+  SEARCH_IN_FORUM,
 } from './types';
 
 const USERS_URL = 'https://pf-henry-gamesportal.herokuapp.com/users';
@@ -546,4 +548,12 @@ export function getAllFriends(friends) {
 
   export function searchFriends(payload){
 		  return ({ type:SEARCH_FRIENDS, payload :payload });
+  }
+  
+  export function orderByGenres(payload){
+		  return ({ type:FILTER_BY_GENRES, payload :payload });
+  }
+
+  export function searchInForum(payload){
+		  return ({ type:SEARCH_IN_FORUM, payload:payload });
   }

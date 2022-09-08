@@ -44,6 +44,8 @@ import {
   POST_REWARD,
   GET_ALL_MISSIONS,
   SEARCH_FRIENDS,
+  FILTER_BY_GENRES,
+  SEARCH_IN_FORUM,
 } from "../actions/types";
 
 const initialState = {
@@ -157,6 +159,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         posts: action.payload,
+        postsBackUp: action.payload,
       };
     case EDIT_POST:
       return {
@@ -342,6 +345,18 @@ export default function rootReducer(state = initialState, action) {
             return{
               ...state,
               friends : friendsFiltered
+            }
+          case FILTER_BY_GENRES:
+            let postsFiltered = action.payload==="all" ? state.postsBackUp : state.postsBackUp.filter(e=>e.genre===action.payload)
+            return{
+              ...state,
+              posts : postsFiltered
+            }
+          case SEARCH_IN_FORUM:
+            let searchPosts = action.payload==="" ? state.postsBackUp : state.postsBackUp.filter(e=>e.title.toLowerCase().includes(action.payload.toLowerCase()))
+            return{
+              ...state,
+              posts : searchPosts
             }
       default:
         return { ...state };

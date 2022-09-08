@@ -1,21 +1,28 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import { editPost, getForum, getGenres, postForum, cleanForumEdit } from '../redux/actions';
+import { editPost, getForum, getGenres, postForum, cleanForumEdit, getUserById } from '../redux/actions';
 // import axios from "axios";
 import { useNavigate, useParams } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 export default function FormForum() {
 	const navigate = useNavigate();
-	const dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
+	let dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (!dataUser || dataUser === '' || dataUser?.deleteFlag === true || dataUser.bannedFlag === true) {
+		dispatch(getUserById(dataUser.id))
+	}, [getUserById, dispatch]);
+
+	let user = useSelector(state => state.user)
+
+	useEffect(() => {
+		if (!dataUser || dataUser === '' || dataUser?.deleteFlag === true || dataUser.bannedFlag === true || user?.bannedFlag === true || user?.deleteFlag === true) {
 			navigate('/');
 		}
-	}, [dataUser, navigate]);
+	}, [dataUser, navigate, user]);
+
 
 	let id = useParams();
 
@@ -49,19 +56,27 @@ export default function FormForum() {
 
 	function handleOnSubmit(e) {
 		e.preventDefault();
-		if (!id.id) {
-			dispatch(postForum(input));
-		} else {
-			dispatch(editPost(id.id, input));
-			setInput({
-				userId: dataUser.id,
-				nickname: dataUser.nickname,
-				text: '',
-				title: '',
-				genre: '',
-			});
-			navigate(`/postDetails/${id.id}`);
+		dispatch(getUserById(dataUser.id))
+		dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
+		if (dataUser || !dataUser === '' || dataUser?.deleteFlag === false || dataUser.bannedFlag === false || user?.bannedFlag === false || user?.deleteFlag === false) {
+			if (!id.id) {
+				dispatch(postForum(input));
+
+			} else {
+				dispatch(editPost(id.id, input));
+
+				setInput({
+					userId: dataUser.id,
+					nickname: dataUser.nickname,
+					text: '',
+					title: '',
+					genre: '',
+				});
+				navigate(`/postDetails/${id.id}`);
+			}
 		}
+		dispatch(getUserById(dataUser.id))
+		dataUser = !window.localStorage.userLogged ? '' : JSON.parse(window.localStorage.userLogged);
 		setNewPost(false);
 	}
 

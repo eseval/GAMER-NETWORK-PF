@@ -47,3 +47,5 @@ export const POST_MISSON = "POST_MISSON";
 export const POST_REWARD = "POST_REWARD";
 export const GET_ALL_MISSIONS = "GET_ALL_MISSIONS";
 export const SEARCH_FRIENDS = "SEARCH_FRIENDS";
+export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
+export const SEARCH_IN_FORUM = "SEARCH_IN_FORUM";
