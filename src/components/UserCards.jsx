@@ -7,7 +7,6 @@ import toast, { Toaster } from 'react-hot-toast';
 export default function UserCard({ user, dataUser }) {
 	const dispatch = useDispatch();
 
-	console.log(user);
 	const handleOnClick = (e, deleteFriend) => {
 		e.preventDefault();
 		dispatch(addFriendForChat(dataUser.id, user.id, deleteFriend));

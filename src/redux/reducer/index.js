@@ -65,7 +65,8 @@ const initialState = {
   friendsBackUp: [],
   nonFriends: [],
   chats:[],
-  missions:[]
+  missions:[],
+  input:"",
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -133,7 +134,8 @@ export default function rootReducer(state = initialState, action) {
     case POST_FORUM:
       return {
         ...state,
-        posts:action.payload
+        posts:action.payload,
+        postsBackUp: action.payload,
       };
     case CLAIM_REWARDS:
       return {
@@ -272,6 +274,7 @@ export default function rootReducer(state = initialState, action) {
           user:action.payload,
           chat:action.payload2,
           friends:action.payload3,
+          friendsBackUp:action.payload3,
           nonFriends: action.payload4,
           users:action.payload5,
         }
@@ -293,7 +296,8 @@ export default function rootReducer(state = initialState, action) {
       case CLEAN_ALL_POST:
         return{
           ...state,
-          posts:[]
+          posts:[],
+          postsBackUp: []
         }
       case CLAIM_MISSION:
         return{
@@ -356,7 +360,8 @@ export default function rootReducer(state = initialState, action) {
             let searchPosts = action.payload==="" ? state.postsBackUp : state.postsBackUp.filter(e=>e.title.toLowerCase().includes(action.payload.toLowerCase()))
             return{
               ...state,
-              posts : searchPosts
+              posts : searchPosts,
+              input: action.payload
             }
       default:
         return { ...state };
