@@ -134,7 +134,8 @@ export default function rootReducer(state = initialState, action) {
     case POST_FORUM:
       return {
         ...state,
-        posts:action.payload
+        posts:action.payload,
+        postsBackUp: action.payload,
       };
     case CLAIM_REWARDS:
       return {
@@ -273,6 +274,7 @@ export default function rootReducer(state = initialState, action) {
           user:action.payload,
           chat:action.payload2,
           friends:action.payload3,
+          friendsBackUp:action.payload3,
           nonFriends: action.payload4,
           users:action.payload5,
         }
@@ -294,7 +296,8 @@ export default function rootReducer(state = initialState, action) {
       case CLEAN_ALL_POST:
         return{
           ...state,
-          posts:[]
+          posts:[],
+          postsBackUp: []
         }
       case CLAIM_MISSION:
         return{
