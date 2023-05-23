@@ -13,8 +13,8 @@ export default function LandingPage() {
   const userDb = useSelector(state => state.user);
 
   useEffect(() => {
-    if (userDb?.length > 0) {
-    } else {
+    if (userDb?.length > 0) return
+    else {
       if (user) {
         dispatch(postUser(user));
         dispatch(getUserByEmail(user.email));

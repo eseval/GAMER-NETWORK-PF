@@ -48,7 +48,7 @@ export default function ModifyUserForm() {
 							.test('Unique nickname', 'Nickname already in use', function (value) {
 								return new Promise((res, rej) => {
 									axios
-										.get(`https://pf-backend-production-8df9.up.railway.ap/users?findNickname=nickname`)
+										.get(`https://pf-backend-production-8df9.up.railway.app/users?findNickname=nickname`)
 										.then(response => {
 											if (response.data.includes(value)) {
 												res(false);
@@ -65,7 +65,7 @@ export default function ModifyUserForm() {
 					})}
 					validateOnBlur={true}
 					onSubmit={async values => {
-						await axios.put(`https://pf-backend-production-8df9.up.railway.ap/users/${user.id}`, {
+						await axios.put(`https://pf-backend-production-8df9.up.railway.app/users/${user.id}`, {
 							img,
 							nickname: values.nickname !== '' ? values?.nickname : user?.nickname,
 							description: values.description,

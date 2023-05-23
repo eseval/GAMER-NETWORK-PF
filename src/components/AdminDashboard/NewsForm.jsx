@@ -41,7 +41,7 @@ export default function NewsForm() {
         validateOnBlur={true}
         onSubmit={async (values, formikHelpers) => {
           if (img !== null) {
-            axios.post('https://pf-backend-production-8df9.up.railway.ap/news', {
+            axios.post('https://pf-backend-production-8df9.up.railway.app/news', {
               title: values.title,
               short_description: values.short_description,
               article_content: values.article_content,

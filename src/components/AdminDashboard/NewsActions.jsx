@@ -15,7 +15,7 @@ export default function NewsActions({ params, rowId, setRowId }) {
     setLoading(true);
     const { id, short_description, title, deleteFlag } = params.row;
 
-    const result = await axios.put(`https://pf-backend-production-8df9.up.railway.ap/news/${id}`, {
+    const result = await axios.put(`https://pf-backend-production-8df9.up.railway.app/news/${id}`, {
       title,
       short_description,
       deleteFlag

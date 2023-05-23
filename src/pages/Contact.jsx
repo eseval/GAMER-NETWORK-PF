@@ -28,7 +28,7 @@ export default function Contact() {
 					})}
 					onSubmit={async (values, formikHelpers) => {
 						try {
-							await axios.post('https://pf-backend-production-8df9.up.railway.ap/email/contact', values);
+							await axios.post('https://pf-backend-production-8df9.up.railway.app/email/contact', values);
 							toast.success(`Message sended!`);
 							formikHelpers.resetForm();
 						} catch (error) {

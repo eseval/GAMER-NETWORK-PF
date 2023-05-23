@@ -43,11 +43,11 @@ export default function FavoriteGames({ user }) {
 	};
 
 	async function removeFavorite(id) {
-		await axios.put(`https://pf-backend-production-8df9.up.railway.ap/users/${dataUser.id}`, {
+		await axios.put(`https://pf-backend-production-8df9.up.railway.app/users/${dataUser.id}`, {
 			delete: true,
 			favorite: id,
 		});
-		let newDataUser = await axios.get(`https://pf-backend-production-8df9.up.railway.ap/users/${dataUser.id}`);
+		let newDataUser = await axios.get(`https://pf-backend-production-8df9.up.railway.app/users/${dataUser.id}`);
 		window.localStorage.setItem('userLogged', JSON.stringify(newDataUser.data));
 		setDataUser(JSON.parse(window.localStorage.userLogged));
 	}
