@@ -6,22 +6,22 @@ import axios from 'axios';
 import { getAllNews } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
-export default function NewsActions({params, rowId, setRowId}) {
+export default function NewsActions({ params, rowId, setRowId }) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit= async () => {
+  const handleSubmit = async () => {
     setLoading(true);
     const { id, short_description, title, deleteFlag } = params.row;
 
-    const result = await axios.put(`https://pf-henry-gamesportal.herokuapp.com/news/${id}`, {
+    const result = await axios.put(`https://pf-backend-production-8df9.up.railway.ap/news/${id}`, {
       title,
       short_description,
       deleteFlag
     })
-    
-    if(result){
+
+    if (result) {
       setSuccess(true);
       setRowId(null);
       dispatch(getAllNews());
@@ -30,54 +30,54 @@ export default function NewsActions({params, rowId, setRowId}) {
   }
 
   useEffect(() => {
-    if(rowId === params.id && success) setSuccess(false)
+    if (rowId === params.id && success) setSuccess(false)
   }, [rowId, params.id, success])
 
   return (
     <Box
-    sx={{
-      m:1,
-      position: 'relative'
-    }}
+      sx={{
+        m: 1,
+        position: 'relative'
+      }}
     >
       {success ? (
         <Fab
-        color='primary'
-        sx={{
-          width:40,
-          height:40,
-          bgcolor: green[500],
-          '&:hover': {bgcolor: green[700]}
-        }}
+          color='primary'
+          sx={{
+            width: 40,
+            height: 40,
+            bgcolor: green[500],
+            '&:hover': { bgcolor: green[700] }
+          }}
         >
           <Check />
         </Fab>
       ) : (<Fab
         color='primary'
         sx={{
-          width:40,
-          height:40,
+          width: 40,
+          height: 40,
           bgcolor: green[500],
-          '&:hover': {bgcolor: green[700]}
+          '&:hover': { bgcolor: green[700] }
         }}
         disabled={params.id !== rowId || loading}
         onClick={handleSubmit}
-        >
-          <Save />
-        </Fab>
-        )}
-        {loading && (
-          <CircularProgress
+      >
+        <Save />
+      </Fab>
+      )}
+      {loading && (
+        <CircularProgress
           size={52}
           sx={{
-            color:green[500],
-            position:'absolute',
-            top:-6,
-            left:-6,
+            color: green[500],
+            position: 'absolute',
+            top: -6,
+            left: -6,
             zIndex: 1
           }}
-          />
-        )}
+        />
+      )}
     </Box>
   )
 }

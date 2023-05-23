@@ -14,7 +14,7 @@ const stripePromise = loadStripe(
   "pk_test_51LZyETGeR2tWeoGCHWKrNwd3COAVfyKMLNrIIL8AuUa9gCNuwEUCtdJTpv4azhK8PYyuDyYsYxd2vw1tzDBW4fM7006ovG6uFg"
 );
 
-const socket = io("https://pf-henry-gamesportal.herokuapp.com");
+const socket = io("https://pf-backend-production-8df9.up.railway.ap");
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
