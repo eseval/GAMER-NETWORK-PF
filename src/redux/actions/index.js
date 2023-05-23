@@ -49,16 +49,16 @@ import {
   SEARCH_IN_FORUM,
 } from './types';
 
-const USERS_URL = 'https://pf-henry-gamesportal.herokuapp.com/users';
-const NEWS_URL = 'https://pf-henry-gamesportal.herokuapp.com/news';
-const FORUM_URL = 'https://pf-henry-gamesportal.herokuapp.com/forum';
-const REWARDS_URL = 'https://pf-henry-gamesportal.herokuapp.com/reward';
-const GAMES_URL = 'https://pf-henry-gamesportal.herokuapp.com/games';
-const ANSWER_URL = 'https://pf-henry-gamesportal.herokuapp.com/answers';
-const GENRES_URL = 'https://pf-henry-gamesportal.herokuapp.com/genre';
-const CHAT_URL = "https://pf-henry-gamesportal.herokuapp.com/chat";
-const ADD_MISSION_URL = "https://pf-henry-gamesportal.herokuapp.com/addMission";
-const MISSION_URL = "https://pf-henry-gamesportal.herokuapp.com/missions";
+const USERS_URL = 'https://pf-backend-production-8df9.up.railway.ap/users';
+const NEWS_URL = 'https://pf-backend-production-8df9.up.railway.app/news';
+const FORUM_URL = 'https://pf-backend-production-8df9.up.railway.app/forum';
+const REWARDS_URL = 'https://pf-backend-production-8df9.up.railway.app/reward';
+const GAMES_URL = 'https://pf-backend-production-8df9.up.railway.app/games';
+const ANSWER_URL = 'https://pf-backend-production-8df9.up.railway.app/answers';
+const GENRES_URL = 'https://pf-backend-production-8df9.up.railway.app/genre';
+const CHAT_URL = "https://pf-backend-production-8df9.up.railway.app/chat";
+const ADD_MISSION_URL = "https://pf-backend-production-8df9.up.railway.app/addMission";
+const MISSION_URL = "https://pf-backend-production-8df9.up.railway.app/missions";
 
 
 export function postUser(data) {
@@ -178,13 +178,13 @@ export function postForum(payload) {
 export function claimRewards(data, id, price) {
 	return async function (dispatch) {
 		try {
-			let newDataUser = await axios.get(`https://pf-henry-gamesportal.herokuapp.com/users/${id}`);
+			let newDataUser = await axios.get(`https://pf-backend-production-8df9.up.railway.app/users/${id}`);
 			if (newDataUser.data.coins >= price) {
 				await axios.put(`${USERS_URL}/${id}`, data);
-        await axios.post(`https://pf-henry-gamesportal.herokuapp.com/email/reward`, {
+        await axios.post(`https://pf-backend-production-8df9.up.railway.app/email/reward`, {
           email: data.email
         });
-				newDataUser = await axios.get(`https://pf-henry-gamesportal.herokuapp.com/users/${id}`);
+				newDataUser = await axios.get(`https://pf-backend-production-8df9.up.railway.app/users/${id}`);
 				window.localStorage.setItem('userLogged', JSON.stringify(newDataUser.data));
 			} else {
 				window.localStorage.setItem('userLogged', JSON.stringify(newDataUser.data));
