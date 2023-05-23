@@ -74,7 +74,7 @@ export default function PaymentStripe() {
 		if (!error) {
 			const { id } = paymentMethod;
 			try {
-				const { data } = await axios.post('https://pf-backend-production-8df9.up.railway.ap/api/checkout', {
+				const { data } = await axios.post('https://pf-backend-production-8df9.up.railway.app/api/checkout', {
 					id,
 					amount: amount * 100,
 					dataUser,
@@ -109,7 +109,7 @@ export default function PaymentStripe() {
 						confirmButtonColor: '#28a745',
 					});
 					const newDataUser = await axios.get(
-						`https://pf-backend-production-8df9.up.railway.ap/users/${dataUser.id}`
+						`https://pf-backend-production-8df9.up.railway.app/users/${dataUser.id}`
 					);
 					window.localStorage.setItem('userLogged', JSON.stringify(newDataUser.data));
 					toast.success('Thanks for joining play center');

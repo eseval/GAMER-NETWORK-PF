@@ -20,7 +20,7 @@ export default function UsersActions({ params, rowId, setRowId }) {
     setLoading(true);
     const { id, nickname, description, plan, coins, servers, deleteFlag, bannedFlag } = params.row;
 
-    const result = await axios.put(`https://pf-backend-production-8df9.up.railway.ap/users/${id}`, {
+    const result = await axios.put(`https://pf-backend-production-8df9.up.railway.app/users/${id}`, {
       nickname,
       description,
       plan,
@@ -30,7 +30,7 @@ export default function UsersActions({ params, rowId, setRowId }) {
       bannedFlag
     });
 
-    const newDataUser = await axios.get(`https://pf-backend-production-8df9.up.railway.ap/users/${dataUser.id}`);
+    const newDataUser = await axios.get(`https://pf-backend-production-8df9.up.railway.app/users/${dataUser.id}`);
     window.localStorage.setItem('userLogged', JSON.stringify(newDataUser.data));
     setDataUser(JSON.parse(window.localStorage.userLogged));
 

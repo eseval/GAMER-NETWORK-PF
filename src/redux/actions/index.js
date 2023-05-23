@@ -49,7 +49,7 @@ import {
   SEARCH_IN_FORUM,
 } from './types';
 
-const USERS_URL = 'https://pf-backend-production-8df9.up.railway.ap/users';
+const USERS_URL = 'https://pf-backend-production-8df9.up.railway.app/users';
 const NEWS_URL = 'https://pf-backend-production-8df9.up.railway.app/news';
 const FORUM_URL = 'https://pf-backend-production-8df9.up.railway.app/forum';
 const REWARDS_URL = 'https://pf-backend-production-8df9.up.railway.app/reward';

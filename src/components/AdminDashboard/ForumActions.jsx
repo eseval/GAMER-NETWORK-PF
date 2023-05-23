@@ -15,7 +15,7 @@ export default function ForumActions({ params, rowId, setRowId }) {
     setLoading(true);
     const { id, title, text, deleteFlag } = params.row;
 
-    const result = await axios.put(`https://pf-backend-production-8df9.up.railway.ap/forum/${id}`, {
+    const result = await axios.put(`https://pf-backend-production-8df9.up.railway.app/forum/${id}`, {
       title,
       text,
       deleteFlag
