@@ -11,17 +11,17 @@ import axios from "axios";
 export default function NewsForm() {
   const [img, setImg] = useState(null);
 
-  return(
+  return (
     <Box
-    sx={{
-      height:400,
-      width:'60%',
-      margin:'auto',
-      bgcolor: grey[300],
-      padding: '30px',
-      marginTop: '50px',
-      BorderAllRounded: '20px'
-    }}
+      sx={{
+        height: 400,
+        width: '60%',
+        margin: 'auto',
+        bgcolor: grey[300],
+        padding: '30px',
+        marginTop: '50px',
+        BorderAllRounded: '20px'
+      }}
     >
       <h3 className="text-2xl text-center text-semibold">Add News</h3>
       <Formik
@@ -31,17 +31,17 @@ export default function NewsForm() {
           article_content: ''
         }}
         validationSchema={Yup.object({
-            title: Yup.string()
+          title: Yup.string()
             .required('Please enter a title'),
-            short_description: Yup.string()
+          short_description: Yup.string()
             .required('Please enter a description')
             .max(256, 'Max 256 characters'),
-            article_content: Yup.string().required('Please enter the content'),
-          })}
+          article_content: Yup.string().required('Please enter the content'),
+        })}
         validateOnBlur={true}
         onSubmit={async (values, formikHelpers) => {
-          if(img !== null) {
-            axios.post('https://pf-henry-gamesportal.herokuapp.com/news', {
+          if (img !== null) {
+            axios.post('https://pf-backend-production-8df9.up.railway.ap/news', {
               title: values.title,
               short_description: values.short_description,
               article_content: values.article_content,
@@ -52,64 +52,64 @@ export default function NewsForm() {
           }
         }}
       >
-          <Form>
-            <Field 
-              name='title' 
-              type='text' 
-              as={TextField} 
-              variant='outlined' 
-              color='primary' 
-              label='Title' 
-              fullWidth
-              margin='normal'
-            />
-						<ErrorMessage component="div" className="text-xs italic text-red-500" name="title" />
+        <Form>
+          <Field
+            name='title'
+            type='text'
+            as={TextField}
+            variant='outlined'
+            color='primary'
+            label='Title'
+            fullWidth
+            margin='normal'
+          />
+          <ErrorMessage component="div" className="text-xs italic text-red-500" name="title" />
 
-            <Field 
-              name='short_description' 
-              type='text' 
-              as={TextField} 
-              variant='outlined' 
-              color='primary' 
-              label='Short Description' 
-              fullWidth
-              multiline='true'
-              margin='normal'
-            />
-						<ErrorMessage component="div" className="text-xs italic text-red-500" name="short_description" />
+          <Field
+            name='short_description'
+            type='text'
+            as={TextField}
+            variant='outlined'
+            color='primary'
+            label='Short Description'
+            fullWidth
+            multiline='true'
+            margin='normal'
+          />
+          <ErrorMessage component="div" className="text-xs italic text-red-500" name="short_description" />
 
+          <Field
+            name='article_content'
+            type='text'
+            as={TextField}
+            variant='outlined'
+            color='primary'
+            label='Article Content'
+            fullWidth
+            multiline='true'
+            margin='normal'
+          />
+          <ErrorMessage component="div" className="text-xs italic text-red-500" name="article_content" />
+          <div className="flex flex-row justify-between">
             <Field
-              name='article_content' 
-              type='text' 
-              as={TextField} 
-              variant='outlined' 
-              color='primary' 
-              label='Article Content' 
-              fullWidth
-              multiline='true'
-              margin='normal'
+              as={Widget}
+              name='main_image'
+              publicKey="50d55201e2f94662863b"
+              id="main_image"
+              imagesOnly={true}
+              tabs="file url"
+              onChange={info => setImg(info.cdnUrl)}
+              crop="free, 16:9, 4:3, 5:4, 1:1"
+              clearable='true'
+
             />
-						<ErrorMessage component="div" className="text-xs italic text-red-500" name="article_content" />
-            <div className="flex flex-row justify-between">
-              <Field 
-                as={Widget}
-                name='main_image'
-                publicKey="50d55201e2f94662863b"
-                id="main_image"
-                imagesOnly={true}
-                tabs="file url"
-                onChange={info => setImg(info.cdnUrl)}
-                crop="free, 16:9, 4:3, 5:4, 1:1"
-                clearable='true'
-                
-                />
-              <Button 
-                type="submit"
-                variant='outlined'
-                color='primary'
-              >Add News</Button>
-            </div>
-          </Form>
+            <Button
+              type="submit"
+              variant='outlined'
+              color='primary'
+            >Add News</Button>
+          </div>
+        </Form>
       </Formik>
     </Box>
   )

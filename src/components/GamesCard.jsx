@@ -11,22 +11,22 @@ export default function GamesCard({ game }) {
 	}, [setDataUser]);
 
 	const addFavorite = async () => {
-		await axios.put(`https://pf-henry-gamesportal.herokuapp.com/users/${dataUser.id}`, {
+		await axios.put(`https://pf-backend-production-8df9.up.railway.ap/users/${dataUser.id}`, {
 			delete: false,
 			favorite: game.id,
 		});
-		const newDataUser = await axios.get(`https://pf-henry-gamesportal.herokuapp.com/users/${dataUser.id}`);
+		const newDataUser = await axios.get(`https://pf-backend-production-8df9.up.railway.ap/users/${dataUser.id}`);
 		window.localStorage.setItem('userLogged', JSON.stringify(newDataUser.data));
 		setDataUser(JSON.parse(window.localStorage.userLogged));
 		toast.success(`${game.name} add to favorites!`);
 	};
 
 	const removeFavorite = async () => {
-		await axios.put(`https://pf-henry-gamesportal.herokuapp.com/users/${dataUser.id}`, {
+		await axios.put(`https://pf-backend-production-8df9.up.railway.ap/users/${dataUser.id}`, {
 			delete: true,
 			favorite: game.id,
 		});
-		const newDataUser = await axios.get(`https://pf-henry-gamesportal.herokuapp.com/users/${dataUser.id}`);
+		const newDataUser = await axios.get(`https://pf-backend-production-8df9.up.railway.ap/users/${dataUser.id}`);
 		window.localStorage.setItem('userLogged', JSON.stringify(newDataUser.data));
 		setDataUser(JSON.parse(window.localStorage.userLogged));
 		toast.error(`${game.name} removed from favorites!`);
